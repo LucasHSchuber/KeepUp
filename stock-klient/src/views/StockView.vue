@@ -5,9 +5,9 @@
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Stock</h4>
 
-            <form class="form-inline d-flex">
+            <form class="form-inline d-flex my-5">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Search</button>
             </form>
 
             <table class="table">
