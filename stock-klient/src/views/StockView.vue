@@ -16,6 +16,7 @@
                         <th scope="col">SKU</th>
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Radera</th>
                     </tr>
                 </thead>
@@ -62,9 +63,7 @@ export default {
     methods: {
         async getStock() {
             const resp = await fetch("http://127.0.0.1:8001/api/stocks");
-
             const data = await resp.json();
-
             this.stocks = data;
 
         },
@@ -76,9 +75,7 @@ export default {
                     "Content-type": "application/json"
                 }
             });
-
             const data = await resp.json();
-
             this.getStock();
         }
     },

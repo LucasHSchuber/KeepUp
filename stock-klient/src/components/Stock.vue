@@ -4,6 +4,7 @@
             <td>{{ stock.SKU }}</td>
             <td>{{ stock.name }}</td>
             <td>{{ stock.category }}</td>
+            <td>{{ stock.price }}</td>
             <td><button @click="$emit('deleteStock')" class="del-btn"><i class="fa-solid fa-trash-can"></i></button></td>
         </tr>
     </tbody>
