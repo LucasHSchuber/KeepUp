@@ -48,7 +48,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Log out</a></li>
+                                <li  @click.prevent="logoutUser"  ><a class="dropdown-item" href="#">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -64,6 +64,34 @@
 </template>
 
 
+<script>
+
+import axios from 'axios'
+
+import { RouterLink } from 'vue-router';
+export default {
+    components: {
+        RouterLink
+    },
+    methods: {
+        logoutUser(){
+            axios.post('http://127.0.0.1:8001/api/logout').then(() =>{
+                this.$router.push({ name: "login"});
+                console.log("You have been loged out!"); log
+
+            }). catch((error) =>{
+                this.errors = error.response.data.errors;
+            })
+        }
+    }
+}
+
+
+
+
+
+
+</script>
 
 
 <style>
@@ -106,11 +134,3 @@ header li {
 }
 </style>
 
-<script>
-import { RouterLink } from 'vue-router';
-export default {
-    components: {
-        RouterLink
-    }
-}
-</script>

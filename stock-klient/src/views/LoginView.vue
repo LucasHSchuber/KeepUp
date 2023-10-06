@@ -21,6 +21,8 @@
 
 <script>
 
+import axios from 'axios'
+
 export default {
     data() {
         return{
@@ -35,7 +37,8 @@ export default {
     methods: {
         loginUser(){
             axios.post('http://127.0.0.1:8001/api/login', this.form).then(() =>{
-                this.$router.push({ name: "add"});
+                this.$router.push({ name: "home"});
+                console.log("You have been loged in!");
             }). catch((error) =>{
                 this.errors = error.response.data.errors;
             })
