@@ -52,8 +52,9 @@
 <script>
 
 import { toHandlers } from "vue";
-import addStock from "../components/addStock.vue";
+
 import Stock from "../components/Stock.vue";
+import addStock from "../components/addStock.vue";
 
 export default {
     data() {

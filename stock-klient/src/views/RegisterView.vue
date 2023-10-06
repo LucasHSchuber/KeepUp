@@ -2,10 +2,15 @@
 <template>
     <div class="wrapper container">
         <div class="start-box pb-3">
-            <h5>Login to you're account</h5>
+            <h5>Register account</h5>
         </div>
 
-        <div class="login-form">
+        <div class="reg-form">
+            <div class="mb-2">
+                <label for="name" class="form-label">Full name</label>
+                <span v-if="errors.name">{{ errors.name[0] }}</span>
+                <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">
+            </div>
             <div class="mb-2">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" placeholder="Email" v-model="form.email">
@@ -14,28 +19,36 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
             </div>
-            <button @click.prevent="loginUser" type="submit" class="submit-btn mt-4">Log in</button>
+            <div class="mb-2">
+                <label for="rpassword" class="form">Repeat password</label>
+                <input type="password" class="form-control" id="rpassword" placeholder="Repeat password" v-model="form.rpassword">
+            </div>
+            <button @click.prevent="saveForm" type="submit" class="submit-btn mt-4">Register</button>
         </div>
     </div>
 </template>
 
 <script>
 
+import axios from 'axios'
+
 export default {
     data() {
         return{
             form:{
+                name: "",
                 email: "",
                 password: "",
+                rpassword: "",
             },
             errors: []
 
         }
     },
     methods: {
-        loginUser(){
-            axios.post('http://127.0.0.1:8001/api/login', this.form).then(() =>{
-                this.$router.push({ name: "add"});
+        saveForm(){
+            axios.post('http://127.0.0.1:8001/api/register', this.form).then(() =>{
+                console.log('user saved!');
             }). catch((error) =>{
                 this.errors = error.response.data.errors;
             })
@@ -59,7 +72,7 @@ export default {
 
 }
 
-.login-form input {
+.reg-form input {
     height: 2em;
     margin: auto;
 }
