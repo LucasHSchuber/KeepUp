@@ -29,13 +29,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" ><RouterLink to="/">Start</RouterLink></a>
+                            <a class="nav-link" aria-current="page">
+                                <RouterLink to="/">Start</RouterLink>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page"><RouterLink to="/Add">Add +</RouterLink></a>
+                            <a class="nav-link" aria-current="page">
+                                <RouterLink to="/Add">Add +</RouterLink>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" ><RouterLink to="/stock">Stock</RouterLink></a>
+                            <a class="nav-link" aria-current="page">
+                                <RouterLink to="/stock">Stock</RouterLink>
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -48,7 +54,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li  @click.prevent="logoutUser"  ><a class="dropdown-item" href="#">Log out</a></li>
+                                <li @click.prevent="logoutUser"><a class="dropdown-item" href="#">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -71,23 +77,47 @@ import axios from 'axios'
 import { RouterLink } from 'vue-router';
 export default {
     data() {
-        return{
-            form: {
-                token: "här är token"
-            }
-        } 
+        return {
+            // form: {
+            //     token: "här är token"
+            // }
+        }
     },
     components: {
         RouterLink
     },
     methods: {
-        logoutUser(){
-            axios.post('http://127.0.0.1:8001/api/logout', this.form).then(() =>{
-                this.$router.push({ name: "login"});
-                console.log("You have been loged out!");
-            }). catch((error) =>{
-                this.errors = error.response.data.errors;
+        async logoutUser() {
+
+            // Retrieve the Bearer token from sessionStorage
+            const token = sessionStorage.getItem('token');
+
+            // Check if the token exists
+            if (!token) {
+                console.error('Access token not found in sessionStorage');
+                return;
+            } else {
+                console.log(token);
+            }
+
+            // Send a request to invalidate the token on the server (if supported)
+            axios.post('http://127.0.0.1:8001/api/logout', null, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
             })
+                .then(() => {
+
+                    // If the request is successful, remove the token from sessionStorage
+                    sessionStorage.removeItem('token');
+                    sessionStorage.clear()
+                    this.$router.push({ name: "login" });
+                    console.log("You have been loged out!");
+                }).catch((error) => {
+                    this.errors = error.response.data.errors;
+                    console.error('Error occurred during logout:', error);
+                })
         }
     }
 }
@@ -101,8 +131,6 @@ export default {
 
 
 <style>
-
-
 .navbar-brand {
     color: rgb(0, 0, 0);
     font-weight: 800;
@@ -118,11 +146,13 @@ header li {
     list-style: none;
     padding-left: 1em;
 }
-.navbar{
+
+.navbar {
     border-bottom: 0.5px solid rgb(214, 214, 214);
     box-shadow: 0 1px 4px 0px rgb(233, 233, 233);
     padding: 2em 0;
 }
+
 .navbar-nav li a {
     color: rgb(46, 46, 46);
     text-decoration: none;

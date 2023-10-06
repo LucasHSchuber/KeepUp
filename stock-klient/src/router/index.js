@@ -18,13 +18,13 @@ const router = createRouter({
       path: '/add',
       name: 'add',
       component: AddView,
-      // beforeEnter: (to, from, next) => {
-      //   if (localStorage.getItem('token')) {
-      //     next()
-      //   } else{
-      //     next('login')
-      //   }
-      // }
+      beforeEnter: (to, from, next) => {
+        if (sessionStorage.getItem('token')) {
+          next()
+        } else{
+          next('login')
+        }
+      }
     },
     {
       path: '/stock',
@@ -35,13 +35,13 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
-      beforeEnter: (to, from, next) => {
-        if (localStorage.getItem('token')) {
-          next()
-        } else{
-          next('login')
-        }
-      }
+      // beforeEnter: (to, from, next) => {
+      //   if (sessionStorage.getItem('token')) {
+      //     next()
+      //   } else{
+      //     next('login')
+      //   }
+      // }
     },
     {
       path: '/login',

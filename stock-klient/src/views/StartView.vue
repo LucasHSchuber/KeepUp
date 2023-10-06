@@ -8,7 +8,7 @@
 
 <script>
 
-console.log(localStorage);
+console.log(sessionStorage);
 
 import axios from 'axios'
 import User from "../components/User.vue";

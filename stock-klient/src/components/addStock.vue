@@ -98,12 +98,12 @@ export default {
 
             if (this.SKU.length > 0) {
 
-                // Retrieve the Bearer token from localStorage
-                const token = localStorage.getItem('token');
+                // Retrieve the Bearer token from sessionStorage
+                const token = sessionStorage.getItem('token');
 
                 // Check if the token exists
                 if (!token) {
-                    console.error('Access token not found in localStorage');
+                    console.error('Access token not found in sessionStorage');
                     return;
                 } else {
                     console.log(token);
