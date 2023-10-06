@@ -23,7 +23,11 @@
                 <label for="rpassword" class="form">Repeat password</label>
                 <input type="password" class="form-control" id="rpassword" placeholder="Repeat password" v-model="form.rpassword">
             </div>
+            <p class="success" v-if="success">
+                <b>Your account has been registered!</b>
+            </p>
             <button @click.prevent="saveForm" type="submit" class="submit-btn mt-4">Register</button>
+        
         </div>
     </div>
 </template>
@@ -40,18 +44,25 @@ export default {
                 email: "",
                 password: "",
                 rpassword: "",
+              
             },
-            errors: []
+            errors: [],
+            success: false
 
         }
     },
     methods: {
         saveForm(){
-            axios.post('http://127.0.0.1:8001/api/register', this.form).then(() =>{
+            axios.post('http://127.0.0.1:8001/api/register', this.form)
+            .then(() =>{
+                // this.$router.push({ name: "login"});
                 console.log('user saved!');
+                this.success = true;
             }). catch((error) =>{
                 this.errors = error.response.data.errors;
             })
+
+            
         }
     }
 }

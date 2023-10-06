@@ -70,15 +70,21 @@ import axios from 'axios'
 
 import { RouterLink } from 'vue-router';
 export default {
+    data() {
+        return{
+            form: {
+                token: "här är token"
+            }
+        } 
+    },
     components: {
         RouterLink
     },
     methods: {
         logoutUser(){
-            axios.post('http://127.0.0.1:8001/api/logout').then(() =>{
+            axios.post('http://127.0.0.1:8001/api/logout', this.form).then(() =>{
                 this.$router.push({ name: "login"});
-                console.log("You have been loged out!"); log
-
+                console.log("You have been loged out!");
             }). catch((error) =>{
                 this.errors = error.response.data.errors;
             })

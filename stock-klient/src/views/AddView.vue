@@ -29,32 +29,13 @@
 </template>
 
 
-<style scoped>
-.title {
-    font-weight: 700;
-}
-
-.article {
-    background-color: rgb(38, 87, 129);
-}
-
-.article:hover {
-    background-color: aliceblue;
-
-}
-
-.table {
-    margin: 2em 0;
-
-}
-</style>
-
 <script>
 
 import { toHandlers } from "vue";
 
 import Stock from "../components/Stock.vue";
-import addStock from "../components/addStock.vue";
+import addStock from "../components/Addstock.vue";
+
 
 export default {
     data() {
@@ -95,3 +76,24 @@ export default {
 }
 
 </script>
+
+
+<style scoped>
+.title {
+    font-weight: 700;
+}
+
+.article {
+    background-color: rgb(38, 87, 129);
+}
+
+.article:hover {
+    background-color: aliceblue;
+
+}
+
+.table {
+    margin: 2em 0;
+
+}
+</style>

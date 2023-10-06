@@ -43,7 +43,7 @@
             <button type="submit" class="submit-btn mt-4">Add product</button>
 
             <p class="success" v-if="success">
-                <b>Produkten har registrerats!</b>
+                <b>The product is registered!</b>
             </p>
         </form>
     </div>
@@ -112,7 +112,8 @@ export default {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
-                        "Content-type": "application/json"
+                        "Content-type": "application/json",
+                        // "Authorization": "Bearer " + token
                     },
                     body: JSON.stringify(stockBody)
                 });
@@ -177,10 +178,7 @@ export default {
     color: red;
 }
 
-.success {
-    color: green;
-    padding: 1em 0;
-}
+
 
 /* @media screen and (max-width: 771px) {
     .form-controll{
