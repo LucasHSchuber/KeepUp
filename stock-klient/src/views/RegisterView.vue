@@ -54,9 +54,10 @@ export default {
     methods: {
         saveForm(){
             axios.post('http://127.0.0.1:8001/api/register', this.form)
-            .then(() =>{
+            .then((response) =>{
                 // this.$router.push({ name: "login"});
                 console.log('user saved!');
+                console.log(response.data);
                 this.success = true;
             }). catch((error) =>{
                 this.errors = error.response.data.errors;

@@ -34,14 +34,14 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: RegisterView
-      // beforeEnter: (to, from, next) => {
-      //   if (localStorage.getItem('token')) {
-      //     next()
-      //   } else{
-      //     next('login')
-      //   }
-      // }
+      component: RegisterView,
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('token')) {
+          next()
+        } else{
+          next('login')
+        }
+      }
     },
     {
       path: '/login',

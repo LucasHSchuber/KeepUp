@@ -2,11 +2,13 @@
 <template>
     <div class="start-box container px-5 py-5">
         <h1>Start</h1>
-       <User v-for="users in user" :key="users.id"/>
+       <User v-for="user in users"  :key="users.id"/>
     </div>
 </template>
 
 <script>
+
+console.log(localStorage);
 
 import axios from 'axios'
 import User from "../components/User.vue";

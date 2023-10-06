@@ -98,6 +98,24 @@ export default {
 
             if (this.SKU.length > 0) {
 
+                // Retrieve the Bearer token from localStorage
+                const token = localStorage.getItem('token');
+
+                // Check if the token exists
+                if (!token) {
+                    console.error('Access token not found in localStorage');
+                    return;
+                } else {
+                    console.log(token);
+                }
+
+                // Define headers with the Bearer token
+                const headers = {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                    // Add more headers as needed
+                };
+
                 let stockBody = {
                     SKU: this.SKU,
                     name: this.name,
@@ -110,11 +128,12 @@ export default {
 
                 const resp = await fetch("http://127.0.0.1:8001/api/stocks", {
                     method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-type": "application/json",
-                        // "Authorization": "Bearer " + token
-                    },
+                    headers: headers,
+                    // headers: {
+                    //     "Accept": "application/json",
+                    //     "Content-type": "application/json",
+                    //     // "Authorization": "Bearer " + token
+                    // },
                     body: JSON.stringify(stockBody)
                 });
 
@@ -158,9 +177,10 @@ export default {
     transition: 0.2s;
     color: white;
     border-radius: 20px;
-    border:none;
+    border: none;
 
 }
+
 .submit-btn:hover {
     padding: 0.5em 1.5em;
     background-color: rgb(35, 35, 35);

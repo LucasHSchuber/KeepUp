@@ -36,9 +36,13 @@ export default {
     },
     methods: {
         loginUser(){
-            axios.post('http://127.0.0.1:8001/api/login', this.form).then(() =>{
+            axios.post('http://127.0.0.1:8001/api/login', this.form)
+            .then((response) =>{
+                localStorage.setItem('token', response.data.token)
+                console.log(response.data.token);
                 this.$router.push({ name: "home"});
                 console.log("You have been loged in!");
+                
             }). catch((error) =>{
                 this.errors = error.response.data.errors;
             })
