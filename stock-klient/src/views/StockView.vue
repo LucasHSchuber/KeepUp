@@ -8,11 +8,13 @@
             <SearchForm />
 
             <table class="table">
+                
                 <thead>
                     <tr>
-                        <th scope="col">SKU</th>
+                        <th scope="col">SKU </th>
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">Radera</th>
                     </tr>
@@ -22,9 +24,6 @@
         </div>
 
     </div>
-
-
-    <!-- <stock v-for="stock in stocks.stocks" :stock="stock" :key="stock.id" /> -->
 </template>
 
 
@@ -42,9 +41,9 @@ export default {
         }
     },
     components: {
-    Stock,
-    SearchForm,
-},
+        Stock,
+        SearchForm,
+    },
     methods: {
         async getStock() {
             const resp = await fetch("http://127.0.0.1:8001/api/stocks");

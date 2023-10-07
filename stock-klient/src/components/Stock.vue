@@ -4,6 +4,7 @@
             <td><a :href="stock.image" target="_blank">{{ stock.SKU }}</a></td>
             <td>{{ stock.name }}</td>
             <td>{{ stock.category }}</td>
+            <td>{{ stock.description }}</td>
             <td>{{ stock.price }}</td>
             <td><button @click="$emit('deleteStock')" class="del-btn"><i class="fa-solid fa-trash-can"></i></button></td>
         </tr>

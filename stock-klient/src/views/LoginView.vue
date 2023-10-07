@@ -2,7 +2,7 @@
 <template>
     <div class="wrapper container">
         <div class="start-box pb-3">
-            <h5>Login to you're account</h5>
+            <h5>Login to your account</h5>
         </div>
 
         <div class="login-form">
