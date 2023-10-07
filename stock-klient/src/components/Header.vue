@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
                 <!-- <a lass="navbar-brand" aria-current="page" ><RouterLink to="/">StockControll</RouterLink></a> -->
-                <a class="navbar-brand" href="#">StockControll</a>
+                <a class="navbar-brand" href="#">KeepUp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -46,12 +46,14 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                More
+                                Admin
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">My added products</a></li>
-                                <li><a class="dropdown-item" href="#">About us</a></li>
-                                <li><a class="dropdown-item" href="#"> <RouterLink to="/register">Register user</RouterLink></a></li>
+                                <!-- <li><a class="dropdown-item" href="#">About us</a></li> -->
+                                <li><a class="dropdown-item" href="#">
+                                        <RouterLink to="/register">Register user</RouterLink>
+                                    </a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -59,10 +61,12 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
+                    <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </form> -->
+
+                        <Users />
                 </div>
             </div>
         </nav>
@@ -76,16 +80,18 @@
 import axios from 'axios'
 
 import { RouterLink } from 'vue-router';
+import Users from "../components/Users.vue";
+
+
 export default {
     data() {
         return {
-            // form: {
-            //     token: "här är token"
-            // }
+           
         }
     },
     components: {
-        RouterLink
+        RouterLink,
+        Users,
     },
     methods: {
         async logoutUser() {
@@ -119,8 +125,41 @@ export default {
                     this.errors = error.response.data.errors;
                     console.error('Error occurred during logout:', error);
                 })
-        }
-    }
+        },
+        //   async activeUser() {
+
+        //     // Retrieve the Bearer token from sessionStorage
+        //     const token = sessionStorage.getItem('token');
+
+        //     // Check if the token exists
+        //     if (!token) {
+        //         console.error('Access token not found in sessionStorage');
+        //         return;
+        //     } else {
+        //         console.log(token);
+        //     }
+
+        //     // Send a request to invalidate the token on the server (if supported)
+        //     axios.get('http://127.0.0.1:8001/api/user', {
+        //         headers: {
+        //             'Authorization': `Bearer ${token}`,
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //         .then((response) => {
+        //             // If the request is successful
+        //             this.active = response.data;
+        //             console.log(response.data);
+        //         }).catch((error) => {
+        //             this.errors = error.response.data.errors;
+        //             console.error('Error loading user:', error);
+        //         })
+        // }
+
+    },
+    // mounted() {
+    //     this.activeUser();
+    // }
 }
 
 
@@ -136,12 +175,9 @@ export default {
     color: rgb(0, 0, 0);
     font-weight: 800;
     font-style: italic;
+    font-size: 1.5em;
 }
 
-header {
-    background-color: #11120f;
-
-}
 
 header li {
     list-style: none;
@@ -157,7 +193,7 @@ header li {
 .navbar-nav li a {
     color: rgb(46, 46, 46);
     text-decoration: none;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .navbar-nav li a:hover {
@@ -167,7 +203,12 @@ header li {
 .dropdown-menu {
     background-color: #F8F9FA;
     border: inherit;
+    width: 13em;
+}
 
+a:active,
+a:focus {
+    background-color: transparent !important;
 }
 </style>
 

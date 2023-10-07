@@ -6,8 +6,11 @@
     <div class="imgbox">
         <img class="start-image " src="../images/groceries.jpg" alt="bild-film">
         <div class="img-box">
-            <h5 class="text">"Controll your stock in the best way!"</h5>
+            <h5 class="text">"Keep track, keep controll, keep up!"</h5>
         </div>
+    </div>
+    <div>
+        
     </div>
 </template>
 
@@ -20,7 +23,7 @@
 .img-box {
     padding: 2em;
     height: 20em;
-    width: 30em;
+    width: 35em;
     top: 20%;
     left: 5%;
     text-align: left;
