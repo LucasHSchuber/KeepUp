@@ -1,7 +1,7 @@
 <template>
     <tbody class="article table-striped">
         <tr>
-            <td>{{ stock.SKU }}</td>
+            <td><a :href="stock.image" target="_blank">{{ stock.SKU }}</a></td>
             <td>{{ stock.name }}</td>
             <td>{{ stock.category }}</td>
             <td>{{ stock.price }}</td>

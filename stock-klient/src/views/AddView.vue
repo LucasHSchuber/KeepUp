@@ -3,7 +3,7 @@
         <h4 class="title mt-4 mb-3">Add product</h4>
 
         <!-- Fomulär -->
-        <addStock @stockAdded="getStock()" />
+        <AddStock @stockAdded="getStock()" />
 
         
         <!-- Skriver ut alla stocker från APIt -->
@@ -35,8 +35,7 @@
 import { toHandlers } from "vue";
 
 import Stock from "../components/Stock.vue";
-import addStock from "../components/Addstock.vue";
-
+import AddStock from "../components/Addstock.vue";
 
 export default {
     data() {
@@ -46,7 +45,7 @@ export default {
     },
     components: {
         Stock,
-        addStock
+        AddStock
     },
     methods: {
         async getStock() {

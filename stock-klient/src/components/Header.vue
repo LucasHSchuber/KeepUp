@@ -51,6 +51,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">My added products</a></li>
                                 <li><a class="dropdown-item" href="#">About us</a></li>
+                                <li><a class="dropdown-item" href="#"> <RouterLink to="/register">Register user</RouterLink></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
