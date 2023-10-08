@@ -49,7 +49,10 @@
                                 Admin
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">My added products</a></li>
+
+                                <li><a class="dropdown-item" href="#">
+                                        <RouterLink to="/mystock">My added products</RouterLink>
+                                    </a></li>
                                 <!-- <li><a class="dropdown-item" href="#">About us</a></li> -->
                                 <li><a class="dropdown-item" href="#">
                                         <RouterLink to="/register">Register user</RouterLink>
@@ -66,7 +69,7 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
 
-                        <Users />
+                    <Users />
                 </div>
             </div>
         </nav>
@@ -86,7 +89,7 @@ import Users from "../components/Users.vue";
 export default {
     data() {
         return {
-           
+
         }
     },
     components: {

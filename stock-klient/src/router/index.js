@@ -4,6 +4,7 @@ import AddView from '../views/AddView.vue';
 import StockView from '../views/StockView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import LoginView from '../views/LoginView.vue';
+import MyAddedStockView from '../views/MyAddedStockView.vue';
 
 
 const router = createRouter({
@@ -47,6 +48,18 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/mystock',
+      name: 'mystock',
+      component: MyAddedStockView,
+      beforeEnter: (to, from, next) => {
+        if (sessionStorage.getItem('token')) {
+          next()
+        } else{
+          next('login')
+        }
+      }
     }
 
   ]
