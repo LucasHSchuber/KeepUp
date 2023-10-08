@@ -1,33 +1,33 @@
 
 <template>
-    <div class="wrapper container">
-        <div class="start-box pb-3">
-            <h5>Register account</h5>
-        </div>
-
-        <div class="reg-form">
-            <div class="mb-2">
-                <label for="name" class="form-label">Full name</label>
-                <span v-if="errors.name">{{ errors.name[0] }}</span>
-                <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">
+    <div class="wrapper">
+        <div class="register-wrap d-flex justify-content-center">
+            <div class="reg-form">
+                <h5 class="mb-4">Register account</h5>
+                <div class="mb-2">
+                    <label for="name" class="form-label">Full name</label>
+                    <span v-if="errors.name">{{ errors.name[0] }}</span>
+                    <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">
+                </div>
+                <div class="mb-2">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" v-model="form.email">
+                </div>
+                <div class="mb-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password"
+                        v-model="form.password">
+                </div>
+                <div class="mb-2">
+                    <label for="rpassword" class="form">Repeat password</label>
+                    <input type="password" class="form-control" id="rpassword" placeholder="Repeat password"
+                        v-model="form.rpassword">
+                </div>
+                <p class="success" v-if="success">
+                    <b>Your account has been registered!</b>
+                </p>
+                <button @click.prevent="saveForm" type="submit" class="submit-btn mt-4">Register</button>
             </div>
-            <div class="mb-2">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" v-model="form.email">
-            </div>
-            <div class="mb-2">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
-            </div>
-            <div class="mb-2">
-                <label for="rpassword" class="form">Repeat password</label>
-                <input type="password" class="form-control" id="rpassword" placeholder="Repeat password" v-model="form.rpassword">
-            </div>
-            <p class="success" v-if="success">
-                <b>Your account has been registered!</b>
-            </p>
-            <button @click.prevent="saveForm" type="submit" class="submit-btn mt-4">Register</button>
-        
         </div>
     </div>
 </template>
@@ -38,13 +38,13 @@ import axios from 'axios'
 
 export default {
     data() {
-        return{
-            form:{
+        return {
+            form: {
                 name: "",
                 email: "",
                 password: "",
                 rpassword: "",
-              
+
             },
             errors: [],
             success: false
@@ -52,19 +52,19 @@ export default {
         }
     },
     methods: {
-        saveForm(){
+        saveForm() {
             axios.post('http://127.0.0.1:8001/api/register', this.form)
-            .then((response) =>{
-                // this.$router.push({ name: "login"});
-                console.log('user saved!');
-                console.log(response.data);
-                this.success = true;
-            }). catch((error) =>{
-                this.errors = error.response.data.errors;
-                console.log(error.response.data.errors);
-            })
+                .then((response) => {
+                    // this.$router.push({ name: "login"});
+                    console.log('user saved!');
+                    console.log(response.data);
+                    this.success = true;
+                }).catch((error) => {
+                    this.errors = error.response.data.errors;
+                    console.log(error.response.data.errors);
+                })
 
-            
+
         }
     }
 }
@@ -76,18 +76,9 @@ export default {
     margin: 5em 0 5em 0;
 }
 
-.start-box {
-    text-align: center;
-}
-
-.form-control {
-    width: 50%;
-
-}
-
 .reg-form input {
     height: 2em;
-    margin: auto;
+    width: 22em;
 }
 
 .submit-btn {

@@ -14,26 +14,26 @@
 
             <div class="form-group mt-2">
                 <label for="sku">SKU:</label>
-                <input v-model="SKU" type="text" class="form-control" id="sku" aria-describedby="sku" placeholder="">
+                <input v-model="SKU" type="text" class="form-control" id="sku" aria-describedby="sku" placeholder="SKU">
             </div>
             <div class="form-group mt-2">
                 <label for="name">Product name:</label>
-                <input v-model="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="">
+                <input v-model="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="Product name">
             </div>
             <div class="form-group mt-2">
                 <label for="category">Category:</label>
                 <input v-model="category" type="text" class="form-control" id="category" aria-describedby="category"
-                    placeholder="">
+                    placeholder="Category">
             </div>
             <div class="form-group mt-2">
                 <label for="description">Description:</label>
                 <input v-model="description" type="text" class="form-control" id="description"
-                    aria-describedby="description" placeholder="">
+                    aria-describedby="description" placeholder="Description">
             </div>
             <div class="form-group mt-2">
                 <label for="price">Price:</label>
                 <input v-model="price" type="number" class="form-control" id="price" aria-describedby="price"
-                    placeholder="">
+                    placeholder="Price">
             </div>
             <div class="form-group mt-2">
                 <label for="image" class="form-label">Product image</label>

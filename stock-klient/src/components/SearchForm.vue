@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="form-inline d-flex my-5">
-            <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Search"
+        <div class="form-inline d-flex mt-5 mb-3">
+            <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search" placeholder="Search stock"
                 aria-label="Search">
             <button @click="search" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Search</button>
         </div>

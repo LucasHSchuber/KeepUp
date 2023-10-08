@@ -79,7 +79,5 @@ export default {
 }
 
 .table {
-    margin: 2em 0;
-
 }
 </style>
