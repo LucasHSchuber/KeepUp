@@ -5,7 +5,7 @@
     </div> -->
 
     <div v-if="signedIn">
-        <h6> {{ active.name }} </h6>
+        <h6 class="d-flex"> Signed in as: {{ active.name }} </h6>
     </div>
 </template>
 

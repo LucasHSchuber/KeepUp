@@ -18,7 +18,8 @@
             </div>
             <div class="form-group mt-2">
                 <label for="name">Product name:</label>
-                <input v-model="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="Product name">
+                <input v-model="name" type="text" class="form-control" id="name" aria-describedby="name"
+                    placeholder="Product name">
             </div>
             <div class="form-group mt-2">
                 <label for="category">Category:</label>
@@ -37,7 +38,7 @@
             </div>
             <div class="form-group mt-2">
                 <label for="image" class="form-label">Product image</label>
-                <input class="form-control form-control-sm" id="image" v-on:change="onFileChange" type="file">
+                <input @change="handleFileUpload" class="form-control form-control-sm" id="image" type="file">
             </div>
 
             <button type="submit" class="submit-btn mt-4">Add product</button>
@@ -61,7 +62,7 @@ export default {
             category: "",
             description: "",
             price: "",
-            image: "",
+            image: null,
             beauty: "",
             errors: [],
             success: false
@@ -69,6 +70,10 @@ export default {
     },
     emits: ["stockAdded"],
     methods: {
+        handleFileUpload(event) {
+            this.image = event.target.files[0];
+            console.log(this.image.name);
+        },
         async addStock() {
 
             this.errors = [];
@@ -122,7 +127,7 @@ export default {
                     category: this.category,
                     description: this.description,
                     price: this.price,
-                    image: this.image
+                    image: this.image.name
 
                 };
 
@@ -160,7 +165,7 @@ export default {
 
 
 
-        }
+        } 
     }
 }
 

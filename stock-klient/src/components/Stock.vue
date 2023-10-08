@@ -1,5 +1,5 @@
 <template>
-    <tbody class="article table-striped">
+    <tbody class="">
         <tr>
             <td><a :href="stock.image" target="_blank">{{ stock.SKU }}</a></td>
             <td>{{ stock.name }}</td>

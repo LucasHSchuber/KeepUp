@@ -7,7 +7,7 @@
 
             <SearchForm @deleteStock="deleteStock(result.id)"  />
 
-            <table class="table">
+            <table class="table table-hover" >
                 <thead>
                     <tr>
                         <th scope="col">SKU </th>
@@ -78,6 +78,5 @@ export default {
     width: 50%;
 }
 
-.table {
-}
+
 </style>

@@ -9,7 +9,7 @@
         <!-- Skriver ut alla stocker från APIt -->
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Added products</h4>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">SKU</th>
