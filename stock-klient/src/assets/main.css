@@ -7,3 +7,17 @@ body{
   color: green;
   padding: 1em 0;
 }
+
+
+/*  Error msg */
+.error-box b {
+  color: red;
+}
+
+.error-box li b {
+  color: red;
+}
+
+.error-box li {
+  color: red;
+}

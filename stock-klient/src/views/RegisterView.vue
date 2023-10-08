@@ -4,9 +4,18 @@
         <div class="register-wrap d-flex justify-content-center">
             <div class="reg-form">
                 <h5 class="mb-4">Register account</h5>
+
+                <div class="error-box">
+                    <p v-if="errors.length">
+                        <b>Error messages:</b>
+                    <ul>
+                        <li v-for="error in errors"><b>{{ error }}</b></li>
+                    </ul>
+                    </p>
+                </div>
+
                 <div class="mb-2">
                     <label for="name" class="form-label">Full name</label>
-                    <span v-if="errors.name">{{ errors.name[0] }}</span>
                     <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">
                 </div>
                 <div class="mb-2">
@@ -19,9 +28,9 @@
                         v-model="form.password">
                 </div>
                 <div class="mb-2">
-                    <label for="rpassword" class="form">Repeat password</label>
-                    <input type="password" class="form-control" id="rpassword" placeholder="Repeat password"
-                        v-model="form.rpassword">
+                    <label for="password_confirmation" class="form">Repeat password</label>
+                    <input type="password" class="form-control" id="password_confirmation" placeholder="Repeat password"
+                        v-model="form.password_confirmation">
                 </div>
                 <p class="success" v-if="success">
                     <b>Your account has been registered!</b>
@@ -43,7 +52,7 @@ export default {
                 name: "",
                 email: "",
                 password: "",
-                rpassword: "",
+                password_confirmation: "",
 
             },
             errors: [],
@@ -53,15 +62,48 @@ export default {
     },
     methods: {
         saveForm() {
-            axios.post('http://127.0.0.1:8001/api/register', this.form)
+
+            // Assuming you have stored the authentication token in sessionStorage
+            const token = sessionStorage.getItem('token');
+
+            axios.post('http://127.0.0.1:8001/api/register', this.form, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    "Accept": "application/json",
+                    "Content-type": "application/json"
+                }
+            })
                 .then((response) => {
                     // this.$router.push({ name: "login"});
                     console.log('user saved!');
+
+                    this.errors = [ ];
                     console.log(response.data);
                     this.success = true;
+                    
+
                 }).catch((error) => {
-                    this.errors = error.response.data.errors;
-                    console.log(error.response.data.errors);
+
+                    this.errors = [];
+
+                    if (!this.form.name.ok) {
+                        this.errors.push(error.response.data.error.name);
+                        this.success = false;
+                    }
+                    if (!this.form.email.ok) {
+                        this.errors.push(error.response.data.error.email);
+                        this.success = false;
+                    }
+                    if (!this.form.password.ok) {
+                        this.errors.push(error.response.data.error.password);
+                        this.success = false;
+                    }
+                    if (!this.form.password_confirmation.ok) {
+                        this.errors.push(error.response.data.error.password_confirmation);
+                        this.success = false;
+                    }
+
+                    console.log(error.response.data.error);
                 })
 
 

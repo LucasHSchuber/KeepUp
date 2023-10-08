@@ -4,7 +4,7 @@
         <h1>Start</h1>
     </div> -->
     <div class="imgbox">
-        <img class="start-image " src="../images/groceries.jpg" alt="bild-film">
+        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film">
         <div class="img-box">
             <h5 class="text">"Keep track, keep controll, keep up!"</h5>
         </div>

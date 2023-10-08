@@ -69,7 +69,7 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
 
-                    <Users />
+                    <h6 class="d-flex">Signed in as: &nbsp; <Users /> </h6>
                 </div>
             </div>
         </nav>
