@@ -5,9 +5,9 @@
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Stock</h4>
 
-            <SearchForm @deleteStock="deleteStock(result.id)"  />
+            <SearchForm @deleteStock="deleteStock(result.id)" />
 
-            <table class="table table-hover" >
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">SKU </th>
@@ -51,15 +51,17 @@ export default {
 
         },
         async deleteStock(id) {
-            const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
-                method: "DELETE",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-type": "application/json"
-                }
-            });
-            const data = await resp.json();
-            this.getStock();
+            if (confirm("Are you sure you want to delete this product?")) {
+                const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-type": "application/json"
+                    }
+                });
+                const data = await resp.json();
+                this.getStock();
+            }
         }
     },
     mounted() {
@@ -77,6 +79,4 @@ export default {
 .form-control {
     width: 50%;
 }
-
-
 </style>

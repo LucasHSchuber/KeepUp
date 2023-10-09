@@ -69,7 +69,9 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
 
-                    <h6 class="d-flex"> <Users /> </h6>
+                    <h6 class="d-flex">
+                        <Users />
+                    </h6>
                 </div>
             </div>
         </nav>
@@ -99,36 +101,39 @@ export default {
     methods: {
         async logoutUser() {
 
-            // Retrieve the Bearer token from sessionStorage
-            const token = sessionStorage.getItem('token');
+            if (confirm("Are you sure you want to log out?")) {
 
-            // Check if the token exists
-            if (!token) {
-                console.error('Access token not found in sessionStorage');
-                return;
-            } else {
-                console.log(token);
-            }
+                // Retrieve the Bearer token from sessionStorage
+                const token = sessionStorage.getItem('token');
 
-            // Send a request to invalidate the token on the server (if supported)
-            axios.post('http://127.0.0.1:8001/api/logout', null, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                // Check if the token exists
+                if (!token) {
+                    console.error('Access token not found in sessionStorage');
+                    return;
+                } else {
+                    console.log(token);
                 }
-            })
-                .then(() => {
 
-                    // If the request is successful, remove the token from sessionStorage
-                    sessionStorage.removeItem('token');
-                    sessionStorage.clear()
-                    this.$router.push({ name: "login" });
-                    console.log("You have been loged out!");
-                }).catch((error) => {
-                    this.errors = error.response.data.errors;
-                    console.error('Error occurred during logout:', error);
+                // Send a request to invalidate the token on the server (if supported)
+                axios.post('http://127.0.0.1:8001/api/logout', null, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 })
-        },
+                    .then(() => {
+
+                        // If the request is successful, remove the token from sessionStorage
+                        sessionStorage.removeItem('token');
+                        sessionStorage.clear()
+                        this.$router.push({ name: "login" });
+                        console.log("You have been loged out!");
+                    }).catch((error) => {
+                        this.errors = error.response.data.errors;
+                        console.error('Error occurred during logout:', error);
+                    })
+            }
+        }
         //   async activeUser() {
 
         //     // Retrieve the Bearer token from sessionStorage
@@ -159,7 +164,7 @@ export default {
         //         })
         // }
 
-    },
+    }
     // mounted() {
     //     this.activeUser();
     // }
