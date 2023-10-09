@@ -14,26 +14,27 @@
 
             <div class="form-group mt-2">
                 <label for="sku">SKU:</label>
-                <input v-model="SKU" type="text" class="form-control" id="sku" aria-describedby="sku" placeholder="SKU">
+                <input v-model="formData.SKU" type="text" class="form-control" id="sku" aria-describedby="sku"
+                    placeholder="SKU">
             </div>
             <div class="form-group mt-2">
                 <label for="name">Product name:</label>
-                <input v-model="name" type="text" class="form-control" id="name" aria-describedby="name"
+                <input v-model="formData.name" type="text" class="form-control" id="name" aria-describedby="name"
                     placeholder="Product name">
             </div>
             <div class="form-group mt-2">
                 <label for="category">Category:</label>
-                <input v-model="category" type="text" class="form-control" id="category" aria-describedby="category"
-                    placeholder="Category">
+                <input v-model="formData.category" type="text" class="form-control" id="category"
+                    aria-describedby="category" placeholder="Category">
             </div>
             <div class="form-group mt-2">
                 <label for="description">Description:</label>
-                <input v-model="description" type="text" class="form-control" id="description"
+                <input v-model="formData.description" type="text" class="form-control" id="description"
                     aria-describedby="description" placeholder="Description">
             </div>
             <div class="form-group mt-2">
                 <label for="price">Price:</label>
-                <input v-model="price" type="number" class="form-control" id="price" aria-describedby="price"
+                <input v-model="formData.price" type="number" class="form-control" id="price" aria-describedby="price"
                     placeholder="Price">
             </div>
             <div class="form-group mt-2">
@@ -54,15 +55,19 @@
 
 <script>
 
+import axios from 'axios';
+
 export default {
     data() {
         return {
-            SKU: "",
-            name: "",
-            category: "",
-            description: "",
-            price: "",
-            image: null,
+            formData: {
+                SKU: "",
+                name: "",
+                category: "",
+                description: "",
+                price: "",
+                image: null,
+            },
             beauty: "",
             errors: [],
             success: false
@@ -71,7 +76,7 @@ export default {
     emits: ["stockAdded"],
     methods: {
         handleFileUpload(event) {
-            this.image = event.target.files[0];
+            this.formData.image = event.target.files[0];
             console.log(this.image.name);
         },
         async addStock() {
@@ -79,29 +84,29 @@ export default {
             this.errors = [];
             this.errors2 = [];
 
-            if (!this.SKU) {
+            if (!this.formData.SKU) {
                 this.errors.push('Enter SKU.');
                 this.success = false;
             }
-            if (!this.name) {
+            if (!this.formData.name) {
                 this.errors.push('Enter product name.');
                 this.success = false;
             }
-            if (!this.category) {
+            if (!this.formData.category) {
                 this.errors.push('Enter category.');
                 this.success = false;
             }
-            if (!this.description) {
+            if (!this.formData.description) {
                 this.errors.push('Write a description');
                 this.success = false;
             }
-            if (!this.price) {
+            if (!this.formData.price) {
                 this.errors.push('Enter price.');
                 this.success = false;
             }
 
 
-            if (this.SKU.length > 0) {
+            if (this.formData.SKU.length > 0) {
 
                 // Retrieve the Bearer token from sessionStorage
                 const token = sessionStorage.getItem('token');
@@ -114,58 +119,98 @@ export default {
                     console.log(token);
                 }
 
-                // Define headers with the Bearer token
-                const headers = {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                    // Add more headers as needed
-                };
+                const form = new FormData();
 
-                let stockBody = {
-                    SKU: this.SKU,
-                    name: this.name,
-                    category: this.category,
-                    description: this.description,
-                    price: this.price,
-                    image: this.image.name
+                form.append('SKU', this.formData.SKU);
+                form.append('name', this.formData.name);
+                form.append('category', this.formData.category);
+                form.append('description', this.formData.description);
+                form.append('price', this.formData.price);
+                form.append('image', this.formData.image);
 
-                };
+                // // Define headers with the Bearer token
+                // const headers = {
+                //     'Authorization': `Bearer ${token}`,
+                //     'Content-Type': 'multipart/form-data'
+                //     // Add more headers as needed
+                // };
 
-                const resp = await fetch("http://127.0.0.1:8001/api/stocks", {
+                // let stockBody = {
+                //     SKU: this.SKU,
+                //     name: this.name,
+                //     category: this.category,
+                //     description: this.description,
+                //     price: this.price,
+                //     image: this.image.name
+
+                // };
+
+                // Send FormData with Axios to your Laravel API endpoint
+                axios.post('http://127.0.0.1:8001/api/stocks', form, {
                     method: "POST",
-                    headers: headers,
-                    // headers: {
-                    //     "Accept": "application/json",
-                    //     "Content-type": "application/json",
-                    //     // "Authorization": "Bearer " + token
-                    // },
-                    body: JSON.stringify(stockBody)
-                });
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
 
-                if (!resp.ok) {
-                    this.success = true;// om svar från api inte är OK (200)
-                } else {
-                    const data = await resp.json(); // vid OK svar
+                    // const resp = await fetch("http://127.0.0.1:8001/api/stocks", form, {
+                    //     method: "POST",
+                    //     headers: headers,
+                    //     // headers: {
+                    //     //     "Accept": "application/json",
+                    //     //     "Content-type": "application/json",
+                    //     //     // "Authorization": "Bearer " + token
+                    //     // },
+                    //     body: JSON.stringify(stockBody)
+                    // });
 
-                    this.success = true;
 
-                    // this.SKU = "";
-                    // this.name = "";
-                    // this.category = "";
-                    // this.description = "";
-                    // this.price = "";
+                    .then((response) => {
+                        // const data = await resp.json(); // vid OK svar
+                        console.log(response.data);
 
-                    this.$emit("stockAdded");
-                }
+                        this.success = true;
 
+                        // this.SKU = "";
+                        // this.name = "";
+                        // this.category = "";
+                        // this.description = "";
+                        // this.price = "";
+
+                        this.$emit("stockAdded");
+
+                    }).catch((error) => {
+                        this.success = true;// om svar från api inte är OK (200)
+                        console.error('Error:', error);
+                        if (error.response) {
+                            console.error('Response Data:', error.response.data);
+                        }
+
+                    })
+
+
+
+                // if (Response.ok) {
+                //     this.success = true;// om svar från api inte är OK (200)
+                // } else {
+                //     const data = await resp.json(); // vid OK svar
+
+                //     this.success = true;
+
+                //     // this.SKU = "";
+                //     // this.name = "";
+                //     // this.category = "";
+                //     // this.description = "";
+                //     // this.price = "";
+
+                //     this.$emit("stockAdded");
+                // }
 
             } else {
                 console.log("Det finns väl ingen produkt utan titel?");
             }
-
-
-
-        } 
+        }
     }
 }
 
