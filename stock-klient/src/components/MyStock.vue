@@ -5,7 +5,6 @@
         </ul>
     </div> -->
 
-
     <tbody class="article table-striped">
         <tr v-for="grocery in groceries" :key="grocery.id">
             <td><a :href="grocery.image" target="_blank">{{ grocery.SKU }}</a></td>

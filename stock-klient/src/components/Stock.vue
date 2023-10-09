@@ -24,7 +24,7 @@ export default {
 <style>
 
 .del-btn {
-    background-color:inherit;
+    background-color:transparent;
     border: none;
     color: rgb(235, 1, 1);
     width: 3em;
