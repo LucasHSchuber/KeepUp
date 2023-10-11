@@ -8,7 +8,7 @@
             </h6>
 
             <SearchForm @deleteStock="deleteStock(result.id)" />
-    
+
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -20,10 +20,11 @@
                         <th scope="col">Radera</th>
                     </tr>
                 </thead>
-                <MyStock />
+                <MyStock @deleteStock="deleteStock(grocery.id)" v-for="grocery in groceries" :grocery="grocery"
+                    :key="grocery.id" />
             </table>
 
-           
+
         </div>
 
     </div>
@@ -34,11 +35,55 @@ import MyStock from '../components/MyStock.vue';
 import SearchForm from '../components/SearchForm.vue';
 import Users from '../components/Users.vue';
 
+import axios from 'axios';
+
 export default {
+    data() {
+        return {
+            groceries: []
+        };
+    },
     components: {
         MyStock,
         SearchForm,
         Users,
+    },
+    mounted() {
+        this.fetchGroceries();
+    },
+    methods: {
+        fetchGroceries() {
+            // Assuming you have stored the authentication token in localStorage
+            const token = sessionStorage.getItem('token');
+
+            axios.get("http://127.0.0.1:8001/api/groceries", {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    "Accept": "application/json",
+                    "Content-type": "application/json"
+                }
+            })
+                .then(response => {
+                    this.groceries = response.data;
+                    console.log(this.groceries);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        async deleteStock(id) {
+            if (confirm("Are you sure you want to delete this product?")) {
+                const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-type": "application/json"
+                    }
+                });
+                const data = await resp.json();
+                this.fetchGroceries();
+            }
+        }
     }
 };
 </script>

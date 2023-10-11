@@ -5,7 +5,7 @@
         <!-- Fomulär -->
         <AddStock @stockAdded="getStock()" />
 
-        
+
         <!-- Skriver ut alla stocker från APIt -->
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Added products</h4>
@@ -58,17 +58,19 @@ export default {
 
         },
         async deleteStock(id) {
-            const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
-                method: "DELETE",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-type": "application/json" 
-                }
-            });
+            if (confirm("Are you sure you want to delete this product?")) {
+                const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
+                    method: "DELETE",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-type": "application/json"
+                    }
+                });
 
-            const data = await resp.json();
+                const data = await resp.json();
 
-            this.getStock();
+                this.getStock();
+            }
         }
     },
     mounted() {
