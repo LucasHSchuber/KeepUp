@@ -128,13 +128,6 @@ export default {
                 form.append('price', this.formData.price);
                 form.append('image', this.formData.image);
 
-                // // Define headers with the Bearer token
-                // const headers = {
-                //     'Authorization': `Bearer ${token}`,
-                //     'Content-Type': 'multipart/form-data'
-                //     // Add more headers as needed
-                // };
-
                 // let stockBody = {
                 //     SKU: this.SKU,
                 //     name: this.name,
@@ -153,18 +146,6 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-
-                    // const resp = await fetch("http://127.0.0.1:8001/api/stocks", form, {
-                    //     method: "POST",
-                    //     headers: headers,
-                    //     // headers: {
-                    //     //     "Accept": "application/json",
-                    //     //     "Content-type": "application/json",
-                    //     //     // "Authorization": "Bearer " + token
-                    //     // },
-                    //     body: JSON.stringify(stockBody)
-                    // });
-
 
                     .then((response) => {
                         // const data = await resp.json(); // vid OK svar
@@ -189,23 +170,6 @@ export default {
 
                     })
 
-
-
-                // if (Response.ok) {
-                //     this.success = true;// om svar från api inte är OK (200)
-                // } else {
-                //     const data = await resp.json(); // vid OK svar
-
-                //     this.success = true;
-
-                //     // this.SKU = "";
-                //     // this.name = "";
-                //     // this.category = "";
-                //     // this.description = "";
-                //     // this.price = "";
-
-                //     this.$emit("stockAdded");
-                // }
 
             } else {
                 console.log("Det finns väl ingen produkt utan titel?");

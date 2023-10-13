@@ -15,7 +15,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Radera</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <Stock @deleteStock="deleteStock(stock.id)" v-for="stock in stocks" :stock="stock" :key="stock.id" />
@@ -27,16 +27,18 @@
 
 
 <script>
+import axios from 'axios';
 
 import { toHandlers } from "vue";
 import Stock from "../components/Stock.vue";
 import SearchForm from "../components/SearchForm.vue";
-// import addStock from "../components/addStock.vue";
+
 
 export default {
     data() {
         return {
-            stocks: []
+            stocks: [],
+            editingStock: null,
         }
     },
     components: {
@@ -62,7 +64,7 @@ export default {
                 const data = await resp.json();
                 this.getStock();
             }
-        }
+        },
     },
     mounted() {
         this.getStock();

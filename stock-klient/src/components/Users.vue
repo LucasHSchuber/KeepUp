@@ -34,7 +34,6 @@ export default {
                 console.error('No user is logged in');
                 return;
             } else {
-                console.log(token);
                 // Send a request to invalidate the token on the server (if supported)
                 axios.get('http://127.0.0.1:8001/api/user', {
                     headers: {

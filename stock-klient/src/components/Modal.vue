@@ -6,7 +6,6 @@
         </div>
     </div>
 
-
     <!-- http://localhost:5174/src/images/film_img2.jpg -->
 </template>
 
