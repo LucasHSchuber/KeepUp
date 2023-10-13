@@ -1,6 +1,5 @@
 <template>
-
-    <div class="modal">
+    <div class="modal" @click="closeModal">
         <div class="modal-content">
             <span class="close" @click="$emit('close')">&times;</span>
             <img :src="imageUrl" alt="Image of product">
@@ -9,7 +8,6 @@
 
 
     <!-- http://localhost:5174/src/images/film_img2.jpg -->
-
 </template>
 
 <script>
@@ -20,6 +18,14 @@ export default {
         imageUrl: {
             type: String,
             required: true
+        }
+    },
+    methods: {
+        closeModal(event) {
+            // Close the modal only if the click event target is the modal background
+            if (event.target.className === 'modal') {
+                this.$emit('close');
+            }
         }
     }
 };
@@ -57,9 +63,10 @@ export default {
     cursor: pointer;
     font-size: 30px;
 }
+
 img {
-  max-width: 100%;
-  max-height: 80vh;
-  margin: 0 auto;
+    max-width: 100%;
+    max-height: 80vh;
+    margin: 0 auto;
 }
 </style>

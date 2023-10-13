@@ -1,7 +1,7 @@
 <template>
     <tbody>
         <tr>
-            <td><a class="" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
+            <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
             <td>{{ stock.name }}</td>
             <td>{{ stock.category }}</td>
             <td>{{ stock.description }}</td>
@@ -53,5 +53,8 @@ export default {
 
 .del-btn:hover {
     color: rgb(109, 0, 0);
+}
+.image-link{
+    text-decoration: underline 1px blue;
 }
 </style>
