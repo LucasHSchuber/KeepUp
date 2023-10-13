@@ -3,9 +3,9 @@
 
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">My added products</h4>
-            <h6 class="d-flex">By: &nbsp;
+            <!-- <h6 class="d-flex">
                 <Users />
-            </h6>
+            </h6> -->
 
             <SearchForm @deleteStock="deleteStock(result.id)" />
 
