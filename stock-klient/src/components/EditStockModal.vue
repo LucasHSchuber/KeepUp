@@ -1,6 +1,7 @@
 <template>
     <div class="modal" @click="closeModal">
         <div class="modal-content">
+            <h5>Edit product</h5>
             <span class="close" @click="$emit('close')">&times;</span>
 
             <div class="form">
@@ -146,7 +147,7 @@ export default {
             var category = categoryEl.value;
             var description = descriptionEl.value;
             var price = priceEl.value;
-           
+
             // console.log(sku, name, category, description, price);
 
             //Prepare data object for the API request
@@ -165,9 +166,9 @@ export default {
                 description: description,
                 price: price
             };
- 
+
             console.log(updatedData);
-       
+
 
             // Retrieve the Bearer token from sessionStorage
             const token = sessionStorage.getItem('token');
@@ -188,13 +189,13 @@ export default {
                 }
             })
 
-            // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, updatedData, {
-            //     method: "PUT",
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`,
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // })
+                // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, updatedData, {
+                //     method: "PUT",
+                //     headers: {
+                //         'Authorization': `Bearer ${token}`,
+                //         'Content-Type': 'multipart/form-data'
+                //     }
+                // })
 
                 .then(function (response) {
                     console.log('Data successfully updated in the database:', response.data);
