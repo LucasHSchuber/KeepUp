@@ -1,8 +1,22 @@
 <template>
     <div>
-        <div class="form-inline d-flex mt-5 mb-3">
+        <div class="search-bar form-inline d-flex mt-5">
             <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search">
+        </div>
+
+        <div class="form-inline d-flex mt-4 mb-3">
+            <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
+                placeholder="Search stock" aria-label="Search"> -->
+
+            <label class="mt-1">Sort By: &nbsp; </label>
+            <select v-model="sortBy" class="form-control select form-select ">
+                <option selected >sort by..</option>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="category">Category</option>
+            </select>
+            <button @click="filter" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
         </div>
 
         <table class="table table-hover">
@@ -17,16 +31,16 @@
                 </tr>
             </thead>
             <tbody class="article table-striped">
-                <tr v-for="result in searchResults" :key="result.id">
-                    <td><a class="image-link" @click="openModalWithUrl(result.image)">{{ result.SKU }}</a></td>
-                    <td>{{ result.name }}</td>
-                    <td>{{ result.category }}</td>
-                    <td>{{ result.description }}</td>
-                    <td>{{ result.price }} kr</td>
+                <tr v-for="stock in searchResults" :key="stock.id">
+                    <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.category }}</td>
+                    <td>{{ stock.description }}</td>
+                    <td>{{ stock.price }} kr</td>
                     <td>
-                        <button @click="editStock(result.id)" class="edit-btn-i"><i
+                        <button @click="editStock(stock.id)" class="edit-btn-i"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="deleteStock(result.id)" class="del-btn-i"><i
+                        <button @click="deleteStock(stock.id)" class="del-btn-i"><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
 
@@ -35,7 +49,7 @@
         </table>
 
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
-        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="stock_id" />
+        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct" />
 
     </div>
 </template>
@@ -55,6 +69,7 @@ export default {
             showModal2: false,
             imageUrl: '',
             stock_id: '',
+            selectedProduct: [],
         };
     },
     components: {
@@ -62,7 +77,7 @@ export default {
         EditStockModal,
     },
     props: {
-        result: Object
+        stock: Object
     },
     created() {
         this.loadAllProducts(); // Load all products when the component is created
@@ -91,12 +106,16 @@ export default {
             this.imageUrl = url;
             this.showModal = true;
         },
-        editStock(id) {
-            // Emit an event to parent component to open the modal
-            this.showModal2 = true;
-            this.stock_id = id;
-            console.log(id);
-
+        async editStock(id) {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
+                const product = response.data;
+                // Emit an event to parent component to open the modal
+                this.showModal2 = true;
+                this.selectedProduct = product;
+            } catch (error) {
+                console.error('Error fetching product data:', error);
+            }
         },
         async deleteStock(id) {
             if (confirm("Are you sure you want to delete this product?")) {
@@ -110,6 +129,32 @@ export default {
                 const data = await resp.json();
                 this.loadAllProducts();
             }
+        },
+        filter() {
+            axios.get(`http://127.0.0.1:8001/api/search?q=${this.searchTerm}`)
+                .then(response => {
+                    this.searchResults = response.data;
+                    this.sortResults(); // Sort the results after receiving data
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        sortResults() {
+            switch (this.sortBy) {
+                case 'name':
+                    this.searchResults.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'price':
+                    this.searchResults.sort((a, b) => a.price - b.price);
+                    break;
+                case 'category':
+                    this.searchResults.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+                default:
+                    // Default sorting logic (if needed)
+                    break;
+            }
         }
     },
 };
@@ -117,6 +162,11 @@ export default {
 </script>
 
 <style scoped>
+
+.search-bar{
+    width: 50em;
+    max-width: 75%;
+}
 .del-btn-i {
     background-color: transparent;
     border: none;
@@ -146,5 +196,10 @@ export default {
 .image-link {
     text-decoration: underline 1px blue;
     cursor: pointer;
+}
+.select{
+    width: 10em;
+
+    max-width: 75%;
 }
 </style>

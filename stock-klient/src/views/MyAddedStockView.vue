@@ -9,7 +9,7 @@
 
             <SearchForm @deleteStock="deleteStock(result.id)" />
 
-            <table class="table table-hover">
+            <!-- <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">SKU </th>
@@ -22,8 +22,7 @@
                 </thead>
                 <MyStock @deleteStock="deleteStock(grocery.id)" v-for="grocery in groceries" :grocery="grocery"
                     :key="grocery.id" />
-            </table>
-
+            </table> -->
 
         </div>
 

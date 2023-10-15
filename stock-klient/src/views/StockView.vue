@@ -5,10 +5,10 @@
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Stock</h4>
 
-            
+
             <SearchForm @deleteStock="deleteStock(result.id)" />
 
-            <table class="table table-hover">
+            <!-- <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">SKU </th>
@@ -20,7 +20,8 @@
                     </tr>
                 </thead>
                 <Stock @deleteStock="deleteStock(stock.id)" v-for="stock in stocks" :stock="stock" :key="stock.id" />
-            </table>
+            </table> -->
+
         </div>
 
     </div>

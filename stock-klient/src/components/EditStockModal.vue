@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" @click="closeModal">
+    <div v-if="stock"   class="modal" @click="closeModal">
         <div class="modal-content">
             <h5>Edit product</h5>
             <span class="close" @click="$emit('close')">&times;</span>
