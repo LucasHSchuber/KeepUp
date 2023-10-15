@@ -49,9 +49,9 @@
 
                     <button type="submit" class="edit-btn mt-3">Save Changes</button>
 
-                    <!-- <p class="success" v-if="success">
-                        <b>The product is registered!</b>
-                    </p> -->
+                    <p class="success" v-if="success">
+                        <b>The product has been updated!</b>
+                    </p>
                 </form>
 
             </div>
@@ -76,7 +76,7 @@ export default {
             // },
             // beauty: "",
             errors: [],
-            // success: false
+            success: false
         }
     },
     props: {
@@ -121,11 +121,12 @@ export default {
             //     this.success = false;
             // }
             // Check if any of the formData properties are undefined or empty
-            for (let key in this.formData) {
-                if (!this.formData[key]) {
-                    this.errors.push(`Enter ${key.toUpperCase()}.`);
-                }
-            }
+
+            // for (let key in this.formData) {
+            //     if (!this.formData[key]) {
+            //         this.errors.push(`Enter ${key.toUpperCase()}.`);
+            //     }
+            // }
 
             // If there are errors, do not proceed with the API call
             if (this.errors.length > 0) {
@@ -142,11 +143,11 @@ export default {
 
 
 
-            var sku = skuEl.value;
-            var name = nameEl.value;
-            var category = categoryEl.value;
-            var description = descriptionEl.value;
-            var price = priceEl.value;
+            let sku = skuEl.value;
+            let name = nameEl.value;
+            let category = categoryEl.value;
+            let description = descriptionEl.value;
+            let price = priceEl.value;
 
             // console.log(sku, name, category, description, price);
 
@@ -159,15 +160,17 @@ export default {
             //     price: priceName,
             // };
 
-            var updatedData = {
+            const updatedData = {
                 SKU: sku,
                 name: name,
-                price: price,
+                category: category,
                 description: description,
-                price: price
+                price: price,
             };
 
-            console.log(updatedData);
+            let data = JSON.stringify(updatedData);
+            console.log(data);
+            console.log(data_id);
 
 
             // Retrieve the Bearer token from sessionStorage
@@ -177,33 +180,42 @@ export default {
             if (!token) {
                 console.error('Access token not found in sessionStorage');
                 return;
-            } else {
-                console.log(token);
             }
 
-            fetch(`http://127.0.0.1:8001/api/stocks/${data_id}`, updatedData, {
-                method: "PUT",
+            fetch(`http://127.0.0.1:8001/api/stocks/` + data_id, {
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(updatedData),
             })
 
-                // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, updatedData, {
-                //     method: "PUT",
-                //     headers: {
-                //         'Authorization': `Bearer ${token}`,
-                //         'Content-Type': 'multipart/form-data'
-                //     }
-                // })
+            // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, data, {
+            //     method: 'PUT',
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`,
+            //         'Content-Type': 'application/json'
+            //     }
+            // })
 
-                .then(function (response) {
-                    console.log('Data successfully updated in the database:', response.data);
-                    // Handle the response from the server (if needed)
+                .then((response) => {
+                    // If the request is successful
+                    if (response.ok) {
+                        this.success = true
+                        return response.json();
+                        
+                    }
+                    // Handle non-2xx responses here
+                    throw new Error('Network response was not ok.');
                 })
-                .catch(function (error) {
-                    console.error('Error updating data in the database:', error);
-                    // Handle errors (if any)
+                .then((data) => {
+                    // Handle successful response data here
+                    console.log('Data successfully updated in the database:', data);
+                })
+                .catch((error) => {
+                    // Handle errors here
+                    console.error('Error when updating database:', error);
                 });
         }
 

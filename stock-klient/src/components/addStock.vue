@@ -128,6 +128,7 @@ export default {
                 form.append('price', this.formData.price);
                 form.append('image', this.formData.image);
 
+
                 // let stockBody = {
                 //     SKU: this.SKU,
                 //     name: this.name,
@@ -162,7 +163,7 @@ export default {
                         this.$emit("stockAdded");
 
                     }).catch((error) => {
-                        this.success = true;// om svar från api inte är OK (200)
+                       // om svar från api inte är OK (200)
                         console.error('Error:', error);
                         if (error.response) {
                             console.error('Response Data:', error.response.data);

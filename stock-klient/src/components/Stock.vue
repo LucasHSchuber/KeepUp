@@ -47,7 +47,7 @@ export default {
             // Emit an event to parent component to open the modal
             this.showModal2 = true;
             this.stock_id = stock;
-            
+            console.log(this.stock_id);
         },
     }
 };
