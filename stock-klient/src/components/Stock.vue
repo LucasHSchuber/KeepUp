@@ -1,4 +1,5 @@
 <template>
+
     <tbody>
         <tr>
             <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
@@ -15,7 +16,6 @@
 
     <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
     <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="stock_id" />
-
 </template>
 
 <script>
@@ -68,6 +68,7 @@ export default {
 .del-btn-i:hover {
     color: rgb(109, 0, 0);
 }
+
 .edit-btn-i {
     background-color: transparent;
     border: none;

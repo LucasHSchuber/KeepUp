@@ -3,10 +3,19 @@
         <div class="form-inline d-flex mt-5 mb-3">
             <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search">
-            <button @click="search" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Search</button>
         </div>
 
         <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">SKU </th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
             <tbody class="article table-striped">
                 <tr v-for="result in searchResults" :key="result.id">
                     <td><a class="image-link" @click="openModalWithUrl(result.image)">{{ result.SKU }}</a></td>
