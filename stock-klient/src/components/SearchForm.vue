@@ -49,7 +49,7 @@
         </table>
 
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
-        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct" />
+        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct" @fetch-success="loadAllProducts"/>
 
     </div>
 </template>

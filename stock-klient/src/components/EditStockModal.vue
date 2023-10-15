@@ -203,6 +203,7 @@ export default {
                     // If the request is successful
                     if (response.ok) {
                         this.success = true
+                        this.$emit('fetch-success', data); //sending emit to load method
                         return response.json();
                         
                     }
