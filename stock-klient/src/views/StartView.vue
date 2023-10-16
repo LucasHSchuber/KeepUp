@@ -9,12 +9,23 @@
             <h5 class="text">"Keep track, keep controll, keep up!"</h5>
         </div>
     </div>
+
     <div>
-        
+        <h1>Chart Example</h1>
+        <Chart />
     </div>
 </template>
 
 <script>
+
+import Chart from "../components/Chart.vue"
+
+
+export default {
+    components: {
+        Chart
+    }
+};
 
 
 </script>

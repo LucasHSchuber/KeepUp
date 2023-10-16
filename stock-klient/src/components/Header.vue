@@ -69,9 +69,7 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
 
-                    <h6 class="d-flex">
-                        <Users />
-                    </h6>
+                     <Users />
                 </div>
             </div>
         </nav>

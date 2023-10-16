@@ -60,8 +60,6 @@ export default {
     methods: {
         loginUser() {
 
-
-
             axios.post('http://127.0.0.1:8001/api/login', this.form)
                 .then((response) => {
                     sessionStorage.setItem('token', response.data.token)

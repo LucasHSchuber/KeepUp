@@ -4,8 +4,8 @@
         Signed in as: {{ user }}
     </div> -->
 
-    <div v-if="signedIn">
-        <h6 class="d-flex"> Signed in as: {{ active.name }} </h6>
+    <div>
+        <p v-if="activeUser">Signed in as: {{ activeUser.name }}</p>
     </div>
 </template>
 
@@ -16,15 +16,19 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            active: [],
-            signedIn: null,
+            activeUser: null,
+            // signedIn: null,
         }
     },
     components: {
 
     },
+    created() {
+        // Call the method to fetch active user data when the component is created
+        this.fetchUserData();
+    },
     methods: {
-        async activeUser() {
+        async fetchUserData() {
 
             // Retrieve the Bearer token from sessionStorage
             const token = sessionStorage.getItem('token');
@@ -42,22 +46,32 @@ export default {
                     }
                 })
                     .then((response) => {
-                        // If the request is successful
-                        this.active = response.data;
+
+                        // Assuming the response contains user data
+                        this.activeUser = response.data;
+                        console.log(activeUser);
+
                         // console.log(response.data);
                     }).catch((error) => {
-                        this.errors = error.response.data.errors;
+                        console.error('Error fetching user data:', error);
                         // console.error('Error loading user:', error);
                     })
             }
         }
 
     },
-    mounted() {
-        this.activeUser();
-        const token = sessionStorage.getItem("token")
-        this.signedIn = token
+    watch: {
+        // Watch for changes in the 'activeUser' variable
+        activeUser(newValue, oldValue) {
+            // Perform actions when the active user changes
+            console.log(`Active user changed from ${oldValue} to ${newValue}`);
+        },
     },
+    // mounted() {
+    //     this.activeUser();
+    //     const token = sessionStorage.getItem("token")
+    //     this.signedIn = token
+    // },
 }
 
 

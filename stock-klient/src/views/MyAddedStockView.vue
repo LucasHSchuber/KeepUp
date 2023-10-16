@@ -3,12 +3,12 @@
 
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">My added products</h4>
-            <!-- <h6 class="d-flex">
-                <Users />
-            </h6> -->
+
+            <Users />
 
             <!-- <SearchForm @deleteStock="deleteStock(stock.id)" /> -->
             <MyStock @deleteStock="deleteStock(stock.id)" />
+
 
             <!-- <table class="table table-hover">
                 <thead>
