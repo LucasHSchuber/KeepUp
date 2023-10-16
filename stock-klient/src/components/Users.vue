@@ -44,10 +44,10 @@ export default {
                     .then((response) => {
                         // If the request is successful
                         this.active = response.data;
-                        console.log(response.data);
+                        // console.log(response.data);
                     }).catch((error) => {
                         this.errors = error.response.data.errors;
-                        console.error('Error loading user:', error);
+                        // console.error('Error loading user:', error);
                     })
             }
         }
