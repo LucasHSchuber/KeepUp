@@ -11,21 +11,21 @@
     </div>
 
     <div>
-        <h1>Chart Example</h1>
-        <Chart />
+
+
     </div>
 </template>
 
 <script>
 
-import Chart from "../components/Chart.vue"
+// import Chart from "../components/Chart.vue"
 
 
-export default {
-    components: {
-        Chart
-    }
-};
+// export default {
+//     components: {
+//         Chart
+//     }
+// };
 
 
 </script>
