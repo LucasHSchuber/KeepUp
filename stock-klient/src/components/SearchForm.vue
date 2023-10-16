@@ -10,8 +10,7 @@
                 placeholder="Search stock" aria-label="Search"> -->
 
             <label class="mt-1">Sort By: &nbsp; </label>
-            <select v-model="sortBy" class="form-control select form-select ">
-                <option selected >sort by..</option>
+            <select v-model="sortBy" class="form-control select form-select" placeholder="Sort by..">
                 <option value="name">Name</option>
                 <option value="price">Price</option>
                 <option value="category">Category</option>
