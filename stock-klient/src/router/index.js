@@ -22,7 +22,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         if (sessionStorage.getItem('token')) {
           next()
-        } else{
+        } else {
           next('login')
         }
       }
@@ -30,7 +30,14 @@ const router = createRouter({
     {
       path: '/stock',
       name: 'stock',
-      component: StockView
+      component: StockView,
+      beforeEnter: (to, from, next) => {
+        if (sessionStorage.getItem('token')) {
+          next()
+        } else {
+          next('login')
+        }
+      }
     },
     {
       path: '/register',
@@ -39,7 +46,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         if (sessionStorage.getItem('token')) {
           next()
-        } else{
+        } else {
           next('login')
         }
       }
@@ -56,7 +63,7 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         if (sessionStorage.getItem('token')) {
           next()
-        } else{
+        } else {
           next('login')
         }
       }

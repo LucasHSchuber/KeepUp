@@ -60,7 +60,8 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li @click.prevent="logoutUser"><a class="dropdown-item" href="#">Log out</a></li>
+                                <li @click.prevent="logoutUser"><a class="dropdown-item" href="#">Log
+                                        out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -69,7 +70,7 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
 
-                     <Users />
+                    <Users />
                 </div>
             </div>
         </nav>
@@ -99,18 +100,20 @@ export default {
     methods: {
         async logoutUser() {
 
+            // Retrieve the Bearer token from sessionStorage
+            const token = sessionStorage.getItem('token');
+
+            // Check if the token exists
+            if (!token) {
+                console.error('Access token not found in sessionStorage');
+                confirm("You are not logged in")
+                this.$router.push({ name: "login" });
+                return;
+            } else {
+                console.log(token);
+            }
+
             if (confirm("Are you sure you want to log out?")) {
-
-                // Retrieve the Bearer token from sessionStorage
-                const token = sessionStorage.getItem('token');
-
-                // Check if the token exists
-                if (!token) {
-                    console.error('Access token not found in sessionStorage');
-                    return;
-                } else {
-                    console.log(token);
-                }
 
                 // Send a request to invalidate the token on the server (if supported)
                 axios.post('http://127.0.0.1:8001/api/logout', null, {
@@ -132,40 +135,8 @@ export default {
                     })
             }
         }
-        //   async activeUser() {
-
-        //     // Retrieve the Bearer token from sessionStorage
-        //     const token = sessionStorage.getItem('token');
-
-        //     // Check if the token exists
-        //     if (!token) {
-        //         console.error('Access token not found in sessionStorage');
-        //         return;
-        //     } else {
-        //         console.log(token);
-        //     }
-
-        //     // Send a request to invalidate the token on the server (if supported)
-        //     axios.get('http://127.0.0.1:8001/api/user', {
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`,
-        //             'Content-Type': 'application/json'
-        //         }
-        //     })
-        //         .then((response) => {
-        //             // If the request is successful
-        //             this.active = response.data;
-        //             console.log(response.data);
-        //         }).catch((error) => {
-        //             this.errors = error.response.data.errors;
-        //             console.error('Error loading user:', error);
-        //         })
-        // }
 
     }
-    // mounted() {
-    //     this.activeUser();
-    // }
 }
 
 

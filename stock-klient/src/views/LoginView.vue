@@ -66,6 +66,7 @@ export default {
                     console.log(response.data);
                     this.$router.push({ name: "home" });
                     console.log("You have been loged in!");
+                    
 
                 }).catch((error) => {
 
@@ -87,7 +88,7 @@ export default {
                     this.errors = error.response.data.errors;
                     console.log(error.response.data);
                 })
-        }
+        },
     }
 }
 
@@ -117,5 +118,4 @@ export default {
     padding: 0.5em 1.5em;
     background-color: rgb(35, 35, 35);
 }
-
 </style>

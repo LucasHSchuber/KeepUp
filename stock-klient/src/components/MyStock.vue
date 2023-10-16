@@ -37,9 +37,9 @@
                     <td>{{ stock.description }}</td>
                     <td>{{ stock.price }} kr</td>
                     <td>
-                        <button @click="editStock(stock.id)" class="edit-btn-i"><i
+                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="deleteStock(stock.id)" class="del-btn-i"><i
+                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete" ><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
 

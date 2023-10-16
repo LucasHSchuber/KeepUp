@@ -1,7 +1,7 @@
 <template>
     <div class="modal" @click="closeModal">
         <div class="modal-content">
-            <span class="close" @click="$emit('close')">&times;</span>
+            <span title="Close" class="close" @click="$emit('close')">&times;</span>
             <img :src="imageUrl" alt="Image of product">
         </div>
     </div>
@@ -58,7 +58,7 @@ export default {
 .close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     cursor: pointer;
     font-size: 30px;
 }

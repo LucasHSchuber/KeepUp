@@ -11,9 +11,9 @@
 
             <label class="mt-1">Sort By: &nbsp; </label>
             <select v-model="sortBy" class="form-control select form-select" placeholder="Sort by..">
-                <option value="name">Name</option>
-                <option value="price">Price</option>
-                <option value="category">Category</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="price">Price (Low - High)</option>
+                <option value="category">Category (A-Z)</option>
             </select>
             <button @click="filter" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
         </div>
@@ -37,9 +37,9 @@
                     <td>{{ stock.description }}</td>
                     <td>{{ stock.price }} kr</td>
                     <td>
-                        <button @click="editStock(stock.id)" class="edit-btn-i"><i
+                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="deleteStock(stock.id)" class="del-btn-i"><i
+                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete" ><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
 

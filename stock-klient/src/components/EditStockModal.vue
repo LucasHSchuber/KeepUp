@@ -2,7 +2,7 @@
     <div v-if="stock"   class="modal" @click="closeModal">
         <div class="modal-content">
             <h5>Edit product</h5>
-            <span class="close" @click="$emit('close')">&times;</span>
+            <span title="Close" class="close" @click="$emit('close')">&times;</span>
 
             <div class="form">
                 <form @submit.prevent="saveChanges(stock.id)" class="col-md-6">
@@ -253,7 +253,7 @@ export default {
 .close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     cursor: pointer;
     font-size: 30px;
 }
