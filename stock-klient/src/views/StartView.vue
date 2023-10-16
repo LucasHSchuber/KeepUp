@@ -4,11 +4,19 @@
         <h1>Start</h1>
     </div> -->
     <div class="imgbox">
-        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film">
+        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film"  style="object-fit:fill;object-position: -20% 0;">
+        <!-- <picture>
+            <source media="(min-width: 900px)" srcset="../images/big.jpg">
+            <source media="(min-width: 480px)" srcset="MediumImage.png">
+            <img src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">
+        </picture> -->
+
         <div class="img-box">
             <h5 class="text">"Keep track, keep controll, keep up!"</h5>
         </div>
     </div>
+
+
 
     <div>
         <BarChart />
@@ -66,6 +74,7 @@ export default {
 .start-box h1 {
     font-weight: 700;
 }
+
 
 
 @media screen and (max-width: 772px) {

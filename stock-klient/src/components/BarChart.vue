@@ -6,6 +6,8 @@
   </div>
 </template>
 <script>
+
+
 import axios from 'axios';
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs';
@@ -76,6 +78,7 @@ export default {
           });
           console.log(formattedData); // Log the formatted data
           this.updateChartData(formattedData);
+
         })
         .catch(error => {
           console.error(error);
@@ -91,7 +94,9 @@ export default {
         }
       });
       console.log(countsByDate); // Log countsByDate
+
       return countsByDate;
+
     },
     updateChartData(formattedData) {
       console.log(formattedData);
@@ -100,6 +105,8 @@ export default {
       formattedData.forEach(date => {
         countsByDate[date] = (countsByDate[date] || 0) + 1;
       });
+
+      // document.getElementById("show").style.display = "block";
 
       this.chartData.labels = Object.keys(countsByDate);
       this.chartData.datasets[0].data = Object.values(countsByDate);
@@ -111,6 +118,7 @@ export default {
 
       // Get the chart instance using the ref
       const chartInstance = this.$refs.myChart;
+
 
       // Check if the chart instance is available before calling the update method
       if (chartInstance && chartInstance.update) {
@@ -141,5 +149,9 @@ export default {
   /* border-radius: 5px; */
   overflow: hidden;
   /* Optional: Hide overflow to prevent chart overflow */
+}
+
+#show {
+  display: none;
 }
 </style>
