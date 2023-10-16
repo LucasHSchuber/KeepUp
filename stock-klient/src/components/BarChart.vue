@@ -1,6 +1,8 @@
 <template>
-  <div class="chart-container">
-    <Bar ref="myChart" :data="chartData" :options="chartOptions" />
+  <div class="wrapper">
+    <div class="chart-container">
+      <Bar ref="myChart" :data="chartData" :options="chartOptions" />
+    </div>
   </div>
 </template>
 <script>
@@ -126,15 +128,17 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  padding: 5em;
+}
+
 .chart-container {
-  width: 80%;
-  /* Set the width of the container */
-  height: 400px;
-  /* Set the height of the container */
+  max-width: 75%;
+  width: 50em;
+  margin: auto;
+  height: fit-content;
   border: 1px solid #ccc;
-  /* Optional: Add a border */
-  border-radius: 5px;
-  /* Optional: Add border radius for rounded corners */
+  /* border-radius: 5px; */
   overflow: hidden;
   /* Optional: Hide overflow to prevent chart overflow */
 }

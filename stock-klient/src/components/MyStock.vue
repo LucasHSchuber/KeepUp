@@ -5,17 +5,17 @@
                 placeholder="Search stock" aria-label="Search">
         </div>
 
-        <div class="form-inline d-flex mt-4 mb-3">
+        <div class="sort form-inline d-flex mt-4 mb-3">
             <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search"> -->
 
-            <label class="mt-1">Sort By: &nbsp; </label>
-            <select v-model="sortBy" class="form-control select form-select" placeholder="Sort by..">
-                <option value="name">Name</option>
-                <option value="price">Price</option>
-                <option value="category">Category</option>
+            <label class="sort-label mt-1">Sort By: &nbsp; </label>
+            <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
+                <option value="name">Name (A-Z)</option>
+                <option value="price">Price (Low - High)</option>
+                <option value="category">Category (A-Z)</option>
             </select>
-            <button @click="filter" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
+            <button @click="filter" class=" sort-btn btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
         </div>
 
         <table class="table table-hover">

@@ -5,17 +5,17 @@
                 placeholder="Search stock" aria-label="Search">
         </div>
 
-        <div class="form-inline d-flex mt-4 mb-3">
+        <div class="sort form-inline d-flex mt-4 mb-3">
             <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search"> -->
 
-            <label class="mt-1">Sort By: &nbsp; </label>
-            <select v-model="sortBy" class="form-control select form-select" placeholder="Sort by..">
+            <label class="sort-label mt-1">Sort By: &nbsp; </label>
+            <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
                 <option value="name">Name (A-Z)</option>
                 <option value="price">Price (Low - High)</option>
                 <option value="category">Category (A-Z)</option>
             </select>
-            <button @click="filter" class="btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
+            <button @click="filter" class="sort-btn btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
         </div>
 
         <table class="table table-hover">
@@ -37,9 +37,9 @@
                     <td>{{ stock.description }}</td>
                     <td>{{ stock.price }} kr</td>
                     <td>
-                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
+                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete" ><i
+                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
 
@@ -48,7 +48,8 @@
         </table>
 
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
-        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct" @fetch-success="loadAllProducts"/>
+        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
+            @fetch-success="loadAllProducts" />
 
     </div>
 </template>
@@ -162,10 +163,7 @@ export default {
 
 <style scoped>
 
-.search-bar{
-    width: 50em;
-    max-width: 75%;
-}
+
 .del-btn-i {
     background-color: transparent;
     border: none;
@@ -196,9 +194,8 @@ export default {
     text-decoration: underline 1px blue;
     cursor: pointer;
 }
-.select{
-    width: 10em;
 
-    max-width: 75%;
-}
+
+
+
 </style>
