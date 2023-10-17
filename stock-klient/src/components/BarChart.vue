@@ -1,11 +1,11 @@
 <template>
-
+  <div>
     <div class="wrapper">
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
     </div>
-
+  </div>
 </template>
 <script>
 
@@ -25,13 +25,13 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [], // Initialize labels array
+        labels: [], 
         datasets: [{
           label: 'Number of Products',
           data: [],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color for bars
-          borderColor: 'rgba(75, 192, 192, 1)', // Border color for bars
-          borderWidth: 1, // Border width for bars
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)', 
+          borderWidth: 1, 
         }]
       },
       chartOptions: {
@@ -40,10 +40,10 @@ export default {
           x: {
             type: 'category',
             time: {
-              unit: 'day', // Display by day
-              tooltipFormat: 'll', // Format for tooltip (can be adjusted based on your preference)
+              unit: 'day', 
+              tooltipFormat: 'll', 
             },
-            labels: [], // Array of x-axis labels
+            labels: [], 
           },
           y: {
             beginAtZero: true,
@@ -111,11 +111,10 @@ export default {
       console.log(this.chartOptions.scales.x.labels);
       console.log(this.chartData.datasets[0].data);
 
-      // Get the chart instance using the ref
       const chartInstance = this.$refs.myChart;
 
 
-      // Check if the chart instance is available before calling the update method
+     
       if (chartInstance && chartInstance.update) {
         chartInstance.update(); // Call update method to re-render the chart with new data
       }
