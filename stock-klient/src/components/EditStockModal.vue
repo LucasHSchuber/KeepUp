@@ -1,5 +1,5 @@
 <template>
-    <div v-if="stock"  class="modal" @click="closeModal">
+    <div v-if="stock" class="modal" @click="closeModal">
         <div class="modal-content">
             <h5>Edit product</h5>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
@@ -191,21 +191,22 @@ export default {
                 body: JSON.stringify(updatedData),
             })
 
-            // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, data, {
-            //     method: 'PUT',
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`,
-            //         'Content-Type': 'application/json'
-            //     }
-            // })
+                // axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, data, {
+                //     method: 'PUT',
+                //     headers: {
+                //         'Authorization': `Bearer ${token}`,
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
 
                 .then((response) => {
                     // If the request is successful
                     if (response.ok) {
                         this.success = true
                         this.$emit('fetch-success', data); //sending emit to load method
+                        this.$emit('close');
                         return response.json();
-                        
+
                     }
                     // Handle non-2xx responses here
                     throw new Error('Network response was not ok.');

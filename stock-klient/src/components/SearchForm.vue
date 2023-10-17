@@ -12,8 +12,10 @@
             <label class="sort-label mt-1">Sort By: &nbsp; </label>
             <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
                 <option value="name">Name (A-Z)</option>
-                <option value="price">Price (Low - High)</option>
                 <option value="category">Category (A-Z)</option>
+                <option value="price">Price (Low - High)</option>
+                <option value="updated_at_desc">Date (descending)</option>
+                <option value="updated_at_asc">Date (ascending)</option>
             </select>
             <button @click="filter" class="sort-btn btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
         </div>
@@ -39,7 +41,7 @@
                     <td>
                         <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="openAmountModal(stock)" class="num-btn-i" title="Amount"><i
+                        <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
                                 class="fa-solid fa-hashtag"></i></button>
                         <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
                                 class="fa-solid fa-trash-can"></i></button>
@@ -112,11 +114,19 @@ export default {
             this.imageUrl = url;
             this.showModal = true;
         },
-        openAmountModal(stock) {
-            console.log("opened " + stock);
-            this.showModal3 = true;
-            this.selectedProduct = stock;
-            console.log(this.selectedProduct);
+        async openAmountModal(id) {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
+                const stock = response.data;
+                // Emit an event to parent component to open the modal
+                console.log("opened " + stock);
+                this.showModal3 = true;
+                this.selectedProduct = stock;
+                console.log(this.selectedProduct);
+
+            } catch (error) {
+                console.error('Error fetching product data:', error);
+            }
         },
         async editStock(id) {
             try {
@@ -162,6 +172,20 @@ export default {
                     break;
                 case 'category':
                     this.searchResults.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+                case 'updated_at_desc':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                    });
+                    break;
+                case 'updated_at_asc':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateA - dateB; // Sort in ascending order (oldest to newest)
+                    });
                     break;
                 default:
                     // Default sorting logic (if needed)

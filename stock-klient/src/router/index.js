@@ -43,13 +43,13 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView,
-      beforeEnter: (to, from, next) => {
-        if (sessionStorage.getItem('token')) {
-          next()
-        } else {
-          next('login')
-        }
-      }
+      // beforeEnter: (to, from, next) => {
+      //   if (sessionStorage.getItem('token')) {
+      //     next()
+      //   } else {
+      //     next('login')
+      //   }
+      // }
     },
     {
       path: '/login',

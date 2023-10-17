@@ -131,6 +131,7 @@ export default {
                 form.append('image', this.formData.image);
 
 
+
                 // let stockBody = {
                 //     SKU: this.SKU,
                 //     name: this.name,
