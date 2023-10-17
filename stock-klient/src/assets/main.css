@@ -3,9 +3,10 @@ body {
   font-family: 'Assistant', sans-serif;
 }
 
-.wrapper{
+.wrapper {
   margin: 0 8em;
 }
+
 .success {
   color: green;
   padding: 1em 0;
@@ -34,14 +35,57 @@ body {
   width: 10em;
 }
 
+.del-btn-i {
+  background-color: transparent;
+  border: none;
+  color: rgb(235, 1, 1);
+  width: 3em;
+  height: 2em;
+  transition: 0.3s;
+}
+
+.del-btn-i:hover {
+  color: rgb(109, 0, 0);
+}
+
+.edit-btn-i {
+  background-color: transparent;
+  border: none;
+  color: rgb(235, 173, 1);
+  width: 3em;
+  height: 2em;
+  transition: 0.3s;
+}
+
+.edit-btn-i:hover {
+  color: rgb(180, 132, 0);
+}
+
+.num-btn-i {
+  background-color: transparent;
+  border: none;
+  color: rgb(0, 0, 0);
+  width: 3em;
+  height: 2em;
+  transition: 0.3s;
+}
+
+.num-btn-i:hover {
+  color: rgb(109, 109, 109);
+}
+
+.image-link {
+  text-decoration: underline 1px blue;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 772px) {
 
-  .navbar{
+  .navbar {
     padding-left: 3em !important;
     padding-right: 3em !important;
   }
- 
+
   .table {
     font-size: 0.6em;
   }
@@ -55,7 +99,7 @@ body {
   .sort-select {
     width: 10em;
 
-  
+
   }
 
 }

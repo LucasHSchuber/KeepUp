@@ -37,9 +37,11 @@
                     <td>{{ stock.description }}</td>
                     <td>{{ stock.price }} kr</td>
                     <td>
-                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
+                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete" ><i
+                        <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
+                                class="fa-solid fa-hashtag"></i></button>
+                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
 
@@ -48,7 +50,9 @@
         </table>
 
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
-        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct" @fetch-success="fetchGroceries"/>
+        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
+            @fetch-success="fetchGroceries" />
+        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
 
     </div>
 </template>
@@ -58,6 +62,8 @@ import axios from 'axios';
 
 import Modal from './Modal.vue';
 import EditStockModal from './EditStockModal.vue';
+import AmountModal from './AmountModal.vue';
+
 
 export default {
     data() {
@@ -66,6 +72,7 @@ export default {
             searchResults: [],
             showModal: false,
             showModal2: false,
+            showModal3: false,
             imageUrl: '',
             stock_id: '',
             selectedProduct: [],
@@ -74,6 +81,7 @@ export default {
     components: {
         Modal,
         EditStockModal,
+        AmountModal,
     },
     props: {
         stock: Object
@@ -113,6 +121,20 @@ export default {
         openModalWithUrl(url) {
             this.imageUrl = url;
             this.showModal = true;
+        },
+        async openAmountModal(id) {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
+                const stock = response.data;
+                // Emit an event to parent component to open the modal
+                console.log("opened " + stock);
+                this.showModal3 = true;
+                this.selectedProduct = stock;
+                console.log(this.selectedProduct);
+
+            } catch (error) {
+                console.error('Error fetching product data:', error);
+            }
         },
         async editStock(id) {
             try {
@@ -170,42 +192,12 @@ export default {
 </script>
 
 <style scoped>
-
-.search-bar{
+.search-bar {
     width: 50em;
     max-width: 75%;
 }
-.del-btn-i {
-    background-color: transparent;
-    border: none;
-    color: rgb(235, 1, 1);
-    width: 3em;
-    height: 2em;
-    transition: 0.3s;
-}
 
-.del-btn-i:hover {
-    color: rgb(109, 0, 0);
-}
-
-.edit-btn-i {
-    background-color: transparent;
-    border: none;
-    color: rgb(235, 173, 1);
-    width: 3em;
-    height: 2em;
-    transition: 0.3s;
-}
-
-.edit-btn-i:hover {
-    color: rgb(180, 132, 0);
-}
-
-.image-link {
-    text-decoration: underline 1px blue;
-    cursor: pointer;
-}
-.select{
+.select {
     width: 10em;
 
     max-width: 75%;

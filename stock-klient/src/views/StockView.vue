@@ -5,7 +5,7 @@
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Stock</h4>
             
-            <SearchForm />
+            <SearchForm v-if="isDetailView" :showDiv="true" />
 
         </div>
 
@@ -26,6 +26,7 @@ export default {
         return {
             stocks: [],
             editingStock: null,
+            isDetailView: true, 
         }
     },
     components: {

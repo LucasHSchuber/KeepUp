@@ -7,7 +7,8 @@
         </div>
         <div>
 
-            <Stock />
+            <!-- <Stock /> -->
+            <SearchForm v-if="isDetailView" :showDiv="false" />
 
         </div>
 
@@ -24,18 +25,21 @@ import { toHandlers } from "vue";
 
 import Stock from "../components/Stock.vue";
 import AddStock from "../components/Addstock.vue";
+import SearchForm from "../components/SearchForm.vue";
 
 export default {
     data() {
         return {
             stocks: [],
             editingStock: null,
-            triggerChildMethod: false
+            triggerChildMethod: false,
+            isDetailView: true, 
         }
     },
     components: {
         Stock,
         AddStock,
+        SearchForm,
     },
     methods: {
         

@@ -1,23 +1,27 @@
 <template>
     <div>
-        <div class="search-bar form-inline d-flex mt-5">
-            <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
-                placeholder="Search stock (SKU, name, category)" aria-label="Search">
-        </div>
 
-        <div class="sort form-inline d-flex mt-4 mb-3">
-            <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
+        <div v-if="showDiv">
+            <div class="search-bar form-inline d-flex mt-5">
+                <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
+                    placeholder="Search stock (SKU, name, category)" aria-label="Search">
+            </div>
+
+            <div class="sort form-inline d-flex mt-4 mb-3">
+                <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search"> -->
 
-            <label class="sort-label mt-1">Sort By: &nbsp; </label>
-            <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
-                <option value="name">Name (A-Z)</option>
-                <option value="category">Category (A-Z)</option>
-                <option value="price">Price (Low - High)</option>
-                <option value="updated_at_desc">Date (descending)</option>
-                <option value="updated_at_asc">Date (ascending)</option>
-            </select>
-            <button @click="filter" class="sort-btn btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
+                <label class="sort-label mt-1">Sort By: &nbsp; </label>
+                <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="category">Category (A-Z)</option>
+                    <option value="price">Price (Low - High)</option>
+                    <option value="updated_at_desc">Date (descending)</option>
+                    <option value="updated_at_asc">Date (ascending)</option>
+                </select>
+                <button @click="filter" class="sort-btn btn btn-outline-success my-2 mx-1 my-sm-0"
+                    type="submit">Sort</button>
+            </div>
         </div>
 
         <table class="table table-hover">
@@ -85,7 +89,11 @@ export default {
         AmountModal,
     },
     props: {
-        stock: Object
+        stock: Object,
+        showDiv: {
+            type: Boolean,
+            default: false, // Set a default value if needed
+        },
     },
     created() {
         this.loadAllProducts(); // Load all products when the component is created
@@ -197,49 +205,4 @@ export default {
 
 </script>
 
-<style scoped>
-.del-btn-i {
-    background-color: transparent;
-    border: none;
-    color: rgb(235, 1, 1);
-    width: 3em;
-    height: 2em;
-    transition: 0.3s;
-}
-
-.del-btn-i:hover {
-    color: rgb(109, 0, 0);
-}
-
-.edit-btn-i {
-    background-color: transparent;
-    border: none;
-    color: rgb(235, 173, 1);
-    width: 3em;
-    height: 2em;
-    transition: 0.3s;
-}
-
-.edit-btn-i:hover {
-    color: rgb(180, 132, 0);
-}
-
-
-.num-btn-i {
-    background-color: transparent;
-    border: none;
-    color: rgb(0, 0, 0);
-    width: 3em;
-    height: 2em;
-    transition: 0.3s;
-}
-
-.num-btn-i:hover {
-    color: rgb(109, 109, 109);
-}
-
-.image-link {
-    text-decoration: underline 1px blue;
-    cursor: pointer;
-}
-</style>
+<style scoped></style>
