@@ -1,11 +1,11 @@
 <template>
-  <div>
+
     <div class="wrapper">
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
     </div>
-  </div>
+
 </template>
 <script>
 

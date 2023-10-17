@@ -2,7 +2,7 @@
     <div>
         <div class="search-bar form-inline d-flex mt-5">
             <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
-                placeholder="Search stock" aria-label="Search">
+                placeholder="Search stock (SKU, name, category)" aria-label="Search">
         </div>
 
         <div class="sort form-inline d-flex mt-4 mb-3">
