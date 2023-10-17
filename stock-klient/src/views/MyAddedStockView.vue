@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper container">
+    <div class="wrapper">
 
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">My added products</h4>

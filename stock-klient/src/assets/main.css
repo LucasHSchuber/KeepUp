@@ -4,7 +4,7 @@ body {
 }
 
 .wrapper {
-  margin: 0 8em;
+  padding: 0 12em;
 }
 
 .success {
@@ -61,6 +61,11 @@ body {
   color: rgb(180, 132, 0);
 }
 
+.edit-btn-i,
+.del-btn-i {
+  visibility: visible;
+}
+
 .num-btn-i {
   background-color: transparent;
   border: none;
@@ -79,7 +84,29 @@ body {
   cursor: pointer;
 }
 
+
+
+/* IPAD */
+
+
+
+@media screen and (max-width: 1080px) {
+
+  .wrapper {
+    padding: 0 4em;
+  }
+
+}
+
+
+/* MOBILE */
+
+
 @media screen and (max-width: 772px) {
+
+  .wrapper {
+    padding: 0 1em;
+  }
 
   .navbar {
     padding-left: 3em !important;
@@ -87,7 +114,7 @@ body {
   }
 
   .table {
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
 
   .search-bar {
@@ -99,7 +126,15 @@ body {
   .sort-select {
     width: 10em;
 
+  }
 
+  .num-btn-i {
+    font-size: 1.7em;
+  }
+
+  .edit-btn-i,
+  .del-btn-i {
+    visibility: hidden;
   }
 
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper container">
+    <div class="wrapper ">
 
         <!-- Skriver ut alla stocker från APIt -->
         <div class="justify-content-center">

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper container">
+    <div class="wrapper">
         <div class="mb-5">
             <h4 class="title mt-4 mb-3">Add product</h4>
             <AddStock />

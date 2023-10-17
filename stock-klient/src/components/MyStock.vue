@@ -31,12 +31,12 @@
             </thead>
             <tbody class="article table-striped">
                 <tr v-for="stock in searchResults" :key="stock.id">
-                    <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
-                    <td>{{ stock.name }}</td>
-                    <td>{{ stock.category }}</td>
-                    <td>{{ stock.description }}</td>
-                    <td>{{ stock.price }} kr</td>
-                    <td>
+                    <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
+                    <td class="align-middle">{{ stock.name }}</td>
+                    <td class="align-middle">{{ stock.category }}</td>
+                    <td class="align-middle">{{ stock.description }}</td>
+                    <td class="align-middle">{{ stock.price }} kr</td>
+                    <td class="align-middle">
                         <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
                         <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i

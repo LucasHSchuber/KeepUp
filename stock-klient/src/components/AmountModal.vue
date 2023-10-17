@@ -8,7 +8,7 @@
             <div class="modal-innercontent d-flex my-4 justify-content-center">
 
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
-                <div class="mx-5">
+                <div class="mx-3">
                     <h3>#{{ counter }}</h3>
                 </div>
                 <button @click="addToDatabase" class="counter-btn add">+</button>
@@ -157,20 +157,33 @@ export default {
     box-shadow: 0 2px 6px rgb(233, 233, 233);
     font-size: 2em;
 }
-.add{
-    background-color: rgb(60, 242, 60);
+
+.add {
+    background-color: rgb(0, 112, 0);
 }
-.remove{
+
+.remove {
     background-color: rgb(239, 76, 76);
 }
-.save{
+
+.save {
     padding: 0.5em 1.5em;
     background-color: black;
     transition: 0.2s;
     color: white;
     border-radius: 20px;
     border: none;
-   width: 6em;
-    margin:auto;
+    width: 6em;
+    margin: auto;
 }
+
+.save:hover {
+    background-color: rgb(52, 51, 51);
+
+}
+
+@media screen and (max-width: 772px) {
+
+}
+
 </style>

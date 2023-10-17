@@ -24,43 +24,44 @@
             </div>
         </div>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">SKU </th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody v-for="stock in searchResults" :key="stock.id" class="article table-striped">
-                <tr>
-                    <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
-                    <td>{{ stock.name }}</td>
-                    <td>{{ stock.category }}</td>
-                    <td>{{ stock.description }}</td>
-                    <td>{{ stock.price }} kr</td>
-                    <td>
-                        <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
-                                class="fa-regular fa-pen-to-square"></i></button>
-                        <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
-                                class="fa-solid fa-hashtag"></i></button>
-                        <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
-                                class="fa-solid fa-trash-can"></i></button>
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-
-        <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl" />
-        <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
-            @fetch-success="loadAllProducts" />
-        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
-
     </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">SKU </th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody v-for="stock in searchResults" :key="stock.id" class="article table-striped">
+            <tr>
+                <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a>
+                </td>
+                <td class="align-middle">{{ stock.name }}</td>
+                <td class="align-middle">{{ stock.category }}</td>
+                <td class="align-middle">{{ stock.description }}</td>
+                <td class="align-middle">{{ stock.price }} kr</td>
+                <td class="align-middle">
+                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
+                            class="fa-regular fa-pen-to-square"></i></button>
+                    <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
+                            class="fa-solid fa-hashtag"></i></button>
+                    <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
+                            class="fa-solid fa-trash-can"></i></button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl" />
+    <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
+        @fetch-success="loadAllProducts" />
+    <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
 </template>
 
 <script>
@@ -205,4 +206,6 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
