@@ -6,7 +6,7 @@
             <h4 class="title mt-4 mb-3">Stock</h4>
 
             
-            <SearchForm @deleteStock="deleteStock(result.id)" />
+            <SearchForm />
 
             <!-- <table class="table table-hover">
                 <thead>
@@ -53,19 +53,19 @@ export default {
             this.stocks = data;
 
         },
-        async deleteStock(id) {
-            if (confirm("Are you sure you want to delete this product?")) {
-                const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
-                    method: "DELETE",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-type": "application/json"
-                    }
-                });
-                const data = await resp.json();
-                this.getStock();
-            }
-        },
+        // async deleteStock(id) {
+        //     if (confirm("Are you sure you want to delete this product?")) {
+        //         const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
+        //             method: "DELETE",
+        //             headers: {
+        //                 "Accept": "application/json",
+        //                 "Content-type": "application/json"
+        //             }
+        //         });
+        //         const data = await resp.json();
+        //         this.getStock();
+        //     }
+        // },
     },
     mounted() {
         this.getStock();

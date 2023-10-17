@@ -29,16 +29,12 @@ export default {
     },
     methods: {
         async fetchUserData() {
-
-            // Retrieve the Bearer token from sessionStorage
             const token = sessionStorage.getItem('token');
 
-            // Check if the token exists
             if (!token) {
                 console.error('No user is logged in');
                 return;
             } else {
-                // Send a request to invalidate the token on the server (if supported)
                 axios.get('http://127.0.0.1:8001/api/user', {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -47,14 +43,11 @@ export default {
                 })
                     .then((response) => {
 
-                        // Assuming the response contains user data
                         this.activeUser = response.data;
                         console.log(activeUser);
 
-                        // console.log(response.data);
                     }).catch((error) => {
                         console.error('Error fetching user data:', error);
-                        // console.error('Error loading user:', error);
                     })
             }
         }

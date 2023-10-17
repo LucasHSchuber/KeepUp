@@ -19,27 +19,27 @@
 
                     <div class="form-group mt-2">
                         <label for="SKU">SKU:</label>
-                        <input v-model="stock.SKU" type="text" class="form-control" id="SKU" name="SKU"
+                        <input v-model="stock.SKU" type="text" class="form-control" id="SKU_edit" name="SKU"
                             aria-describedby="SKU">
                     </div>
                     <div class="form-group mt-2">
                         <label for="name">Product name:</label>
-                        <input v-model="stock.name" type="text" class="form-control" id="name" name="name"
+                        <input v-model="stock.name" type="text" class="form-control" id="name_edit" name="name"
                             aria-describedby="name">
                     </div>
                     <div class="form-group mt-2">
                         <label for="category">Category:</label>
-                        <input v-model="stock.category" type="text" class="form-control" id="category" name="category"
+                        <input v-model="stock.category" type="text" class="form-control" id="category_edit" name="category"
                             aria-describedby="category">
                     </div>
                     <div class="form-group mt-2">
                         <label for="description">Description:</label>
-                        <input v-model="stock.description" type="text" class="form-control" id="description"
+                        <input v-model="stock.description" type="text" class="form-control" id="description_edit"
                             name="description" aria-describedby="description">
                     </div>
                     <div class="form-group mt-2">
                         <label for="price">Price:</label>
-                        <input v-model="stock.price" type="number" class="form-control" id="price" name="price"
+                        <input v-model="stock.price" type="number" class="form-control" id="price_edit" name="price"
                             aria-describedby="price">
                     </div>
                     <!-- <div class="form-group mt-2">
@@ -135,11 +135,11 @@ export default {
 
 
             // Manually collect form data
-            let skuEl = document.getElementById("SKU");
-            let nameEl = document.getElementById("name");
-            let categoryEl = document.getElementById("category");
-            let descriptionEl = document.getElementById("description");
-            let priceEl = document.getElementById("price");
+            let skuEl = document.getElementById("SKU_edit");
+            let nameEl = document.getElementById("name_edit");
+            let categoryEl = document.getElementById("category_edit");
+            let descriptionEl = document.getElementById("description_edit");
+            let priceEl = document.getElementById("price_edit");
 
 
 
@@ -149,7 +149,7 @@ export default {
             let description = descriptionEl.value;
             let price = priceEl.value;
 
-            // console.log(sku, name, category, description, price);
+            console.log(sku, name, category, description, price);
 
             //Prepare data object for the API request
             // let data = {
