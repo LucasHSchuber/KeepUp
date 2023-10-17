@@ -4,23 +4,9 @@
         <!-- Skriver ut alla stocker från APIt -->
         <div class="justify-content-center">
             <h4 class="title mt-4 mb-3">Stock</h4>
-
             
             <SearchForm />
 
-            <!-- <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">SKU </th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <Stock @deleteStock="deleteStock(stock.id)" v-for="stock in stocks" :stock="stock" :key="stock.id" />
-            </table> -->
         </div>
 
     </div>

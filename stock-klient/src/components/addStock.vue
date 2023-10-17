@@ -58,6 +58,7 @@
 import axios from 'axios';
 
 export default {
+
     data() {
         return {
             formData: {
@@ -73,7 +74,7 @@ export default {
             success: false
         }
     },
-    emits: ["stockAdded"],
+    emits: ['productAdded'],
     methods: {
         handleFileUpload(event) {
             this.formData.image = event.target.files[0];
@@ -161,7 +162,6 @@ export default {
                         // this.description = "";
                         // this.price = "";
 
-                        this.$emit("stockAdded");
 
                     }).catch((error) => {
                         // om svar från api inte är OK (200)
@@ -177,8 +177,6 @@ export default {
                     })
 
 
-            } else {
-                console.log("Det finns väl ingen produkt utan titel?");
             }
         }
     }

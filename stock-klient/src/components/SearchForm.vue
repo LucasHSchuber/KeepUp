@@ -29,8 +29,8 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody class="article table-striped">
-                <tr v-for="stock in searchResults" :key="stock.id">
+            <tbody v-for="stock in searchResults" :key="stock.id" class="article table-striped">
+                <tr>
                     <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
                     <td>{{ stock.name }}</td>
                     <td>{{ stock.category }}</td>
@@ -39,6 +39,8 @@
                     <td>
                         <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
+                        <button @click="openAmountModal(stock)" class="num-btn-i" title="Amount"><i
+                                class="fa-solid fa-hashtag"></i></button>
                         <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </td>
@@ -47,9 +49,10 @@
             </tbody>
         </table>
 
-        <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
+        <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl" />
         <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
             @fetch-success="loadAllProducts" />
+        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
 
     </div>
 </template>
@@ -59,6 +62,7 @@ import axios from 'axios';
 
 import Modal from './Modal.vue';
 import EditStockModal from './EditStockModal.vue';
+import AmountModal from './AmountModal.vue';
 
 export default {
     data() {
@@ -67,6 +71,7 @@ export default {
             searchResults: [],
             showModal: false,
             showModal2: false,
+            showModal3: false,
             imageUrl: '',
             stock_id: '',
             selectedProduct: [],
@@ -75,6 +80,7 @@ export default {
     components: {
         Modal,
         EditStockModal,
+        AmountModal,
     },
     props: {
         stock: Object
@@ -105,6 +111,12 @@ export default {
         openModalWithUrl(url) {
             this.imageUrl = url;
             this.showModal = true;
+        },
+        openAmountModal(stock) {
+            console.log("opened " + stock);
+            this.showModal3 = true;
+            this.selectedProduct = stock;
+            console.log(this.selectedProduct);
         },
         async editStock(id) {
             try {
@@ -162,8 +174,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .del-btn-i {
     background-color: transparent;
     border: none;
@@ -190,12 +200,22 @@ export default {
     color: rgb(180, 132, 0);
 }
 
+
+.num-btn-i {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 3em;
+    height: 2em;
+    transition: 0.3s;
+}
+
+.num-btn-i:hover {
+    color: rgb(109, 109, 109);
+}
+
 .image-link {
     text-decoration: underline 1px blue;
     cursor: pointer;
 }
-
-
-
-
 </style>

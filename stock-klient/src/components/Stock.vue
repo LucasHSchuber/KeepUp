@@ -64,6 +64,7 @@ export default {
             axios.get('http://127.0.0.1:8001/api/stocks')
                 .then(response => {
                     this.searchResults = response.data;
+                    console.log('loadAllProducts method called');
                 })
                 .catch(error => {
                     console.error(error);
@@ -98,7 +99,7 @@ export default {
                 console.error('Error fetching product data:', error);
             }
         },
-    }
+    },
 };
 
 
