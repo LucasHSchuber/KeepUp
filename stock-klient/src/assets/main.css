@@ -3,6 +3,9 @@ body {
   font-family: 'Assistant', sans-serif;
 }
 
+.wrapper{
+  margin: 0 8em;
+}
 .success {
   color: green;
   padding: 1em 0;
@@ -38,6 +41,7 @@ body {
     padding-left: 3em !important;
     padding-right: 3em !important;
   }
+ 
   .table {
     font-size: 0.6em;
   }

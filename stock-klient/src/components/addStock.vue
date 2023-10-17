@@ -84,6 +84,7 @@ export default {
             this.errors = [];
             this.errors2 = [];
 
+
             if (!this.formData.SKU) {
                 this.errors.push('Enter SKU.');
                 this.success = false;
@@ -163,10 +164,14 @@ export default {
                         this.$emit("stockAdded");
 
                     }).catch((error) => {
-                       // om svar från api inte är OK (200)
+                        // om svar från api inte är OK (200)
                         console.error('Error:', error);
                         if (error.response) {
                             console.error('Response Data:', error.response.data);
+                            console.error('Response Data:', error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.SKU);
+                            this.success = false;
+
                         }
 
                     })

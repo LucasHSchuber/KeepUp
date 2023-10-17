@@ -1,9 +1,11 @@
 <template>
-  <div class="wrapper">
-    <div class="chart-container">
-      <Bar ref="myChart" :data="chartData" :options="chartOptions" />
+
+    <div class="wrapper">
+      <div class="chart-container">
+        <Bar ref="myChart" :data="chartData" :options="chartOptions" />
+      </div>
     </div>
-  </div>
+
 </template>
 <script>
 
@@ -19,10 +21,7 @@ export default {
   components: {
     Bar
   },
-  mounted() {
-    Chart.register(...registerables);
-    this.fetchData();
-  },
+
   data() {
     return {
       chartData: {
@@ -52,10 +51,6 @@ export default {
         }
       }
     };
-  },
-  mounted() {
-    Chart.register(...registerables);
-    this.fetchData();
   },
   created() {
     this.fetchData();
@@ -131,6 +126,10 @@ export default {
         chartInstance.update();
       }
     },
+  },
+  mounted() {
+    Chart.register(...registerables);
+    this.fetchData();
   },
 };
 </script>

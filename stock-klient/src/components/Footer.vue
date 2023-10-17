@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <div class="container">
+        <!-- <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
@@ -25,7 +25,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
     </footer>
 </template>
 

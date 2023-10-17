@@ -1,5 +1,4 @@
 <template>
-
     <tbody>
         <tr>
             <td><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>

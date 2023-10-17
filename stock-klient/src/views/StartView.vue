@@ -4,7 +4,8 @@
         <h1>Start</h1>
     </div> -->
     <div class="imgbox">
-        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film"  style="object-fit:fill;object-position: -20% 0;">
+        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film"
+            style="object-fit:fill;object-position: -20% 0;">
         <!-- <picture>
             <source media="(min-width: 900px)" srcset="../images/big.jpg">
             <source media="(min-width: 480px)" srcset="MediumImage.png">
@@ -19,7 +20,9 @@
 
 
     <div>
-        <BarChart />
+
+        <BarChart></BarChart>
+
     </div>
 </template>
 
