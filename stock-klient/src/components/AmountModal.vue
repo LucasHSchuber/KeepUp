@@ -2,18 +2,23 @@
 <template>
     <div v-if="stock" class="modal" @click="closeModal">
         <div class="modal-content">
-            <h5 class="d-flex my-3 justify-content-center">Amount of products</h5>
+            <h5 class="d-flex my-3 justify-content-center">Amount in stock</h5>
             <h6 class="d-flex justify-content-center">{{ stock.name }}</h6>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
-            <div class="modal-innercontent d-flex my-4 justify-content-center">
-
+            <div class="modal-innercontent d-flex mt-4 justify-content-center">
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
                 <div class="mx-3 counter-box">
                     <h3>#{{ counter }}</h3>
                 </div>
                 <button @click="addToDatabase" class="counter-btn add">+</button>
+            </div>
 
+            <div class="modal-innercontent d-flex mt-1 mb-4 justify-content-center">
+                <button @click="removeFromDatabaseZero" class="counter-btn remove">#0</button>
+                <div class="mx-3 counter-box">
 
+                </div>
+                <button @click="addToDatabaseTen" class="counter-btn add">+10</button>
             </div>
             <button @click="saveAmount(stock.id)" class="save my-3">Save</button>
         </div>
@@ -48,14 +53,19 @@ export default {
             }
         },
         addToDatabase() {
-            console.log("adding");
             this.counter++;
 
         },
         removeFromDatabase() {
-            console.log("removing");
             this.counter--;
 
+        },
+        addToDatabaseTen() {
+            this.counter+=10;
+
+        },
+        removeFromDatabaseZero() {
+            this.counter=0;
         },
         saveAmount(data_id) {
             console.log("saveAmount function triggered, counter: " + this.counter);
@@ -155,12 +165,14 @@ export default {
     color: white;
     border: none;
     box-shadow: 0 2px 6px rgb(233, 233, 233);
-    font-size: 2em;
+    font-size: 1.5em;
 }
-.counter-box{
+
+.counter-box {
     width: 2.4em;
     padding-top: 0.5em;
 }
+
 .add {
     background-color: rgb(0, 112, 0);
 }
@@ -185,8 +197,5 @@ export default {
 
 }
 
-@media screen and (max-width: 772px) {
-
-}
-
+@media screen and (max-width: 772px) {}
 </style>

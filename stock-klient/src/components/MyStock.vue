@@ -12,10 +12,12 @@
             <label class="sort-label mt-1">Sort By: &nbsp; </label>
             <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
                 <option value="name">Name (A-Z)</option>
-                <option value="price">Price (Low - High)</option>
-                <option value="category">Category (A-Z)</option>
+                    <option value="category">Category (A-Z)</option>
+                    <option value="price">Price (Low - High)</option>
+                    <option value="updated_at_desc">Date (descending)</option>
+                    <option value="updated_at_asc">Date (ascending)</option>
             </select>
-            <button @click="filter" class=" sort-btn btn btn-outline-success my-2 mx-1 my-sm-0" type="submit">Sort</button>
+            <button @click="filter" class="submit-btn sort-btn my-2 mx-3 my-sm-0" type="submit"> <i class="fa-solid fa-arrow-down-wide-short"></i></button>
         </div>
 
         <table class="table table-hover">
@@ -180,6 +182,20 @@ export default {
                     break;
                 case 'category':
                     this.searchResults.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+                case 'updated_at_desc':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                    });
+                    break;
+                case 'updated_at_asc':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateA - dateB; // Sort in ascending order (oldest to newest)
+                    });
                     break;
                 default:
                     // Default sorting logic (if needed)

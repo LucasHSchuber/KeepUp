@@ -19,8 +19,8 @@
                     <option value="updated_at_desc">Date (descending)</option>
                     <option value="updated_at_asc">Date (ascending)</option>
                 </select>
-                <button @click="filter" class="sort-btn btn btn-outline-success my-2 mx-1 my-sm-0"
-                    type="submit">Sort</button>
+                <button @click="filter" class="submit-btn sort-btn  my-2 mx-3 my-sm-0"
+                    type="submit"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
             </div>
         </div>
 

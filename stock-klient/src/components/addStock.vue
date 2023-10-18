@@ -57,10 +57,10 @@
             </div>
             <div class="form-group mt-2">
                 <label for="image" class="form-label">Product image</label>
-                <input @change="handleFileUpload" class="form-control form-control-sm" id="image" type="file">
+                <input @change="handleFileUpload" class="form-control form-control-sm file-input" id="image" type="file">
             </div>
 
-            <button type="submit" class="submit-btn mt-4">Add product</button>
+            <button type="submit" class="submit-btn mt-4">Add product &nbsp;  <i class="fa-solid fa-plus"></i></button>
 
             <p class="success" v-if="success">
                 <b>The product is registered!</b>
@@ -196,37 +196,10 @@ export default {
 </script>
 
 <style scoped>
-.form input {
-    height: 2em;
+
+.file-input{
+    width: fit-content;
 }
-
-.submit-btn {
-    padding: 0.5em 1.5em;
-    background-color: black;
-    transition: 0.2s;
-    color: white;
-    border-radius: 20px;
-    border: none;
-
-}
-
-.submit-btn:hover {
-    padding: 0.5em 1.5em;
-    background-color: rgb(35, 35, 35);
-}
-
-.error-box b {
-    color: red;
-}
-
-.error-box li b {
-    color: red;
-}
-
-.error-box li {
-    color: red;
-}
-
 
 
 /* @media screen and (max-width: 771px) {
