@@ -42,10 +42,10 @@
                         <input v-model="stock.price" type="number" class="form-control" id="price_edit" name="price"
                             aria-describedby="price">
                     </div>
-                    <div class="form-group mt-2">
+                    <!-- <div class="form-group mt-2">
                         <label for="image" class="form-label">Product image</label>
-                        <input @change="handleFileUpload" class="form-control form-control-sm" id="image_edit" type="file">
-                    </div>
+                        <input @change="handleFileUpload" class="form-control form-control-sm" id="image" type="file">
+                    </div> -->
 
                     <button type="submit" class="edit-btn mt-3">Save Changes</button>
 
@@ -140,7 +140,8 @@ export default {
             let categoryEl = document.getElementById("category_edit");
             let descriptionEl = document.getElementById("description_edit");
             let priceEl = document.getElementById("price_edit");
-            
+
+
 
             let sku = skuEl.value;
             let name = nameEl.value;

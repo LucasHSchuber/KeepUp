@@ -130,17 +130,9 @@ export default {
                 form.append('price', this.formData.price);
                 form.append('image', this.formData.image);
 
-
-
-                // let stockBody = {
-                //     SKU: this.SKU,
-                //     name: this.name,
-                //     category: this.category,
-                //     description: this.description,
-                //     price: this.price,
-                //     image: this.image.name
-
-                // };
+                console.log(this.formData.image);
+                console.log(form);
+                
 
                 // Send FormData with Axios to your Laravel API endpoint
                 axios.post('http://127.0.0.1:8001/api/stocks', form, {
@@ -171,6 +163,8 @@ export default {
                             console.error('Response Data:', error.response.data);
                             console.error('Response Data:', error.response.data.errors.SKU);
                             this.errors.push(error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.image);
+
                             this.success = false;
 
                         }
