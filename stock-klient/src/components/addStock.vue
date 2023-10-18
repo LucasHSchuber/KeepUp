@@ -22,11 +22,29 @@
                 <input v-model="formData.name" type="text" class="form-control" id="name" aria-describedby="name"
                     placeholder="Product name">
             </div>
-            <div class="form-group mt-2">
+            <!-- <div class="form-group mt-2">
                 <label for="category">Category:</label>
                 <input v-model="formData.category" type="text" class="form-control" id="category"
                     aria-describedby="category" placeholder="Category">
+            </div> -->
+
+            <div class="form-group mt-2">
+                <label for="category">Category:</label>
+                <select v-model="formData.category" class="form-select" id="category" aria-label="category">
+                    <option value="Bread">Bread</option>
+                    <option value="Cold">Cold</option>
+                    <option value="Drinks">Drinks</option>
+                    <option value="Dry">Dry</option>
+                    <option value="Fish">Fish</option>
+                    <option value="Frozen">Frozen</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Vegetarian">Vegetarian</option>
+          
+                </select>
             </div>
+
             <div class="form-group mt-2">
                 <label for="description">Description:</label>
                 <input v-model="formData.description" type="text" class="form-control" id="description"
@@ -132,7 +150,7 @@ export default {
 
                 console.log(this.formData.image);
                 console.log(form);
-                
+
 
                 // Send FormData with Axios to your Laravel API endpoint
                 axios.post('http://127.0.0.1:8001/api/stocks', form, {
@@ -166,9 +184,7 @@ export default {
                             this.errors.push(error.response.data.errors.image);
 
                             this.success = false;
-
                         }
-
                     })
 
 

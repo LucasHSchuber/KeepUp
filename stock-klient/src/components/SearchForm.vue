@@ -12,7 +12,7 @@
                 placeholder="Search stock" aria-label="Search"> -->
 
                 <label class="sort-label mt-1">Sort By: &nbsp; </label>
-                <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
+                <select v-model="sortBy" class="form-control sort-select form-select">
                     <option value="name">Name (A-Z)</option>
                     <option value="category">Category (A-Z)</option>
                     <option value="price">Price (Low - High)</option>
@@ -46,7 +46,7 @@
                 <td class="align-middle">{{ stock.description }}</td>
                 <td class="align-middle">{{ stock.price }} kr</td>
                 <td class="align-middle">
-                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
+                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                             class="fa-regular fa-pen-to-square"></i></button>
                     <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
                             class="fa-solid fa-hashtag"></i></button>
@@ -206,6 +206,4 @@ export default {
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
