@@ -69,7 +69,9 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
-
+                    <button class="user-btn">
+                        <i class="user-icon fa-regular fa-1x fa-solid fa-circle-user mx-2" style="font-size:1.5em;"></i>
+                    </button>
                     <Users />
                 </div>
             </div>
@@ -134,7 +136,7 @@ export default {
                         console.error('Error occurred during logout:', error);
                     })
             }
-        }
+        },
 
     }
 }
@@ -155,6 +157,9 @@ export default {
     font-size: 1.5em;
 }
 
+.user-icon {
+    visibility: visible;
+}
 
 header li {
     list-style: none;
@@ -186,6 +191,19 @@ header li {
 a:active,
 a:focus {
     background-color: transparent !important;
+}
+
+.user-btn{
+    background-color: transparent;
+    border:none;
+}
+
+/* IPAD */
+@media screen and (max-width: 992px) {
+
+    .user-icon {
+        visibility: hidden;
+    }
 }
 </style>
 

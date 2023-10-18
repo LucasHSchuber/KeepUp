@@ -2,7 +2,7 @@
     <div class="wrapper">
 
         <div class="justify-content-center">
-            <h4 class="title mt-4 mb-3">My added products</h4>
+            <h4 class="title mt-4 mb-2">My added products</h4>
 
             <Users />
 

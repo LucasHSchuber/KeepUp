@@ -4,7 +4,7 @@
         Signed in as: {{ user }}
     </div> -->
 
-    <div>
+    <div class="d-flex mt-3">
         <p v-if="activeUser">Signed in as: {{ activeUser.name }}</p>
     </div>
 </template>

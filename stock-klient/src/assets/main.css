@@ -99,7 +99,23 @@ body {
   background-color: rgb(35, 35, 35);
 }
 
+.tableSize {
+  display: grid;
+  padding: 1em 0;
+}
 
+.tableSize-btn {
+  width: 3em;
+  height: fit-content;
+  background-color: transparent;
+  transition: 0.2s;
+  color: rgb(23, 23, 23);
+  /* margin: 0.1em; */
+  border: none;
+}
+.tableSize-btn:hover {
+  background-color: rgb(217, 217, 217);
+}
 
 
 /* IPAD */

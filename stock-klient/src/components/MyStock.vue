@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="search-bar form-inline d-flex mt-5">
+        <div class="search-bar form-inline d-flex mt-4">
             <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search">
         </div>
@@ -34,7 +34,7 @@
             <tbody class="article table-striped">
                 <tr v-for="stock in searchResults" :key="stock.id">
                     <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
-                    <td class="align-middle">{{ stock.name }}</td>
+                    <td class="align-middle">{{ stock.name }}  ({{ stock.volume }})</td>
                     <td class="align-middle">{{ stock.category }}</td>
                     <td class="align-middle">{{ stock.description }}</td>
                     <td class="align-middle">{{ stock.price }} kr</td>
@@ -54,7 +54,7 @@
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
         <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
             @fetch-success="fetchGroceries" />
-        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
+        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="fetchGroceries" />
 
     </div>
 </template>
@@ -104,7 +104,7 @@ export default {
                 }
             })
                 .then(response => {
-                    this.searchResults = response.data;
+                    this.searchResults = response.data.reverse();
                 })
                 .catch(error => {
                     console.error(error);

@@ -3,7 +3,7 @@
 
         <!-- Skriver ut alla stocker från APIt -->
         <div class="justify-content-center">
-            <h4 class="title mt-4 mb-3">Stock</h4>
+            <h4 class="title mt-4 mb-2">Stock</h4>
             
             <SearchForm v-if="isDetailView" :showDiv="true" />
 

@@ -6,7 +6,7 @@
             <h6 class="d-flex justify-content-center">{{ stock.name }}</h6>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
             <div class="modal-innercontent d-flex mt-4 justify-content-center">
-                 <button @click="removeFromDatabaseZero" class="counter-btn remove mx-1">#0</button>
+                <button @click="removeFromDatabaseZero" class="counter-btn remove mx-1">#0</button>
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
                 <div class="mx-3 counter-box">
                     <h3>#{{ counter }}</h3>
@@ -16,8 +16,8 @@
             </div>
 
 
-            
-            <button @click="saveAmount(stock.id)" class="save my-3">Save</button>
+
+            <button @click="saveAmount(stock.id)" class="save my-5">Save</button>
         </div>
     </div>
 
@@ -46,7 +46,9 @@ export default {
         closeModal(event) {
             // Close the modal only if the click event target is the modal background
             if (event.target.className === 'modal') {
-                this.$emit('close');
+                if (confirm("You need to click the Save button not loose your changes. Do you still want tot proceed?")) {
+                    this.$emit('close');
+                }
             }
         },
         addToDatabase() {
@@ -58,20 +60,17 @@ export default {
 
         },
         addToDatabaseTen() {
-            this.counter+=10;
+            this.counter += 10;
 
         },
         removeFromDatabaseZero() {
-            this.counter=0;
+            this.counter = 0;
         },
         saveAmount(data_id) {
-            console.log("saveAmount function triggered, counter: " + this.counter);
 
             const updateData = {
                 volume: this.counter
             };
-
-            console.log(updateData);
 
             const token = sessionStorage.getItem('token');
 
@@ -80,9 +79,6 @@ export default {
                 console.error('Access token not found in sessionStorage');
                 return;
             }
-
-            console.log(this.counter);
-            console.log(data_id);
 
             fetch(`http://127.0.0.1:8001/api/stocks/` + data_id, {
                 method: 'PUT',

@@ -7,26 +7,34 @@
                     placeholder="Search stock (SKU, name, category)" aria-label="Search">
             </div>
 
-            <div class="sort form-inline d-flex mt-4 mb-3">
-                <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
+            <div class="d-flex my-1">
+                <div class="w-100 sort form-inline d-flex mt-4 mb-3">
+                    <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search"> -->
 
-                <label class="sort-label mt-1">Sort By: &nbsp; </label>
-                <select v-model="sortBy" class="form-control sort-select form-select">
-                    <option value="name">Name (A-Z)</option>
-                    <option value="category">Category (A-Z)</option>
-                    <option value="price">Price (Low - High)</option>
-                    <option value="updated_at_desc">Date (descending)</option>
-                    <option value="updated_at_asc">Date (ascending)</option>
-                </select>
-                <button @click="filter" class="submit-btn sort-btn  my-2 mx-3 my-sm-0"
-                    type="submit"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
-            </div>
-        </div>
+                    <label class="sort-label mt-1">Sort By: &nbsp; </label>
+                    <select v-model="sortBy" class="form-control sort-select form-select">
+                        <option value="name">Name (A-Z)</option>
+                        <option value="category">Category (A-Z)</option>
+                        <option value="price">Price (Low - High)</option>
+                        <option value="updated_at_desc">Date (descending)</option>
+                        <option value="updated_at_asc">Date (ascending)</option>
+                    </select>
+                    <button @click="filter" class="submit-btn sort-btn  my-2 mx-3 my-sm-0" type="submit" title="Sort"><i
+                            class="fa-solid fa-arrow-down-wide-short"></i></button>
 
+                </div>
+                <div class="tableSize ">
+                    <button class="tableSize-btn" @click="increaseFontSize" title="scale up"><i class="fa-solid fa-caret-up"></i></button>
+                    <button class="tableSize-btn" @click="decreaseFontSize" title="scale down"><i class="fa-solid fa-caret-down"></i></button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <table class="table table-hover">
+    <table :style="{ fontSize: fontSize + 'px' }" class="table table-hover">
+
         <thead>
             <tr>
                 <th scope="col">SKU </th>
@@ -61,7 +69,7 @@
     <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl" />
     <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
         @fetch-success="loadAllProducts" />
-    <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="loadAllProducts"  />
+    <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="loadAllProducts" />
 </template>
 
 <script>
@@ -82,6 +90,7 @@ export default {
             imageUrl: '',
             stock_id: '',
             selectedProduct: [],
+            fontSize: 16,
         };
     },
     components: {
@@ -103,7 +112,7 @@ export default {
         loadAllProducts() {
             axios.get('http://127.0.0.1:8001/api/stocks')
                 .then(response => {
-                    this.searchResults = response.data;
+                    this.searchResults = response.data.reverse();
                 })
                 .catch(error => {
                     console.error(error);
@@ -200,10 +209,19 @@ export default {
                     // Default sorting logic (if needed)
                     break;
             }
+        },
+        increaseFontSize() {
+            this.fontSize += 1; // Increase font size by 2 pixels
+        },
+        decreaseFontSize() {
+            this.fontSize = Math.max(10, this.fontSize - 1); // Decrease font size by 2 pixels, but not less than 10
         }
     },
 };
 
 </script>
 
-<style scoped></style>
+<style scoped>
+
+
+</style>
