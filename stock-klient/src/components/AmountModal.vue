@@ -6,20 +6,17 @@
             <h6 class="d-flex justify-content-center">{{ stock.name }}</h6>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
             <div class="modal-innercontent d-flex mt-4 justify-content-center">
+                 <button @click="removeFromDatabaseZero" class="counter-btn remove mx-1">#0</button>
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
                 <div class="mx-3 counter-box">
                     <h3>#{{ counter }}</h3>
                 </div>
                 <button @click="addToDatabase" class="counter-btn add">+</button>
+                <button @click="addToDatabaseTen" class="counter-btn add mx-1">+10</button>
             </div>
 
-            <div class="modal-innercontent d-flex mt-1 mb-4 justify-content-center">
-                <button @click="removeFromDatabaseZero" class="counter-btn remove">#0</button>
-                <div class="mx-3 counter-box">
 
-                </div>
-                <button @click="addToDatabaseTen" class="counter-btn add">+10</button>
-            </div>
+            
             <button @click="saveAmount(stock.id)" class="save my-3">Save</button>
         </div>
     </div>
@@ -98,6 +95,7 @@ export default {
                 .then((response) => {
                     // If the request is successful
                     if (response.ok) {
+                        this.$emit('fetch-success');
                         return response.json();
                     }
                     // Handle non-2xx responses here

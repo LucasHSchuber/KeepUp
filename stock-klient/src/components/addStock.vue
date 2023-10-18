@@ -30,7 +30,7 @@
 
             <div class="form-group mt-2">
                 <label for="category">Category:</label>
-                <select v-model="formData.category" class="form-select" id="category" aria-label="category">
+                <select v-model="formData.category" class="form-select" id="category" aria-label="category" >
                     <option value="Bread">Bread</option>
                     <option value="Cold">Cold</option>
                     <option value="Drinks">Drinks</option>
@@ -82,7 +82,7 @@ export default {
             formData: {
                 SKU: "",
                 name: "",
-                category: "",
+                category: "input",
                 description: "",
                 price: "",
                 image: null,

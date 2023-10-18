@@ -81,7 +81,7 @@
 
 <script>
 
-import axios from 'axios'
+import axios from 'axios';
 
 import { RouterLink } from 'vue-router';
 import Users from "../components/Users.vue";

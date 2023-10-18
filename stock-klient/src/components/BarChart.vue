@@ -1,16 +1,17 @@
 <template>
-  <div>
+
     <div class="wrapper">
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
     </div>
-  </div>
+
 </template>
 <script>
 
 
 import axios from 'axios';
+
 import { Chart, registerables } from 'chart.js';
 import { Bar } from 'vue-chartjs';
 

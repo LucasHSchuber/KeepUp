@@ -41,7 +41,7 @@
             <tr>
                 <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a>
                 </td>
-                <td class="align-middle">{{ stock.name }}</td>
+                <td class="align-middle">{{ stock.name }} ({{ stock.volume }})</td>
                 <td class="align-middle">{{ stock.category }}</td>
                 <td class="align-middle">{{ stock.description }}</td>
                 <td class="align-middle">{{ stock.price }} kr</td>
@@ -61,7 +61,7 @@
     <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl" />
     <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
         @fetch-success="loadAllProducts" />
-    <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" />
+    <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="loadAllProducts"  />
 </template>
 
 <script>

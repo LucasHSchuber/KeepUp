@@ -37,9 +37,6 @@ import MyStock from '../components/MyStock.vue';
 import SearchForm from '../components/SearchForm.vue';
 import Users from '../components/Users.vue';
 
-
-import axios from 'axios';
-
 export default {
     data() {
         return {

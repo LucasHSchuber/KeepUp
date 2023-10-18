@@ -18,10 +18,9 @@
     </div>
 
 
-
     <div>
 
-        <BarChart></BarChart>
+        <BarChart />
 
     </div>
 </template>
@@ -31,7 +30,7 @@ import BarChart from '../components/BarChart.vue'
 
 export default {
     components: {
-        BarChart
+        BarChart,
     }
 }
 
