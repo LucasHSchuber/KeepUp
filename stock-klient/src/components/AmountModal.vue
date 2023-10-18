@@ -8,7 +8,7 @@
             <div class="modal-innercontent d-flex my-4 justify-content-center">
 
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
-                <div class="mx-3">
+                <div class="mx-3 counter-box">
                     <h3>#{{ counter }}</h3>
                 </div>
                 <button @click="addToDatabase" class="counter-btn add">+</button>
@@ -157,7 +157,10 @@ export default {
     box-shadow: 0 2px 6px rgb(233, 233, 233);
     font-size: 2em;
 }
-
+.counter-box{
+    width: 2.4em;
+    padding-top: 0.5em;
+}
 .add {
     background-color: rgb(0, 112, 0);
 }

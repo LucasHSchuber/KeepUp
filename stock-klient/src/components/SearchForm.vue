@@ -46,7 +46,7 @@
                 <td class="align-middle">{{ stock.description }}</td>
                 <td class="align-middle">{{ stock.price }} kr</td>
                 <td class="align-middle">
-                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
+                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit" ><i
                             class="fa-regular fa-pen-to-square"></i></button>
                     <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
                             class="fa-solid fa-hashtag"></i></button>
