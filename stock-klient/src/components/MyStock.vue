@@ -12,12 +12,13 @@
             <label class="sort-label mt-1">Sort By: &nbsp; </label>
             <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
                 <option value="name">Name (A-Z)</option>
-                    <option value="category">Category (A-Z)</option>
-                    <option value="price">Price (Low - High)</option>
-                    <option value="updated_at_desc">Date (descending)</option>
-                    <option value="updated_at_asc">Date (ascending)</option>
+                <option value="category">Category (A-Z)</option>
+                <option value="price">Price (Low - High)</option>
+                <option value="updated_at_desc">Date (descending)</option>
+                <option value="updated_at_asc">Date (ascending)</option>
             </select>
-            <button @click="filter" class="submit-btn sort-btn my-2 mx-3 my-sm-0" type="submit"> <i class="fa-solid fa-arrow-down-wide-short"></i></button>
+            <button @click="filter" class="submit-btn sort-btn my-2 mx-3 my-sm-0" type="submit"> <i
+                    class="fa-solid fa-arrow-down-wide-short"></i></button>
         </div>
 
         <table class="table table-hover">
@@ -32,13 +33,16 @@
                 </tr>
             </thead>
             <tbody class="article table-striped">
-                <tr v-for="stock in searchResults" :key="stock.id">
-                    <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
-                    <td class="align-middle">{{ stock.name }}  ({{ stock.volume }})</td>
-                    <td class="align-middle">{{ stock.category }}</td>
-                    <td class="align-middle">{{ stock.description }}</td>
-                    <td class="align-middle">{{ stock.price }} kr</td>
-                    <td class="align-middle">
+                <tr v-if="showZeroVolumeRows" v-for="stock in searchResults" :key="stock.id">
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle"><a class="image-link"
+                            @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a></td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.name }} ({{
+                        stock.volume }})</td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.category }}</td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.description }}
+                    </td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.price }} kr</td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">
                         <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
                                 class="fa-regular fa-pen-to-square"></i></button>
                         <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
@@ -54,7 +58,8 @@
         <modal v-if="showModal" @close="showModal = false" :image-url="imageUrl"></modal>
         <EditStockModal v-if="showModal2" @close="showModal2 = false" :stock="selectedProduct"
             @fetch-success="fetchGroceries" />
-        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="fetchGroceries" />
+        <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct"
+            @fetch-success="fetchGroceries" />
 
     </div>
 </template>
@@ -78,6 +83,7 @@ export default {
             imageUrl: '',
             stock_id: '',
             selectedProduct: [],
+            showZeroVolumeRows: true,
         };
     },
     components: {
@@ -185,15 +191,15 @@ export default {
                     break;
                 case 'updated_at_desc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.updated_at);
-                        const dateB = new Date(b.updated_at);
+                        const dateA = new Date(a.created_at);
+                        const dateB = new Date(b.created_at);
                         return dateB - dateA; // Sort in descending order (newest to oldest)
                     });
                     break;
                 case 'updated_at_asc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.updated_at);
-                        const dateB = new Date(b.updated_at);
+                        const dateA = new Date(a.created_at);
+                        const dateB = new Date(b.created_at);
                         return dateA - dateB; // Sort in ascending order (oldest to newest)
                     });
                     break;
@@ -201,7 +207,10 @@ export default {
                     // Default sorting logic (if needed)
                     break;
             }
-        }
+        },
+        toggleShowZeroVolumeRows() {
+            this.showZeroVolumeRows = !this.showZeroVolumeRows;
+        },
     },
 };
 
@@ -217,5 +226,8 @@ export default {
     width: 10em;
 
     max-width: 75%;
+}
+.zero-volume {
+    background-color: rgb(255, 198, 198);
 }
 </style>

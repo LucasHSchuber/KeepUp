@@ -250,7 +250,7 @@ export default {
 .zero-volume {
     background-color: rgb(255, 198, 198);
 }
-</style>ƒ
+</style>
 
 <!-- <style scoped>
 

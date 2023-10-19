@@ -25,9 +25,7 @@
 
 
                 <div class="div-1-minor">
-                    <a class="" role="button" data-bs-toggle="" aria-expanded="false">
-                        Admin
-                    </a>
+                    
                     <ul class="div-1-minor" style="display:grid;">
                         <a class="">
                             <RouterLink to="/mystock">My added products</RouterLink>

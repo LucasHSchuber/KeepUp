@@ -28,7 +28,7 @@ export default {
         this.fetchUserData();
     },
     methods: {
-        async fetchUserData() {
+         fetchUserData() {
             const token = sessionStorage.getItem('token');
 
             if (!token) {
@@ -54,9 +54,8 @@ export default {
 
     },
     watch: {
-        // Watch for changes in the 'activeUser' variable
+        // Watch changes in activeUser variable
         activeUser(newValue, oldValue) {
-            // Perform actions when the active user changes
             console.log(`Active user changed from ${oldValue} to ${newValue}`);
         },
     },
