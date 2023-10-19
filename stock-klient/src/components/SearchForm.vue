@@ -25,7 +25,7 @@
                 </div>
 
 
-                <button class="toggleColumns-btn" @click="toggleColumns"><i class="fa-solid fa-eye"></i></button>
+                <button class="toggleColumns-btn" @click="toggleColumns" title="Change view"><i class="fa-solid fa-eye"></i></button>
 
 
                 <div class="tableSize ">
