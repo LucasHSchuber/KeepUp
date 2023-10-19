@@ -81,6 +81,7 @@ body {
 
 .image-link {
   text-decoration: underline 1px blue;
+  color: blue;
   cursor: pointer;
 }
 
@@ -116,7 +117,7 @@ body {
 .tableSize-btn:hover {
   background-color: rgb(217, 217, 217);
 }
-.toggleColumns-btn {
+.toggleColumns-btn, .toggleZeroVolumeRows-btn {
   margin:auto;
   width: 3em;
   height: fit-content;
@@ -126,7 +127,7 @@ body {
   /* margin: 0.1em; */
   border: none;
 }
-.toggleColumns-btn:hover {
+.toggleColumns-btn:hover, .toggleZeroVolumeRows-btn:hover {
   background-color: rgb(217, 217, 217);
 }
 

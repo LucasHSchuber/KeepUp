@@ -32,7 +32,6 @@
                         <a class="">
                             <RouterLink to="/mystock">My added products</RouterLink>
                         </a>
-                        <!-- <li><a class="dropdown-item" href="#">About us</a></li> -->
                         <a class="" >
                             <RouterLink to="/register">Register user</RouterLink>
                         </a>
@@ -45,7 +44,7 @@
             </div>
             <div class="div2">
                 <h3>Contact Us</h3>
-                <p>Email: info@example.com</p>
+                <p>Email: keepup@gmail.se</p>
                 <p>Phone: +1 123 456 7890</p>
             </div>
             <div class="div3">
@@ -63,7 +62,7 @@
 
 <style>
 .footer {
-    background-color: #d7d7d7;
+    background-color: #ededed;
     color:rgb(29, 29, 29);
     height: 30em;
     border-top: 0.5px solid rgb(214, 214, 214);

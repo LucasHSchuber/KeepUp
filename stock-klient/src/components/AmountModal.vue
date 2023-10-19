@@ -8,7 +8,7 @@
             <div class="modal-innercontent d-flex mt-4 justify-content-center">
                 <button @click="removeFromDatabaseZero" class="counter-btn remove mx-1">#0</button>
                 <button @click="removeFromDatabase" class="counter-btn remove">-</button>
-                <div class="mx-3 counter-box">
+                <div class="mx-4 counter-box">
                     <h3>#{{ counter }}</h3>
                 </div>
                 <button @click="addToDatabase" class="counter-btn add">+</button>
@@ -163,8 +163,8 @@ export default {
 }
 
 .counter-box {
-    width: 2.4em;
-    padding-top: 0.5em;
+    width: fit-content;
+    margin:auto;
 }
 
 .add {

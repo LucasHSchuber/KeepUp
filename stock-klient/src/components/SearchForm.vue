@@ -24,8 +24,16 @@
 
                 </div>
 
+                <button class="toggleZeroVolumeRows-btn" @click="toggleShowZeroVolumeRows" title="Volume view">
+                    <i class="fa-solid fa-circle" v-if="!showZeroVolumeRows"></i>
+                    <i class="fa-regular fa-circle" v-else ></i>
+                </button>
 
-                <button class="toggleColumns-btn" @click="toggleColumns" title="Change view"><i class="fa-solid fa-eye"></i></button>
+
+                <button class="toggleColumns-btn" @click="toggleColumns" title="Change view">
+                    <i class="fa-solid fa-eye-slash"  v-if="!showColumns"></i>
+                    <i class="fa-solid fa-eye" v-else></i>
+                </button>
 
 
                 <div class="tableSize ">
@@ -50,15 +58,18 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody v-for="stock in searchResults" :key="stock.id" class="article table-striped">
-            <tr>
-                <td class="align-middle"><a class="image-link" @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a>
+        <tbody v-for="stock in searchResults" :key="stock.id" class="table-striped">
+            <tr v-if="showZeroVolumeRows || stock.volume === 0">
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle"><a class="image-link"
+                        @click="openModalWithUrl(stock.image)">{{ stock.SKU }}</a>
                 </td>
-                <td class="align-middle">{{ stock.name }} ({{ stock.volume }})</td>
-                <td class="align-middle">{{ stock.category }}</td>
-                <td v-if="showColumns" class="align-middle">{{ stock.description }}</td>
-                <td class="align-middle">{{ stock.price }} kr</td>
-                <td class="align-middle">
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.name }} ({{
+                    stock.volume }})</td>
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.category }}</td>
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" v-if="showColumns" class="align-middle">{{
+                    stock.description }}</td>
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.price }} kr</td>
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">
                     <button @click="editStock(stock.id)" v-if="showColumns" class="edit-btn-i" title="Edit"><i
                             class="fa-regular fa-pen-to-square"></i></button>
                     <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
@@ -97,6 +108,7 @@ export default {
             selectedProduct: [],
             fontSize: 16,
             showColumns: true,
+            showZeroVolumeRows: true,
         };
     },
     components: {
@@ -108,11 +120,12 @@ export default {
         stock: Object,
         showDiv: {
             type: Boolean,
-            default: false, // Set a default value if needed
+            default: false,
         },
     },
     created() {
-        this.loadAllProducts(); // Load all products when the component is created
+        // Load all products when the component is created
+        this.loadAllProducts();
     },
     methods: {
         loadAllProducts() {
@@ -199,15 +212,15 @@ export default {
                     break;
                 case 'updated_at_desc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.updated_at);
-                        const dateB = new Date(b.updated_at);
+                        const dateA = new Date(a.created_at);
+                        const dateB = new Date(b.created_at);
                         return dateB - dateA; // Sort in descending order (newest to oldest)
                     });
                     break;
                 case 'updated_at_asc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.updated_at);
-                        const dateB = new Date(b.updated_at);
+                        const dateA = new Date(a.created_at);
+                        const dateB = new Date(b.created_at);
                         return dateA - dateB; // Sort in ascending order (oldest to newest)
                     });
                     break;
@@ -225,11 +238,24 @@ export default {
         toggleColumns() {
             this.showColumns = !this.showColumns; // Toggle the visibility of the Description column
         },
+        toggleShowZeroVolumeRows() {
+            this.showZeroVolumeRows = !this.showZeroVolumeRows;
+        },
+
     },
 };
 
 </script>
-
 <style scoped>
+.zero-volume {
+    background-color: rgb(255, 198, 198);
+}
+</style>ƒ
 
-</style>
+<!-- <style scoped>
+
+.table > tbody > tr > td{
+    background-color:rgb(255, 63, 63);
+}
+
+</style> -->
