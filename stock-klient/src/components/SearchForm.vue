@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div v-if="showDiv">
             <div class="search-bar form-inline d-flex mt-5">
                 <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
@@ -24,9 +23,16 @@
                             class="fa-solid fa-arrow-down-wide-short"></i></button>
 
                 </div>
+
+
+                <button class="toggleColumns-btn" @click="toggleColumns"><i class="fa-solid fa-eye"></i></button>
+
+
                 <div class="tableSize ">
-                    <button class="tableSize-btn" @click="increaseFontSize" title="scale up"><i class="fa-solid fa-caret-up"></i></button>
-                    <button class="tableSize-btn" @click="decreaseFontSize" title="scale down"><i class="fa-solid fa-caret-down"></i></button>
+                    <button class="tableSize-btn" @click="increaseFontSize" title="scale up"><i
+                            class="fa-solid fa-caret-up"></i></button>
+                    <button class="tableSize-btn" @click="decreaseFontSize" title="scale down"><i
+                            class="fa-solid fa-caret-down"></i></button>
                 </div>
             </div>
 
@@ -34,13 +40,12 @@
     </div>
 
     <table :style="{ fontSize: fontSize + 'px' }" class="table table-hover">
-
         <thead>
             <tr>
                 <th scope="col">SKU </th>
                 <th scope="col">Name</th>
                 <th scope="col">Category</th>
-                <th scope="col">Description</th>
+                <th v-if="showColumns" scope="col">Description</th>
                 <th scope="col">Price</th>
                 <th scope="col"></th>
             </tr>
@@ -51,14 +56,14 @@
                 </td>
                 <td class="align-middle">{{ stock.name }} ({{ stock.volume }})</td>
                 <td class="align-middle">{{ stock.category }}</td>
-                <td class="align-middle">{{ stock.description }}</td>
+                <td v-if="showColumns" class="align-middle">{{ stock.description }}</td>
                 <td class="align-middle">{{ stock.price }} kr</td>
                 <td class="align-middle">
-                    <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
+                    <button @click="editStock(stock.id)" v-if="showColumns" class="edit-btn-i" title="Edit"><i
                             class="fa-regular fa-pen-to-square"></i></button>
                     <button @click="openAmountModal(stock.id)" class="num-btn-i" title="Amount"><i
                             class="fa-solid fa-hashtag"></i></button>
-                    <button @click="deleteStock(stock.id)" class="del-btn-i" title="Delete"><i
+                    <button @click="deleteStock(stock.id)" v-if="showColumns" class="del-btn-i" title="Delete"><i
                             class="fa-solid fa-trash-can"></i></button>
                 </td>
 
@@ -91,6 +96,7 @@ export default {
             stock_id: '',
             selectedProduct: [],
             fontSize: 16,
+            showColumns: true,
         };
     },
     components: {
@@ -215,13 +221,15 @@ export default {
         },
         decreaseFontSize() {
             this.fontSize = Math.max(10, this.fontSize - 1); // Decrease font size by 2 pixels, but not less than 10
-        }
+        },
+        toggleColumns() {
+            this.showColumns = !this.showColumns; // Toggle the visibility of the Description column
+        },
     },
 };
 
 </script>
 
 <style scoped>
-
 
 </style>

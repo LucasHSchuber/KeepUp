@@ -27,10 +27,26 @@
                         <input v-model="stock.name" type="text" class="form-control" id="name_edit" name="name"
                             aria-describedby="name">
                     </div>
-                    <div class="form-group mt-2">
+                    <!-- <div class="form-group mt-2">
                         <label for="category">Category:</label>
                         <input v-model="stock.category" type="text" class="form-control" id="category_edit" name="category"
                             aria-describedby="category">
+                    </div> -->
+                    <div class="form-group mt-2">
+                        <label for="category">Category:</label>
+                        <select v-model="stock.category" class="form-select" id="category_edit" aria-label="category">
+                            <option value="Bread">Bread</option>
+                            <option value="Cold">Cold</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Dry">Dry</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Frozen">Frozen</option>
+                            <option value="Fruit">Fruit</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Snacks">Snacks</option>
+                            <option value="Vegetarian">Vegetarian</option>
+
+                        </select>
                     </div>
                     <div class="form-group mt-2">
                         <label for="description">Description:</label>
@@ -117,7 +133,7 @@ export default {
             let descriptionEl = document.getElementById("description_edit");
             let priceEl = document.getElementById("price_edit");
 
-         
+
             let sku = skuEl.value;
             let name = nameEl.value;
             let category = categoryEl.value;

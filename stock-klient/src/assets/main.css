@@ -116,6 +116,19 @@ body {
 .tableSize-btn:hover {
   background-color: rgb(217, 217, 217);
 }
+.toggleColumns-btn {
+  margin:auto;
+  width: 3em;
+  height: fit-content;
+  background-color: transparent;
+  transition: 0.2s;
+  color: rgb(23, 23, 23);
+  /* margin: 0.1em; */
+  border: none;
+}
+.toggleColumns-btn:hover {
+  background-color: rgb(217, 217, 217);
+}
 
 
 /* IPAD */

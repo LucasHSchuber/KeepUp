@@ -56,7 +56,7 @@
                     placeholder="Price">
             </div>
             <div class="form-group mt-2">
-                <label for="image" class="form-label">Product image</label>
+                <label for="image" class="form-label" >Product image</label>
                 <input @change="handleFileUpload" class="form-control form-control-sm file-input" id="image" type="file">
             </div>
 
@@ -200,6 +200,7 @@ export default {
 .file-input{
     width: fit-content;
 }
+
 
 
 /* @media screen and (max-width: 771px) {
