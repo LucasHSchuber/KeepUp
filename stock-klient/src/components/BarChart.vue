@@ -127,7 +127,7 @@ export default {
     this.fetchData();
     setTimeout(() => {
       this.showChart = true;
-    }, 500); 
+    }, 750); 
   },
 };
 </script>
