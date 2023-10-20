@@ -1,8 +1,7 @@
 
 <template>
-
-    <div class="">
-
+    <div class="wrapper">
+        <h4 class="title mt-4">Analytics</h4>
         <div>
             <BarChart />
         </div>
@@ -10,7 +9,6 @@
         <div>
             <CategoryChart />
         </div>
-
     </div>
 </template>
 

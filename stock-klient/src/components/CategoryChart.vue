@@ -1,7 +1,12 @@
 <template>
     <div v-if="showChart">
-        <div class="wrapper my-5">
-            <h5 class="title mb-5">Amount of products in each category</h5>
+        <div class=" my-5">
+            <div class="mb-5">
+                <h5 class="title">Amount of products in each category</h5>
+                <p>This chart show the amount of products in each category in the stock. <br>
+                    The X-axis shows the category, and the Y-axis show the amount of products in that specific category.
+                </p>
+            </div>
             <div class="chart-container">
                 <Bar ref="categoryChart" :data="chartData" :options="chartOptions" />
             </div>
@@ -85,9 +90,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-}
-
 .chart-container {
     max-width: 75%;
     width: 50em;

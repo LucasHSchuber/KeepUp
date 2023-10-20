@@ -1,8 +1,5 @@
 <template>
     <footer class="footer">
-        <div class="d-flex justify-content-center mt-5">
-            <a class="navbar-brand logo-footer">KeepUp</a>
-        </div>
 
         <div class="d-flex footer-links justify-content-evenly me-auto my-4">
             <div class="div1" style="display:grid;">
@@ -25,12 +22,12 @@
 
 
                 <div class="div-1-minor">
-                    
+
                     <ul class="div-1-minor" style="display:grid;">
                         <a class="">
                             <RouterLink to="/mystock">My added products</RouterLink>
                         </a>
-                        <a class="" >
+                        <a class="">
                             <RouterLink to="/register">Register user</RouterLink>
                         </a>
                         <a @click.prevent="logoutUser" class="">Log
@@ -54,6 +51,11 @@
                 </ul>
             </div>
         </div>
+
+        <div class="d-flex justify-content-center mt-3">
+            <a class="navbar-brand logo-footer">KeepUp</a>
+        </div>
+
     </footer>
 </template>
 
@@ -61,15 +63,15 @@
 <style>
 .footer {
     background-color: #ededed;
-    color:rgb(29, 29, 29);
-    height: 30em;
+    color: rgb(29, 29, 29);
+    height: 35em;
     border-top: 0.5px solid rgb(214, 214, 214);
     /* box-shadow: 0 -2px 6px rgb(233, 233, 233); */
     box-shadow: inset 0px 1px 10px 1px rgb(233, 233, 233);
-    margin: 5em 0 0 0;
+    padding: 2em 0 0 0;
 }
- 
-.logo-footer{
+
+.logo-footer {
     font-size: 2.2em;
 }
 
@@ -95,13 +97,18 @@
 }
 
 .social-links li,
-.quick-links li, .div1 > a, .div-1-minor > a {
+.quick-links li,
+.div1>a,
+.div-1-minor>a {
     list-style: none;
     margin-bottom: 10px;
 }
 
 .social-links a,
-.quick-links a, .div1 > a, .div-1-minor > a, .footer-links a{
+.quick-links a,
+.div1>a,
+.div-1-minor>a,
+.footer-links a {
     color: #2a2929;
     text-decoration: none;
     font-weight: bold;
@@ -109,7 +116,10 @@
 }
 
 .social-links a:hover,
-.quick-links a:hover, .div1 > a:hover, .div-1-minor > a:hover, .footer-links a:hover {
+.quick-links a:hover,
+.div1>a:hover,
+.div-1-minor>a:hover,
+.footer-links a:hover {
     text-decoration: underline !important;
 }
 </style>
