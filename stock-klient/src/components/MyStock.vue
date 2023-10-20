@@ -228,6 +228,6 @@ export default {
     max-width: 75%;
 }
 .zero-volume {
-    background-color: rgb(255, 198, 198);
+    background-color: rgb(255, 234, 234);
 }
 </style>

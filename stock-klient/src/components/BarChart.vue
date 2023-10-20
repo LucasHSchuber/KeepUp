@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="remove"> 
     <div class="wrapper">
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />

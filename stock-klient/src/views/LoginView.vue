@@ -1,4 +1,3 @@
-
 <template>
     <div class="wrapper">
         <div class="register-wrap d-flex justify-content-center">
@@ -35,6 +34,7 @@
                         v-model="form.password">
                 </div>
                 <button @click.prevent="loginUser" type="submit" class="submit-btn mt-4">Log in</button>
+                <User ref="fetchUser" />
             </div>
         </div>
     </div>
@@ -43,6 +43,8 @@
 <script>
 
 import axios from "axios";
+
+import User from "../components/Users.vue"
 
 export default {
     data() {
@@ -57,6 +59,9 @@ export default {
 
         }
     },
+    components:{
+        User,
+    },
     methods: {
         loginUser() {
             axios.post('http://127.0.0.1:8001/api/login', this.form)
@@ -64,6 +69,7 @@ export default {
                     sessionStorage.setItem('token', response.data.token)
                     console.log(response.data);
                     this.$router.push({ name: "home" });
+                    this.$refs.fetchUser.fetchUserData();
                     console.log("You have been loged in!");
                     
 

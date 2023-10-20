@@ -1,9 +1,5 @@
 
 <template>
-    <!-- <div>
-        Signed in as: {{ user }}
-    </div> -->
-
     <div class="d-flex mt-3">
         <p v-if="activeUser">Signed in as: {{ activeUser.name }}</p>
     </div>
@@ -16,7 +12,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            activeUser: null,
+            activeUser: "",
             // signedIn: null,
         }
     },
@@ -24,12 +20,13 @@ export default {
 
     },
     created() {
-        // Call the method to fetch active user data when the component is created
+        // Call the method to fetch active user data when the component is mounted
         this.fetchUserData();
     },
     methods: {
         async fetchUserData() {
             const token = sessionStorage.getItem('token');
+            console.log("fetchUserData method triggered");
 
             if (!token) {
                 console.error('No user is logged in');
@@ -44,7 +41,7 @@ export default {
                     .then((response) => {
 
                         this.activeUser = response.data;
-                        console.log(activeUser);
+                        console.log(response.data);
 
                     }).catch((error) => {
                         console.error('Error fetching user data:', error);
