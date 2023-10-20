@@ -134,7 +134,7 @@ export default {
             try {
                 const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
                 const stock = response.data;
-                // Emit an event to parent component to open the modal
+
                 console.log("opened " + stock);
                 this.showModal3 = true;
                 this.selectedProduct = stock;
@@ -148,7 +148,7 @@ export default {
             try {
                 const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
                 const product = response.data;
-                // Emit an event to parent component to open the modal
+
                 this.showModal2 = true;
                 this.selectedProduct = product;
             } catch (error) {

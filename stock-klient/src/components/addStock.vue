@@ -161,6 +161,7 @@ export default {
                     .then((response) => {
                         // const data = await resp.json(); // vid OK svar
                         console.log(response.data);
+                        this.$emit('triggerLoadallproducts');
 
                         this.success = true;
 

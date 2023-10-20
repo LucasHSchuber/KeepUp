@@ -89,18 +89,7 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    font-weight: 700;
-}
 
-.form-control {
-    width: 50%;
-}
-
-.table {
-    margin: 2em 0;
-
-}
 </style>
 
   

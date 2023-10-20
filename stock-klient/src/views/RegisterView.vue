@@ -3,7 +3,7 @@
     <div class="wrapper">
         <div class="register-wrap d-flex justify-content-center">
             <div class="reg-form">
-                <h5 class="mb-4">Register account</h5>
+                <h5 class="title mb-4">Register account</h5>
 
                 <div class="error-box">
                     <p v-if="errors.length">

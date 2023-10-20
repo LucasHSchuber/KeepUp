@@ -62,9 +62,7 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    font-weight: 700;
-}
+
 
 .form-control {
     width: 50%;
