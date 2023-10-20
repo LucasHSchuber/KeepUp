@@ -1,5 +1,5 @@
 <template>
-  <div class="remove"> 
+  <div v-if="showChart">
     <div class="wrapper">
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
@@ -25,14 +25,15 @@ export default {
 
   data() {
     return {
+      showChart: false,
       chartData: {
-        labels: [], 
+        labels: [],
         datasets: [{
           label: 'Number of Products',
           data: [],
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)', 
-          borderWidth: 1, 
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
         }]
       },
       chartOptions: {
@@ -41,10 +42,10 @@ export default {
           x: {
             type: 'category',
             time: {
-              unit: 'day', 
-              tooltipFormat: 'll', 
+              unit: 'day',
+              tooltipFormat: 'll',
             },
-            labels: [], 
+            labels: [],
           },
           y: {
             beginAtZero: true,
@@ -72,7 +73,6 @@ export default {
             const formattedDate = `${createdAt.getFullYear()}-${(createdAt.getMonth() + 1).toString().padStart(2, '0')}-${createdAt.getDate().toString().padStart(2, '0')}`;
             return formattedDate; // Only include the formatted date
           });
-          console.log(formattedData); // Log the formatted data
           this.updateChartData(formattedData);
 
         })
@@ -95,27 +95,22 @@ export default {
 
     },
     updateChartData(formattedData) {
-      console.log(formattedData);
       const countsByDate = {};
 
       formattedData.forEach(date => {
         countsByDate[date] = (countsByDate[date] || 0) + 1;
       });
 
-      // document.getElementById("show").style.display = "block";
-
       this.chartData.labels = Object.keys(countsByDate);
       this.chartData.datasets[0].data = Object.values(countsByDate);
 
       // Update x-axis labels
       this.chartOptions.scales.x.labels = this.chartData.labels;
-      console.log(this.chartOptions.scales.x.labels);
-      console.log(this.chartData.datasets[0].data);
-
+      
       const chartInstance = this.$refs.myChart;
 
 
-     
+
       if (chartInstance && chartInstance.update) {
         chartInstance.update(); // Call update method to re-render the chart with new data
       }
@@ -130,6 +125,9 @@ export default {
   mounted() {
     Chart.register(...registerables);
     this.fetchData();
+    setTimeout(() => {
+      this.showChart = true;
+    }, 500); 
   },
 };
 </script>
@@ -145,9 +143,8 @@ export default {
   margin: auto;
   height: fit-content;
   border: 1px solid #ccc;
-  /* border-radius: 5px; */
   overflow: hidden;
-  /* Optional: Hide overflow to prevent chart overflow */
+
 }
 
 #show {
