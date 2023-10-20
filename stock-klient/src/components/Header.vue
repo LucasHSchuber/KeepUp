@@ -53,6 +53,9 @@
                                 <li><a class="dropdown-item" href="#">
                                         <RouterLink to="/mystock">My added products</RouterLink>
                                     </a></li>
+                                <li><a class="dropdown-item" href="#">
+                                        <RouterLink to="/analytics">Analytics</RouterLink>
+                                    </a></li>
                                 <!-- <li><a class="dropdown-item" href="#">About us</a></li> -->
                                 <li><a class="dropdown-item" href="#">
                                         <RouterLink to="/register">Register user</RouterLink>
@@ -193,9 +196,9 @@ a:focus {
     background-color: transparent !important;
 }
 
-.user-btn{
+.user-btn {
     background-color: transparent;
-    border:none;
+    border: none;
 }
 
 /* IPAD */

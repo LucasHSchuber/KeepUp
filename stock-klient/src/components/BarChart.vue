@@ -1,7 +1,7 @@
 <template>
   <div v-if="showChart">
     <div class="wrapper my-5">
-      <h5 class="title mb-4">Number of products added per day</h5>
+      <h5 class="title mb-5">Number of products added per day</h5>
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
@@ -129,7 +129,7 @@ export default {
     this.fetchData();
     setTimeout(() => {
       this.showChart = true;
-    }, 750);
+    }, 800);
   },
 };
 </script>

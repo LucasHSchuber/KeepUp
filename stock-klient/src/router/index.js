@@ -5,6 +5,7 @@ import StockView from '../views/StockView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import LoginView from '../views/LoginView.vue';
 import MyAddedStockView from '../views/MyAddedStockView.vue';
+import AnalyticsView from '../views/AnalyticsView.vue';
 
 
 const router = createRouter({
@@ -60,6 +61,18 @@ const router = createRouter({
       path: '/mystock',
       name: 'mystock',
       component: MyAddedStockView,
+      beforeEnter: (to, from, next) => {
+        if (sessionStorage.getItem('token')) {
+          next()
+        } else {
+          next('login')
+        }
+      }
+    },
+    {
+      path: '/analytics',
+      name: 'analytics',
+      component: AnalyticsView,
       beforeEnter: (to, from, next) => {
         if (sessionStorage.getItem('token')) {
           next()

@@ -2,7 +2,6 @@
     <div v-if="showChart">
         <div class="wrapper my-5">
             <h5 class="title mb-5">Amount of products in each category</h5>
-
             <div class="chart-container">
                 <Bar ref="categoryChart" :data="chartData" :options="chartOptions" />
             </div>
@@ -80,7 +79,7 @@ export default {
         Chart.register(...registerables);
         setTimeout(() => {
             this.showChart = true;
-        }, 750);
+        }, 1200);
     },
 };
 </script>
