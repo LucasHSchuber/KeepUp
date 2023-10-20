@@ -17,20 +17,28 @@
         </div>
     </div>
 
+    <div class="">
 
-    <div>
+        <div>
+            <BarChart />
+        </div>
 
-        <BarChart />
+        <div>
+            <CategoryChart />
+        </div>
 
     </div>
 </template>
 
 <script>
 import BarChart from '../components/BarChart.vue'
+import CategoryChart from '../components/CategoryChart.vue'
+
 
 export default {
     components: {
         BarChart,
+        CategoryChart,
     }
 }
 

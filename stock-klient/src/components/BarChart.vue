@@ -1,12 +1,14 @@
 <template>
   <div v-if="showChart">
-    <div class="wrapper">
+    <div class="wrapper my-5">
+      <h5 class="title mb-4">Number of products added per day</h5>
       <div class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
     </div>
   </div>
 </template>
+
 <script>
 
 
@@ -31,7 +33,7 @@ export default {
         datasets: [{
           label: 'Number of Products',
           data: [],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
         }]
@@ -89,8 +91,8 @@ export default {
           countsByDate[datePart] = (countsByDate[datePart] || 0) + 1;
         }
       });
-      console.log(countsByDate); // Log countsByDate
 
+      console.log(countsByDate); // Log countsByDate
       return countsByDate;
 
     },
@@ -106,7 +108,7 @@ export default {
 
       // Update x-axis labels
       this.chartOptions.scales.x.labels = this.chartData.labels;
-      
+
       const chartInstance = this.$refs.myChart;
 
 
@@ -127,27 +129,95 @@ export default {
     this.fetchData();
     setTimeout(() => {
       this.showChart = true;
-    }, 750); 
+    }, 750);
   },
 };
 </script>
 
 <style scoped>
 .wrapper {
-  padding: 5em;
+
 }
 
 .chart-container {
   max-width: 75%;
   width: 50em;
   margin: auto;
-  height: fit-content;
+  height: 400px;
+  /* Set your desired height */
   border: 1px solid #ccc;
+  border-radius: 10px;
   overflow: hidden;
-
+  background-color: #ffffff;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
-#show {
-  display: none;
+/* Customize the chart tooltip style */
+.chartjs-tooltip {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+}
+
+/* Customize the chart legend style */
+.chartjs-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+}
+
+/* Customize the chart legend labels */
+.chartjs-legend li span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+/* Customize the colors of the legend labels */
+.chartjs-legend .product-category-1 span {
+  background-color: #ff5733;
+  /* Change color for category 1 */
+}
+
+.chartjs-legend .product-category-2 span {
+  background-color: #33ff57;
+  /* Change color for category 2 */
+}
+
+/* Add animation to the chart */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.show-chart-animation {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+
+@media screen and (max-width: 992px) {
+  .chart-container {
+    max-width: 100%;
+    width: fit-content;
+    margin: auto;
+    height: fit-content;
+
+  }
 }
 </style>
