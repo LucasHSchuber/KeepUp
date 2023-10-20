@@ -141,26 +141,30 @@ export default {
             let price = priceEl.value;
 
 
-            // const updatedData = {
-            //     SKU: sku,
-            //     name: name,
-            //     category: category,
-            //     description: description,
-            //     price: price,
-            // };
+            const updatedData = {
+                SKU: sku,
+                name: name,
+                category: category,
+                description: description,
+                price: price,
+                ...(this.image ? { image: this.image } : {}),
+            };
 
-            const form = new FormData();
+            console.log(updatedData);
+            console.log(this.image);
 
-            form.append('SKU', sku);
-            form.append('name', name);
-            form.append('category', category);
-            form.append('description', description);
-            form.append('price', price);
+            // const form = new FormData();
+
+            // form.append('SKU', sku);
+            // form.append('name', name);
+            // form.append('category', category);
+            // form.append('description', description);
+            // form.append('price', price);
 
             // Check if there is an image assigned to the input field with ID 'image_edit'
-            if (this.image) {
-                form.append('image', this.image);
-            }
+            // if (this.image) {
+            //     form.append('image', this.image);
+            // }
 
             // Retrieve the Bearer token from sessionStorage
             const token = sessionStorage.getItem('token');
@@ -182,7 +186,7 @@ export default {
             //     body: JSON.stringify(updatedData),
             // })
 
-            axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, form, {
+            axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, updatedData, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
