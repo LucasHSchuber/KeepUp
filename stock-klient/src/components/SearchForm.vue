@@ -13,11 +13,12 @@
 
                     <label class="sort-label mt-1">Sort By: &nbsp; </label>
                     <select v-model="sortBy" class="form-control sort-select form-select">
-                        <option value="name">Name (A-Z)</option>
                         <option value="category">Category (A-Z)</option>
-                        <option value="price">Price (Low - High)</option>
                         <option value="updated_at_desc">Date (descending)</option>
                         <option value="updated_at_asc">Date (ascending)</option>
+                        <option value="updated_at_latest">Latest updated (descending)</option>
+                        <option value="name">Name (A-Z)</option>
+                        <option value="price">Price (Low - High)</option>
                     </select>
                     <button @click="filter" class="submit-btn sort-btn  my-2 mx-3 my-sm-0" type="submit" title="Sort"><i
                             class="fa-solid fa-arrow-down-wide-short"></i></button>
@@ -26,12 +27,12 @@
 
                 <button class="toggleZeroVolumeRows-btn" @click="toggleShowZeroVolumeRows" title="Volume view">
                     <i class="fa-solid fa-circle" v-if="!showZeroVolumeRows"></i>
-                    <i class="fa-regular fa-circle" v-else ></i>
+                    <i class="fa-regular fa-circle" v-else></i>
                 </button>
 
 
                 <button class="toggleColumns-btn" @click="toggleColumns" title="Change view">
-                    <i class="fa-solid fa-eye-slash"  v-if="!showColumns"></i>
+                    <i class="fa-solid fa-eye-slash" v-if="!showColumns"></i>
                     <i class="fa-solid fa-eye" v-else></i>
                 </button>
 
@@ -65,9 +66,9 @@
                 </td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.name }} ({{
                     stock.volume }})</td>
-                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.category }}</td>
+                <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle"> {{ stock.category }}</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" v-if="showColumns" class="align-middle">{{
-                    stock.description }}</td>
+                    stock.description.slice(0, 25) + "..." }}</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.price }} kr</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">
                     <button @click="editStock(stock.id)" v-if="showColumns" class="edit-btn-i" title="Edit"><i
@@ -224,6 +225,13 @@ export default {
                         return dateA - dateB; // Sort in ascending order (oldest to newest)
                     });
                     break;
+                case 'updated_at_latest':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                    });
+                    break;
                 default:
                     // Default sorting logic (if needed)
                     break;
@@ -248,14 +256,6 @@ export default {
 </script>
 <style scoped>
 .zero-volume {
-    background-color: rgb(255, 198, 198);
+    background-color: rgb(255, 234, 234);
 }
 </style>
-
-<!-- <style scoped>
-
-.table > tbody > tr > td{
-    background-color:rgb(255, 63, 63);
-}
-
-</style> -->
