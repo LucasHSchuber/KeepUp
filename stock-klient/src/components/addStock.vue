@@ -37,7 +37,7 @@
                     <option value="Dry">Dry</option>
                     <option value="Fish">Fish</option>
                     <option value="Frozen">Frozen</option>
-                    <option value="Fruit">Fruit & greens</option>
+                    <option value="Fruit & greens">Fruit & greens</option>
                     <option value="Meat">Meat</option>
                     <option value="Snacks">Snacks</option>
                     <option value="Vegetarian">Vegetarian</option>
@@ -128,7 +128,6 @@ export default {
 
             if (this.formData.SKU.length > 0) {
 
-                // Retrieve the Bearer token from sessionStorage
                 const token = sessionStorage.getItem('token');
 
                 // Check if the token exists
@@ -151,8 +150,6 @@ export default {
                 console.log(this.formData.image);
                 console.log(form);
 
-
-                // Send FormData with Axios to your Laravel API endpoint
                 axios.post('http://127.0.0.1:8001/api/stocks', form, {
                     method: "POST",
                     headers: {
@@ -175,7 +172,7 @@ export default {
 
 
                     }).catch((error) => {
-                        // om svar från api inte är OK (200)
+
                         console.error('Error:', error);
                         if (error.response) {
                             console.error('Response Data:', error.response.data);

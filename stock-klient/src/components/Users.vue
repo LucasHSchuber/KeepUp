@@ -28,7 +28,7 @@ export default {
         this.fetchUserData();
     },
     methods: {
-         fetchUserData() {
+        async fetchUserData() {
             const token = sessionStorage.getItem('token');
 
             if (!token) {

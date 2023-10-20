@@ -59,7 +59,6 @@ export default {
     },
     methods: {
         loginUser() {
-
             axios.post('http://127.0.0.1:8001/api/login', this.form)
                 .then((response) => {
                     sessionStorage.setItem('token', response.data.token)
@@ -82,7 +81,6 @@ export default {
                         this.errors_password.push('Type in your password');
                         // this.success = false;
                     }
-
 
                     this.errors_cred.push(error.response.data.message);
                     this.errors = error.response.data.errors;
