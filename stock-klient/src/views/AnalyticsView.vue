@@ -9,18 +9,24 @@
         <div>
             <CategoryChart />
         </div>
+
+        <div>
+            <WeeklyChart />
+        </div>
     </div>
 </template>
 
 <script>
 import BarChart from '../components/BarChart.vue'
 import CategoryChart from '../components/CategoryChart.vue'
+import WeeklyChart from '../components/WeeklyChart.vue'
 
 
 export default {
     components: {
         BarChart,
         CategoryChart,
+        WeeklyChart
     }
 }
 

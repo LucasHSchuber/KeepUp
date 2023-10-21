@@ -96,7 +96,6 @@ export default {
     methods: {
         handleFileUpload(event) {
             this.formData.image = event.target.files[0];
-            console.log(this.image.name);
         },
         async addStock() {
 

@@ -2,9 +2,11 @@
     <div v-if="showChart">
         <div class=" my-5">
             <div class="mb-5">
-                <h5 class="title">Amount of products in each category</h5>
-                <p>This chart show the amount of products in each category in the stock. <br>
-                    The X-axis shows the category, and the Y-axis show the amount of products in that specific category.
+                <h5 class="title">Products stock status by Week</h5>
+                <p>
+                    This chart shows the amount of products existing in the stock each week.
+                    <br />
+                    The X-axis represents weeks, and the Y-axis represents the amount of products existing in the database.
                 </p>
             </div>
             <div class="chart-container">
@@ -22,7 +24,7 @@ import { Bar } from 'vue-chartjs';
 Chart.register(...registerables);
 
 export default {
-    name: 'CategoryChart',
+    name: 'WeeklyChart',
     components: {
         Bar,
     },
@@ -45,10 +47,9 @@ export default {
                 responsive: true,
                 scales: {
                     x: {
-                        stacked: true,
                         title: {
                             display: true,
-                            text: 'Category',
+                            text: 'Weeks',
                         },
                     },
                     y: {
@@ -68,24 +69,41 @@ export default {
     methods: {
         async fetchCategoryData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8001/api/stocks'); // API endpoint for all products
+                const response = await axios.get('http://127.0.0.1:8001/api/stocks');
                 const data = response.data;
 
-                // Calculate product counts for each category
-                const categories = {};
+                // Group products by week and calculate the total number of products in each week
+                const productsByWeek = {};
                 data.forEach(product => {
-                    const category = product.category;
-                    categories[category] = (categories[category] || 0) + 1;
+                    const createdAt = new Date(product.created_at);
+                    const weekNumber = this.getWeekNumber(createdAt);
+                    if (!productsByWeek[weekNumber]) {
+                        productsByWeek[weekNumber] = 0;
+                    }
+                    productsByWeek[weekNumber]++;
                 });
 
-                // Extract category names and product counts from calculated data and update chart data
-                this.chartData.labels = Object.keys(categories);
-                this.chartData.datasets[0].data = Object.values(categories);
+                // Calculate the total number of products for each week
+                let totalProducts = 0;
+                for (const weekNumber in productsByWeek) {
+                    totalProducts += productsByWeek[weekNumber];
+                    productsByWeek[weekNumber] = totalProducts; // Update the count to represent total products
+                }
 
-                this.showChart = true; // Show the chart once data is fetched and processed
+                // Extract week numbers and product counts from calculated data and update chart data
+                this.chartData.labels = Object.keys(productsByWeek);
+                this.chartData.datasets[0].data = Object.values(productsByWeek);
+
+                this.showChart = true;
             } catch (error) {
                 console.error(error);
             }
+        },
+        getWeekNumber(date) {
+            const startOfYear = new Date(date.getFullYear(), 0, 1);
+            const days = Math.floor((date - startOfYear) / (24 * 60 * 60 * 1000));
+            const weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+            return weekNumber;
         },
     },
     mounted() {

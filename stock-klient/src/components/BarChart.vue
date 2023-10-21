@@ -52,10 +52,18 @@ export default {
               unit: 'day',
               tooltipFormat: 'll',
             },
+            title: {
+              display: true,
+              text: 'Date',
+            },
             labels: [],
           },
           y: {
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Number of Products',
+            },
           },
         }
       }
@@ -134,7 +142,7 @@ export default {
     this.fetchData();
     setTimeout(() => {
       this.showChart = true;
-    }, 800);
+    }, 900);
   },
 };
 </script>
