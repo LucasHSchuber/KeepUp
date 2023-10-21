@@ -32,7 +32,7 @@ export default {
         return {
             showChart: false,
             chartData: {
-                labels: [], // Categories will be added here
+                labels: [], 
                 datasets: [
                     {
                         label: 'Number of Products',
@@ -121,7 +121,6 @@ export default {
     width: 50em;
     margin: auto;
     height: 400px;
-    /* Set your desired height */
     border: 1px solid #ccc;
     border-radius: 10px;
     overflow: hidden;
@@ -129,7 +128,6 @@ export default {
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
-/* Customize the chart tooltip style */
 .chartjs-tooltip {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.7);
@@ -140,7 +138,6 @@ export default {
     font-size: 14px;
 }
 
-/* Customize the chart legend style */
 .chartjs-legend {
     display: flex;
     justify-content: center;
@@ -151,7 +148,6 @@ export default {
     font-size: 16px;
 }
 
-/* Customize the chart legend labels */
 .chartjs-legend li span {
     display: inline-block;
     width: 12px;
@@ -160,18 +156,16 @@ export default {
     border-radius: 50%;
 }
 
-/* Customize the colors of the legend labels */
 .chartjs-legend .product-category-1 span {
     background-color: #ff5733;
-    /* Change color for category 1 */
 }
 
 .chartjs-legend .product-category-2 span {
     background-color: #33ff57;
-    /* Change color for category 2 */
+
 }
 
-/* Add animation to the chart */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
