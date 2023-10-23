@@ -1,10 +1,21 @@
 <template>
     <footer class="footer">
 
-        <div class="d-flex footer-links justify-content-evenly me-auto my-4">
-            <div class="div1" style="display:grid;">
-                <h3>Quick links</h3>
+        <div class="wrapper d-flex footer-links justify-content-evenly me-auto my-4">
+            <div class="div1">
+                <!-- <a lass="navbar-brand" aria-current="page" ><RouterLink to="/">StockControll</RouterLink></a> -->
+                <img src="../images/box.png" class="pb-2" style="margin-right:5px;" alt="logo img">
+                <a class="navbar-brand" href="#">KeepUp</a>
+                <p class="my-3">KeepUp is an high tech application that keep track of your products in a innovative and sleepless way. <br> Keep track, Keep up. </p>
+                <div class="">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="mx-5 fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+            </div>
+            <div class="div2" style="display:grid;">
 
+                <h3>Quick links</h3>
 
                 <a class="" aria-current="page">
                     <RouterLink to="/">Start</RouterLink>
@@ -37,23 +48,12 @@
                 </div>
 
             </div>
-            <div class="div2">
-                <h3>Contact Us</h3>
-                <p>Email: keepup@gmail.se</p>
-                <p>Phone: +1 123 456 7890</p>
-            </div>
             <div class="div3">
-                <h3>Social media</h3>
-                <ul class="social-links">
-                    <li><a href="#" target="_blank">Facebook</a></li>
-                    <li><a href="#" target="_blank">Twitter</a></li>
-                    <li><a href="#" target="_blank">Instagram</a></li>
-                </ul>
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-envelope"></i> &nbsp; &nbsp; &nbsp; keepup@gmail.se</p>
+                <p><i class="fa-solid fa-phone"></i> &nbsp; &nbsp; &nbsp; +1 123 456 7890</p>
             </div>
-        </div>
-
-        <div class="d-flex justify-content-center mt-3">
-            <a class="navbar-brand logo-footer">KeepUp</a>
+            
         </div>
 
     </footer>
@@ -61,14 +61,25 @@
 
 
 <style>
+.navbar-brand {
+    color: #00b9c3 !important;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.8em;
+}
+
 .footer {
     background-color: #ededed;
-    color: rgb(29, 29, 29);
+    color: #5b5b5b;
     height: 35em;
     border-top: 0.5px solid rgb(214, 214, 214);
     /* box-shadow: 0 -2px 6px rgb(233, 233, 233); */
     box-shadow: inset 0px 1px 10px 1px rgb(233, 233, 233);
     padding: 2em 0 0 0;
+}
+
+.div1 {
+    width: 20%;
 }
 
 .logo-footer {
@@ -91,9 +102,13 @@
 }
 
 .footer h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    text-decoration: underline;
+    font-size: 1.1rem;
+
+    /* text-decoration: underline; */
+}
+
+.div2, .div3, .div4{
+    margin-top:0.75em;
 }
 
 .social-links li,
@@ -101,7 +116,7 @@
 .div1>a,
 .div-1-minor>a {
     list-style: none;
-    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
 }
 
 .social-links a,
@@ -109,9 +124,9 @@
 .div1>a,
 .div-1-minor>a,
 .footer-links a {
-    color: #2a2929;
+    color: #5b5b5b;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
     text-decoration: none !important;
 }
 
