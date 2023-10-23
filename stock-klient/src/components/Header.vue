@@ -154,7 +154,7 @@ export default {
 
 <style>
 .navbar-brand {
-    color: rgb(0, 0, 0);
+    color: rgb(0, 185, 195);
     font-weight: 800;
     font-style: italic;
     font-size: 1.5em;

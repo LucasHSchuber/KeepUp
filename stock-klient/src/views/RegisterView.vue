@@ -77,36 +77,27 @@ export default {
                     // this.$router.push({ name: "login"});
                     console.log('user saved!');
 
-                    this.errors = [ ];
+                    this.errors = [];
                     console.log(response.data);
                     this.success = true;
-                    
+
 
                 }).catch((error) => {
 
                     this.errors = [];
 
-                    if (!this.form.name.ok) {
-                        this.errors.push(error.response.data.error.name);
-                        this.success = false;
-                    }
-                    if (!this.form.email.ok) {
-                        this.errors.push(error.response.data.error.email);
-                        this.success = false;
-                    }
-                    if (!this.form.password.ok) {
-                        this.errors.push(error.response.data.error.password);
-                        this.success = false;
-                    }
-                    if (!this.form.password_confirmation.ok) {
-                        this.errors.push(error.response.data.error.password_confirmation);
-                        this.success = false;
-                    }
+                    if (!this.form.ok) {
+                        console.log("not ok");
+                        console.log(error.response.data.error);
+                        for (const key in error.response.data.error) {
+                            if (error.response.data.error.hasOwnProperty(key)) {
+                                const errorMessage = error.response.data.error[key].join(' ');
+                                this.errors.push(errorMessage); 
+                            }
+                        }
 
-                    console.log(error.response.data.error);
+                    }
                 })
-
-
         }
     }
 }
@@ -121,20 +112,5 @@ export default {
 .reg-form input {
     height: 2em;
     width: 22em;
-}
-
-.submit-btn {
-    padding: 0.5em 1.5em;
-    background-color: black;
-    transition: 0.2s;
-    color: white;
-    border-radius: 20px;
-    border: none;
-
-}
-
-.submit-btn:hover {
-    padding: 0.5em 1.5em;
-    background-color: rgb(35, 35, 35);
 }
 </style>

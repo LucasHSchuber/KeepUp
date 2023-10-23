@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showChart">
+    <div >
         <div class=" my-5">
             <div class="mb-5">
                 <h5 class="title">Products stock status by Week</h5>
@@ -9,7 +9,7 @@
                     The X-axis represents weeks, and the Y-axis represents the amount of products existing in the database.
                 </p>
             </div>
-            <div class="chart-container">
+            <div v-if="showChart" class="chart-container">
                 <Bar ref="categoryChart" :data="chartData" :options="chartOptions" />
             </div>
         </div>

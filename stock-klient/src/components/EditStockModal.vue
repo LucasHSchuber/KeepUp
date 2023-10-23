@@ -59,7 +59,7 @@
                             aria-describedby="price">
                     </div>
                     <div class="form-group mt-2">
-                        <label for="image" class="form-label">Product image</label>
+                        <label for="image" class="form-label">New product image (mandatory)</label>
                         <input @change="handleFileUpload" class="form-control form-control-sm" id="image_edit" type="file">
                     </div>
 
@@ -118,55 +118,6 @@ export default {
         },
         async saveChanges(data_id) {
 
-            this.errors = [];
-
-            // If there are errors, do not proceed with the API call
-            if (this.errors.length > 0) {
-                return;
-            }
-
-
-            // Manually collect form data
-            let skuEl = document.getElementById("SKU_edit");
-            let nameEl = document.getElementById("name_edit");
-            let categoryEl = document.getElementById("category_edit");
-            let descriptionEl = document.getElementById("description_edit");
-            let priceEl = document.getElementById("price_edit");
-
-
-            let sku = skuEl.value;
-            let name = nameEl.value;
-            let category = categoryEl.value;
-            let description = descriptionEl.value;
-            let price = priceEl.value;
-
-
-            const updatedData = {
-                SKU: sku,
-                name: name,
-                category: category,
-                description: description,
-                price: price,
-                ...(this.image ? { image: this.image } : {}),
-            };
-
-            console.log(updatedData);
-            console.log(this.image);
-
-            // const form = new FormData();
-
-            // form.append('SKU', sku);
-            // form.append('name', name);
-            // form.append('category', category);
-            // form.append('description', description);
-            // form.append('price', price);
-
-            // Check if there is an image assigned to the input field with ID 'image_edit'
-            // if (this.image) {
-            //     form.append('image', this.image);
-            // }
-
-            // Retrieve the Bearer token from sessionStorage
             const token = sessionStorage.getItem('token');
 
             // Check if the token exists
@@ -175,72 +126,127 @@ export default {
                 return;
             }
 
-            // console.log(updatedData);
+            // Manually collect form data
+            let skuEl = document.getElementById("SKU_edit");
+            let nameEl = document.getElementById("name_edit");
+            let categoryEl = document.getElementById("category_edit");
+            let descriptionEl = document.getElementById("description_edit");
+            let priceEl = document.getElementById("price_edit");
 
-            // fetch(`http://127.0.0.1:8001/api/stocks/` + data_id, {
-            //     method: 'PUT',
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`,
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(updatedData),
-            // })
+            let sku = skuEl.value;
+            let name = nameEl.value;
+            let category = categoryEl.value;
+            let description = descriptionEl.value;
+            let price = priceEl.value;
 
-            axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, updatedData, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then((response) => {
+            this.errors = [];
 
-                    console.log(response.data);
+            if (!sku) {
+                this.errors.push('Enter SKU.');
+                this.success = false;
+            }
+            if (!name) {
+                this.errors.push('Enter product name.');
+                this.success = false;
+            }
+            if (!category) {
+                this.errors.push('Enter category.');
+                this.success = false;
+            }
+            if (!description) {
+                this.errors.push('Write a description');
+                this.success = false;
+            }
+            if (!price) {
+                this.errors.push('Enter price.');
+                this.success = false;
+            }
 
-                    this.success = true;
-                    this.$emit('fetch-success');
-                    this.$emit('close');
+            // If there are errors, do not proceed with the API call
+            if (this.errors.length > 0) {
+                return;
+            }
 
-                    // this.SKU = "";
-                    // this.name = "";
-                    // this.category = "";
-                    // this.description = "";
-                    // this.price = "";
+            const form = new FormData();
 
+            if (this.image === null || this.image === undefined) { //if image is NOT included in the request
+                form.append('SKU', sku);
+                form.append('name', name);
+                form.append('category', category);
+                form.append('description', description);
+                form.append('price', price);
 
-                }).catch((error) => {
-                    // om svar från api inte är OK (200)
-                    console.error('Error:', error);
-                    if (error.response) {
-                        console.error('Response Data:', error.response.data);
-                        console.error('Response Data:', error.response.data.errors.SKU);
-                        this.errors.push(error.response.data.errors.SKU);
-                        this.errors.push(error.response.data.errors.image);
+                console.log("image is NULL or UNDEFINED");
 
-                        this.success = false;
+                axios.put('http://127.0.0.1:8001/api/stocks/' + data_id, form, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
                     }
                 })
+                    .then((response) => {
 
-            // .then((response) => {
-            //     // If the request is successful
-            //     if (response.ok) {
-            //         this.success = true
-            //         this.$emit('fetch-success'); //sending emit to load method
-            //         this.$emit('close');
-            //         return response.json();
+                        console.log(response.data);
 
-            //     }
-            //     // Handle non-2xx responses here
-            //     throw new Error('Network response was not ok.');
-            // })
-            // .then((data) => {
-            //     // Handle successful response data here
-            //     console.log('Data successfully updated in the database:', data);
-            // })
-            // .catch((error) => {
-            //     // Handle errors here
-            //     console.error('Error when updating database:', error);
-            // });
+                        this.success = true;
+                        this.$emit('fetch-success');
+                        this.$emit('close');
+
+                    }).catch((error) => {
+                        // om svar från api inte är OK (200)
+                        console.error('Error:', error);
+                        if (error.response) {
+                            console.error('Response Data:', error.response.data);
+                            console.error('Response Data:', error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.image);
+
+                            this.success = false;
+                        }
+                    })
+
+
+            } else { //if image IS included in the request
+                form.append('SKU', sku);
+                form.append('name', name);
+                form.append('category', category);
+                form.append('description', description);
+                form.append('price', price);
+                form.append('image', this.image);
+
+                axios.post('http://127.0.0.1:8001/api/stocks/' + data_id, form, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then((response) => {
+
+                        console.log(response.data);
+
+                        this.success = true;
+                        this.$emit('fetch-success');
+                        this.$emit('close');
+
+                    }).catch((error) => {
+                        // om svar från api inte är OK (200)
+                        console.error('Error:', error);
+                        if (error.response) {
+                            console.error('Response Data:', error.response.data);
+                            console.error('Response Data:', error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.SKU);
+                            this.errors.push(error.response.data.errors.image);
+
+                            this.success = false;
+                        }
+                    })
+            }
+
+
+
+
         }
 
     }

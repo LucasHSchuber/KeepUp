@@ -30,7 +30,8 @@
 
             <div class="form-group mt-2">
                 <label for="category">Category:</label>
-                <select v-model="formData.category" class="form-select" id="category" aria-label="category" >
+                <select v-model="formData.category" class="form-select" id="category" aria-label="category">
+                    <option value="" disabled>Category</option>
                     <option value="Bread">Bread</option>
                     <option value="Cold">Cold</option>
                     <option value="Drinks">Drinks</option>
@@ -41,7 +42,6 @@
                     <option value="Meat">Meat</option>
                     <option value="Snacks">Snacks</option>
                     <option value="Vegetarian">Vegetarian</option>
-          
                 </select>
             </div>
 
@@ -56,11 +56,11 @@
                     placeholder="Price">
             </div>
             <div class="form-group mt-2">
-                <label for="image" class="form-label" >Product image</label>
+                <label for="image" class="form-label">Product image</label>
                 <input @change="handleFileUpload" class="form-control form-control-sm file-input" id="image" type="file">
             </div>
 
-            <button type="submit" class="submit-btn mt-4">Add product &nbsp;  <i class="fa-solid fa-plus"></i></button>
+            <button type="submit" class="submit-btn mt-4">Add product &nbsp; <i class="fa-solid fa-plus"></i></button>
 
             <p class="success" v-if="success">
                 <b>The product is registered!</b>
@@ -82,7 +82,7 @@ export default {
             formData: {
                 SKU: "",
                 name: "",
-                category: "input",
+                category: "",
                 description: "",
                 price: "",
                 image: null,
@@ -99,105 +99,145 @@ export default {
         },
         async addStock() {
 
-            this.errors = [];
-            this.errors2 = [];
+            // this.errors = [];
+
+            // if (!this.formData.SKU) {
+            //     this.errors.push('Enter SKU.');
+            //     this.success = false;
+            // }
+            // if (!this.formData.name) {
+            //     this.errors.push('Enter product name.');
+            //     this.success = false;
+            // }
+            // if (!this.formData.category) {
+            //     this.errors.push('Enter category.');
+            //     this.success = false;
+            // }
+            // if (!this.formData.description) {
+            //     this.errors.push('Write a description');
+            //     this.success = false;
+            // }
+            // if (!this.formData.price) {
+            //     this.errors.push('Enter price.');
+            //     this.success = false;
+            // }
 
 
-            if (!this.formData.SKU) {
-                this.errors.push('Enter SKU.');
-                this.success = false;
+            // if (this.formData.SKU.length > 0) {
+
+            const token = sessionStorage.getItem('token');
+
+            // Check if the token exists
+            if (!token) {
+                console.error('Access token not found in sessionStorage');
+                return;
+            } else {
+                console.log(token);
             }
-            if (!this.formData.name) {
-                this.errors.push('Enter product name.');
-                this.success = false;
-            }
-            if (!this.formData.category) {
-                this.errors.push('Enter category.');
-                this.success = false;
-            }
-            if (!this.formData.description) {
-                this.errors.push('Write a description');
-                this.success = false;
-            }
-            if (!this.formData.price) {
-                this.errors.push('Enter price.');
-                this.success = false;
-            }
 
+            const form = new FormData();
 
-            if (this.formData.SKU.length > 0) {
+            form.append('SKU', this.formData.SKU);
+            form.append('name', this.formData.name);
+            form.append('category', this.formData.category);
+            form.append('description', this.formData.description);
+            form.append('price', this.formData.price);
+            form.append('image', this.formData.image);
 
-                const token = sessionStorage.getItem('token');
+            console.log(this.formData.image);
+            console.log(form);
 
-                // Check if the token exists
-                if (!token) {
-                    console.error('Access token not found in sessionStorage');
-                    return;
-                } else {
-                    console.log(token);
+            axios.post('http://127.0.0.1:8001/api/stocks', form, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
                 }
+            })
 
-                const form = new FormData();
+                .then((response) => {
+                    // const data = await resp.json(); // vid OK svar
+                    console.log(response.data);
+                    this.$emit('triggerLoadallproducts');
 
-                form.append('SKU', this.formData.SKU);
-                form.append('name', this.formData.name);
-                form.append('category', this.formData.category);
-                form.append('description', this.formData.description);
-                form.append('price', this.formData.price);
-                form.append('image', this.formData.image);
-
-                console.log(this.formData.image);
-                console.log(form);
-
-                axios.post('http://127.0.0.1:8001/api/stocks', form, {
-                    method: "POST",
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-
-                    .then((response) => {
-                        // const data = await resp.json(); // vid OK svar
-                        console.log(response.data);
-                        this.$emit('triggerLoadallproducts');
-
+                    this.errors = [],
                         this.success = true;
 
-                        // this.SKU = "";
-                        // this.name = "";
-                        // this.category = "";
-                        // this.description = "";
-                        // this.price = "";
+                    // this.SKU = "";
+                    // this.name = "";
+                    // this.category = "";
+                    // this.description = "";
+                    // this.price = "";
 
 
-                    }).catch((error) => {
+                }).catch((error) => {
 
-                        console.error('Error:', error);
-                        if (error.response) {
-                            console.error('Response Data:', error.response.data);
-                            console.error('Response Data:', error.response.data.errors.SKU);
-                            this.errors.push(error.response.data.errors.SKU);
-                            this.errors.push(error.response.data.errors.image);
+                    console.error('Error:', error);
 
-                            this.success = false;
+                    this.errors = [];
+
+                    if (!this.formData.ok) {
+                        console.log("not ok");
+                        console.log(error.response.data.error);
+                        for (const key in error.response.data.error) {
+                            if (error.response.data.error.hasOwnProperty(key)) {
+                                const errorMessage = error.response.data.error[key].join(' ');
+                                this.errors.push(errorMessage);
+                            }
                         }
-                    })
+
+                    }
+
+                    // this.errors = [];
+
+                    // if (!this.formData.SKU.ok) {
+                    //     this.errors.push(error.response.data.errors.SKU);
+                    //     this.success = false;
+                    // }
+                    // if (!this.formData.name.ok) {
+                    //     this.errors.push(error.response.data.errors.name);
+                    //     this.success = false;
+                    // }
+                    // if (!this.formData.category ) {
+                    //     this.errors.push(["The category field is required."]);
+                    //     this.success = false;
+                    // }
+                    // if (!this.formData.description.ok) {
+                    //     this.errors.push(error.response.data.errors.description);
+                    //     this.success = false;
+                    // }
+                    // if (!this.formData.price.ok) {
+                    //     this.errors.push(error.response.data.errors.price);
+                    //     this.success = false;
+                    // }
+                    // if (!this.formData.image) {
+                    //     this.errors.push(error.response.data.errors.image);
+                    //     this.success = false;
+                    // }
+                    // console.log(this.formData.category);
+                    // console.log(error.response.data.errors);
+
+                    // console.error('Response Data:', error.response.data);
+                    // console.error('Response Data:', error.response.data.errors.SKU);
+                    // this.errors.push(error.response.data.errors.SKU);
+                    // this.errors.push(error.response.data.errors.image);
+
+                    this.success = false;
+                }
+                )
 
 
-            }
         }
     }
+    // }
 }
 
 </script>
 
 <style scoped>
-
-.file-input{
+.file-input {
     width: fit-content;
 }
-
 
 
 /* @media screen and (max-width: 771px) {

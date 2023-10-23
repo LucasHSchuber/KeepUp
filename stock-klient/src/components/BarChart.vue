@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showChart">
+  <div >
     <div class=" my-5">
       <div class="mb-5">
         <h5 class="title">Number of products added per day</h5>
@@ -7,7 +7,7 @@
           The X-axis shows the date, and the Y-axis show the amount of product added that date.
         </p>
       </div>
-      <div class="chart-container">
+      <div v-if="showChart" class="chart-container">
         <Bar ref="myChart" :data="chartData" :options="chartOptions" />
       </div>
     </div>

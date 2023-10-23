@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showChart">
+    <div>
         <div class=" my-5">
             <div class="mb-5">
                 <h5 class="title">Amount of products in each category</h5>
@@ -7,7 +7,7 @@
                     The X-axis shows the category, and the Y-axis show the amount of products in that specific category.
                 </p>
             </div>
-            <div class="chart-container">
+            <div  v-if="showChart" class="chart-container">
                 <Bar ref="categoryChart" :data="chartData" :options="chartOptions" />
             </div>
         </div>

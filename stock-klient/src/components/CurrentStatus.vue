@@ -92,8 +92,8 @@ export default {
 .box {
     height: 100px;
     width: 100px;
-    border: 0.5px solid rgb(30, 30, 30);
-    color: black;
+    border: 0.5px solid black;
+    color: rgb(0, 185, 195);
     background-color: transparent;
     border-radius: 50%;
     display: flex;
