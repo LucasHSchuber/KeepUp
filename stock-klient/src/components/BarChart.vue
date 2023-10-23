@@ -2,9 +2,9 @@
   <div >
     <div class=" my-5">
       <div class="mb-5">
-        <h5 class="title">Number of products added per day</h5>
-        <p>This chart show the amount of number added to the stock each day. <br>
-          The X-axis shows the date, and the Y-axis show the amount of product added that date.
+        <h5 class="sub-title">Number of SKU's added per day</h5>
+        <p class="paragraph">This chart show the amount of SKU's added to the stock each day. <br>
+          The X-axis shows the date, and the Y-axis show the amount of SKU's added that date.
         </p>
       </div>
       <div v-if="showChart" class="chart-container">
@@ -215,13 +215,12 @@ export default {
 
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 722px) {
   .chart-container {
     max-width: 100%;
-    width: fit-content;
-    margin: auto;
+    width: 100%;
     height: fit-content;
-
+    margin: auto;
   }
 }
 </style>

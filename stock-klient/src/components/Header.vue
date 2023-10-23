@@ -1,21 +1,5 @@
 <template>
     <header>
-        <!-- <div class="d-flex container headercontainer">
-            <h1 class="p-2 flex-grow-1 logo">StockControll</h1>
-            <nav class="p-2">
-                <ul class="d-flex justify-content-end headerlinks">
-                    <li>
-                        <a><RouterLink to="/">Start</RouterLink></a>
-                    </li>
-                    <li>
-                        <a><RouterLink to="/Add">Add +</RouterLink></a>
-                    </li>
-                    <li>
-                        <a><RouterLink to="/Stock">Stock</RouterLink></a>
-                    </li>
-                </ul>
-            </nav>
-        </div> -->
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
@@ -146,18 +130,21 @@ export default {
 
 
 
-
-
-
 </script>
 
 
 <style>
+.navbar {
+    border-bottom: 0.5px solid rgb(214, 214, 214);
+    box-shadow: 0 1px 4px 0px rgb(233, 233, 233);
+    padding: 2.2em 0;
+}
+
 .navbar-brand {
     color: rgb(0, 185, 195);
     font-weight: 800;
     font-style: italic;
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 .user-icon {
@@ -167,12 +154,6 @@ export default {
 header li {
     list-style: none;
     padding-left: 1em;
-}
-
-.navbar {
-    border-bottom: 0.5px solid rgb(214, 214, 214);
-    box-shadow: 0 1px 4px 0px rgb(233, 233, 233);
-    padding: 2em 0;
 }
 
 .navbar-nav li a {
@@ -207,6 +188,39 @@ a:focus {
     .user-icon {
         visibility: hidden;
     }
+
+    .navbar-brand {
+        font-size: 2.2em;
+    }
+
+    .navbar {
+        /* border-bottom: 0.5px solid rgb(214, 214, 214);
+    box-shadow: 0 1px 4px 0px rgb(233, 233, 233); */
+        padding: 2em 0;
+    }
+}
+
+@media screen and (max-width: 772px) {
+
+
+    .navbar-nav > li > a {
+        color: rgb(46, 46, 46);
+        /* border: 1px solid black; */
+        text-decoration: none;
+        font-weight: 700 !important;
+        padding-top: 1em;
+
+    }
+    .navbar-nav > li a {
+        color: rgb(46, 46, 46);
+
+        text-decoration: none;
+        font-weight: 700 !important;
+        padding-top: 1em;
+        
+
+    }
+
 }
 </style>
 

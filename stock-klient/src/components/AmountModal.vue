@@ -15,9 +15,13 @@
                 <button @click="addToDatabaseTen" class="counter-btn add mx-1">+10</button>
             </div>
 
+            <div  class="error-box d-flex mt-3 justify-content-center">
+                <p v-if="this.counter < 0">
+                    <b>{{ errors }}</b>
+                </p>
+            </div>
 
-
-            <button @click="saveAmount(stock.id)" class="save my-5">Save</button>
+            <button @click="saveAmount(stock.id)" v-bind:class="{ 'disabled': this.counter < 0 }" class="save my-5">Save</button>
         </div>
     </div>
 
@@ -31,7 +35,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            errors: [],
+            errors: "Volume can't be a negative number",
             success: false,
             counter: this.stock.volume,
         };
@@ -71,14 +75,7 @@ export default {
             const updateData = {
                 volume: this.counter
             };
-
             const token = sessionStorage.getItem('token');
-
-            // Check if the token exists
-            if (!token) {
-                console.error('Access token not found in sessionStorage');
-                return;
-            }
 
             fetch(`http://127.0.0.1:8001/api/stocks/` + data_id, {
                 method: 'PUT',
@@ -164,7 +161,7 @@ export default {
 
 .counter-box {
     width: fit-content;
-    margin:auto;
+    margin: auto;
 }
 
 .add {
@@ -191,5 +188,20 @@ export default {
 
 }
 
-@media screen and (max-width: 772px) {}
+.error-box{
+    height:2em;
+}
+
+.disabled{
+    visibility: hidden;
+}
+
+
+@media screen and (max-width: 772px) {
+    .close {
+        font-size: 50px;
+        top: 1px;
+        right: 20px;
+    }
+}
 </style>

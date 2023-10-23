@@ -3,13 +3,13 @@
     <div class="wrapper">
         <h4 class="title mt-4">Analytics</h4>
 
-        <h5 class="title my-5">Current status:</h5>
+        <h5 class="sub-title my-5">Current status:</h5>
 
         <div>
             <CurrentStatus />
         </div>
 
-        <h5 class="title mt-5">Overall status:</h5>
+        <h5 class="sub-title mt-5">Overall status:</h5>
 
         <div>
             <BarChart />

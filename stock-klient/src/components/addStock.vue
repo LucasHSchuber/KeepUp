@@ -127,14 +127,6 @@ export default {
 
             const token = sessionStorage.getItem('token');
 
-            // Check if the token exists
-            if (!token) {
-                console.error('Access token not found in sessionStorage');
-                return;
-            } else {
-                console.log(token);
-            }
-
             const form = new FormData();
 
             form.append('SKU', this.formData.SKU);
@@ -178,10 +170,10 @@ export default {
 
                     if (!this.formData.ok) {
                         console.log("not ok");
-                        console.log(error.response.data.error);
-                        for (const key in error.response.data.error) {
-                            if (error.response.data.error.hasOwnProperty(key)) {
-                                const errorMessage = error.response.data.error[key].join(' ');
+                        console.log(error.response.data.errors);
+                        for (const key in error.response.data.errors) {
+                            if (error.response.data.errors.hasOwnProperty(key)) {
+                                const errorMessage = error.response.data.errors[key].join(' ');
                                 this.errors.push(errorMessage);
                             }
                         }

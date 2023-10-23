@@ -58,7 +58,7 @@ export default {
 .close {
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 20px;
     cursor: pointer;
     font-size: 30px;
 }
@@ -67,5 +67,14 @@ img {
     max-width: 100%;
     max-height: 80vh;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 772px) {
+    .close {
+        font-size: 50px;
+        top: 1px;
+        right: 20px;
+    }
+
 }
 </style>

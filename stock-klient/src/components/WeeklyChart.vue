@@ -2,11 +2,11 @@
     <div >
         <div class=" my-5">
             <div class="mb-5">
-                <h5 class="title">Products stock status by Week</h5>
-                <p>
-                    This chart shows the amount of products existing in the stock each week.
+                <h5 class="sub-title">The total amount of SKU's in stock each week</h5>
+                <p class="paragraph">
+                    This chart shows the amount of SKU's existing in the stock each week.
                     <br />
-                    The X-axis represents weeks, and the Y-axis represents the amount of products existing in the database.
+                    The X-axis represents weeks, and the Y-axis represents the amount of SKU's existing in the database.
                 </p>
             </div>
             <div v-if="showChart" class="chart-container">
@@ -180,14 +180,12 @@ export default {
     animation: fadeIn 1s ease-in-out;
 }
 
-
-@media screen and (max-width: 992px) {
-    .chart-container {
-        max-width: 100%;
-        width: fit-content;
-        margin: auto;
-        height: fit-content;
-
-    }
+@media screen and (max-width: 772px) {
+  .chart-container {
+    max-width: 100%;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+  }
 }
 </style>

@@ -305,4 +305,13 @@ export default {
     padding: 0.5em 1.5em;
     background-color: rgb(35, 35, 35);
 }
+
+
+@media screen and (max-width: 772px) {
+    .close {
+        font-size: 50px;
+        top: 1px;
+        right: 20px;
+    }
+}
 </style>

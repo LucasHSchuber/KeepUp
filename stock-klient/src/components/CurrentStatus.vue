@@ -110,4 +110,10 @@ export default {
     background-color: rgba(30, 30, 30, 0.8);
     color: white;
 } */
+@media screen and (max-width: 772px) {
+    .box {
+        height: 80px;
+        width: 80px;
+    }
+}
 </style>

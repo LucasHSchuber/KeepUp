@@ -2,8 +2,8 @@
     <div>
         <div class=" my-5">
             <div class="mb-5">
-                <h5 class="title">Amount of products in each category</h5>
-                <p>This chart show the amount of products in each category in the stock. <br>
+                <h5 class="sub-title">Amount of products in each category</h5>
+                <p class="paragraph">This chart show the amount of products in each category in the stock. <br>
                     The X-axis shows the category, and the Y-axis show the amount of products in that specific category.
                 </p>
             </div>
@@ -161,13 +161,12 @@ export default {
 }
 
 
-@media screen and (max-width: 992px) {
-    .chart-container {
-        max-width: 100%;
-        width: fit-content;
-        margin: auto;
-        height: fit-content;
-
-    }
+@media screen and (max-width: 772px) {
+  .chart-container {
+    max-width: 100%;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+  }
 }
 </style>

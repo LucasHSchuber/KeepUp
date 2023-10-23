@@ -1,7 +1,7 @@
 
 <template>
     <div class="d-flex mt-3">
-        <p v-if="activeUser">Signed in as: {{ activeUser.name }}</p>
+        <p v-if="activeUser" class="activeuser">Signed in as: {{ activeUser.name }}</p>
     </div>
 </template>
 
@@ -67,4 +67,10 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 992px) {
+    .activeuser {
+        font-style: italic;
+    }
+}
+</style>
