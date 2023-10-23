@@ -1,7 +1,7 @@
 
 <template>
     <div v-if="stock" class="modal" @click="closeModal">
-        <div class="modal-content">
+        <div class="modal-content pb-5 pt-3">
             <h5 class="d-flex my-3 justify-content-center">Amount in stock</h5>
             <h6 class="d-flex justify-content-center">{{ stock.name }}</h6>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
@@ -15,13 +15,14 @@
                 <button @click="addToDatabaseTen" class="counter-btn add mx-1">+10</button>
             </div>
 
-            <div  class="error-box d-flex mt-3 justify-content-center">
+            <div class="error-box d-flex mt-3 justify-content-center">
                 <p v-if="this.counter < 0">
                     <b>{{ errors }}</b>
                 </p>
             </div>
 
-            <button @click="saveAmount(stock.id)" v-bind:class="{ 'disabled': this.counter < 0 }" class="save my-5">Save</button>
+            <button @click="saveAmount(stock.id)" v-bind:class="{ 'disabled': this.counter < 0 }"
+                class="save">Save</button>
         </div>
     </div>
 
@@ -127,7 +128,6 @@ export default {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
-
 }
 
 .modal-content {
@@ -151,7 +151,7 @@ export default {
 
 .counter-btn {
     width: 4em;
-    height: 2em;
+    height: 3em;
     transition: 0.2s;
     color: white;
     border: none;
@@ -181,6 +181,7 @@ export default {
     border: none;
     width: 6em;
     margin: auto;
+    margin-top: 2em;
 }
 
 .save:hover {
@@ -188,11 +189,11 @@ export default {
 
 }
 
-.error-box{
-    height:2em;
+.error-box {
+    height: 1em;
 }
 
-.disabled{
+.disabled {
     visibility: hidden;
 }
 
@@ -202,6 +203,23 @@ export default {
         font-size: 50px;
         top: 1px;
         right: 20px;
+    }
+
+    .modal-content {
+        padding: 1em;
+        width: 80%;
+        max-width: 600px;
+
+    }
+
+    .counter-btn {
+        width: 5em;
+        height: 3em;
+        font-size: 1.8em;
+    }
+
+    .error-box {
+        height: 0.5em;
     }
 }
 </style>

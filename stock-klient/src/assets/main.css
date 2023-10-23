@@ -207,7 +207,7 @@ body {
   }
 
   .edit-btn-i,
-  .del-btn-i {
+  .del-btn-i, .tableSize-btn {
     visibility: hidden;
   }
 

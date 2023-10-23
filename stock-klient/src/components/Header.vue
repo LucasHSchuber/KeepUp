@@ -3,8 +3,11 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
-                <!-- <a lass="navbar-brand" aria-current="page" ><RouterLink to="/">StockControll</RouterLink></a> -->
-                <a class="navbar-brand" href="#">KeepUp</a>
+                <div>
+                    <!-- <a lass="navbar-brand" aria-current="page" ><RouterLink to="/">StockControll</RouterLink></a> -->
+                    <img src="../images/box.png" class="pb-2" style="margin-right:5px;" alt="logo img">
+                    <a class="navbar-brand" href="#">KeepUp</a>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -141,7 +144,7 @@ export default {
 }
 
 .navbar-brand {
-    color: rgb(0, 185, 195);
+    color: #00b9c3;
     font-weight: 800;
     font-style: italic;
     font-size: 2em;
@@ -203,7 +206,7 @@ a:focus {
 @media screen and (max-width: 772px) {
 
 
-    .navbar-nav > li > a {
+    .navbar-nav>li>a {
         color: rgb(46, 46, 46);
         /* border: 1px solid black; */
         text-decoration: none;
@@ -211,13 +214,14 @@ a:focus {
         padding-top: 1em;
 
     }
-    .navbar-nav > li a {
+
+    .navbar-nav>li a {
         color: rgb(46, 46, 46);
 
         text-decoration: none;
         font-weight: 700 !important;
         padding-top: 1em;
-        
+
 
     }
 
