@@ -13,7 +13,7 @@
         </picture> -->
 
         <div class="img-box">
-            <h5 class="text">"Keep track, keep controll, keep up!"</h5>
+            <h5 class="text">"Keep track, keep control, keep up!"</h5>
         </div>
     </div>
 
@@ -58,7 +58,7 @@ export default {
 .text {
     text-shadow: 2px 2px 2px rgba(156, 156, 156, 0.5);
     font-weight: 400;
-    font-size: 2.5em;
+    font-size: 3.2em;
     color: black;
 }
 

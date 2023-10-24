@@ -38,7 +38,8 @@
                     <option value="Dry">Dry</option>
                     <option value="Fish">Fish</option>
                     <option value="Frozen">Frozen</option>
-                    <option value="Fruit & greens">Fruit & greens</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Greens">Greens</option>
                     <option value="Meat">Meat</option>
                     <option value="Snacks">Snacks</option>
                     <option value="Vegetarian">Vegetarian</option>

@@ -115,5 +115,8 @@ export default {
         height: 80px;
         width: 80px;
     }
+    h6{
+        text-align: center;
+    }
 }
 </style>

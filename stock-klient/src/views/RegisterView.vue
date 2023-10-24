@@ -87,8 +87,7 @@ export default {
                     this.errors = [];
 
                     if (!this.form.ok) {
-                        console.log("not ok");
-                        console.log(error.response.data.error);
+                        
                         for (const key in error.response.data.error) {
                             if (error.response.data.error.hasOwnProperty(key)) {
                                 const errorMessage = error.response.data.error[key].join(' ');
