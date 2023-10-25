@@ -1,11 +1,11 @@
 <template>
     <div v-if="stock" class="modal" @click="closeModal">
         <div class="modal-content">
-            <h5>Edit product</h5>
+            <h5 class="title">Edit product</h5>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
 
             <div class="form">
-                <form @submit.prevent="saveChanges(stock.id)" class="col-md-6">
+                <form @submit.prevent="saveChanges(stock.id)" class="col-md-8">
                     <!-- <h5>Formulär</h5> -->
 
                     <div class=" error-box">
@@ -64,7 +64,7 @@
                         <input @change="handleFileUpload" class="form-control form-control-sm" id="image_edit" type="file">
                     </div>
 
-                    <button type="submit" class="edit-btn mt-3">Save Changes</button>
+                    <button type="submit" class="edit-btn mt-4">Save Changes</button>
 
                     <p class="success" v-if="success">
                         <b>The product has been updated!</b>
@@ -271,7 +271,7 @@ export default {
 
 .modal-content {
     background: white;
-    padding: 2em;
+    padding: 3em;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -290,8 +290,9 @@ export default {
 
 .form input {
     height: 2em;
-}
 
+}
+/* 
 .edit-btn {
     padding: 0.5em 1.5em;
     background-color: black;
@@ -305,7 +306,7 @@ export default {
 .edit-btn:hover {
     padding: 0.5em 1.5em;
     background-color: rgb(35, 35, 35);
-}
+} */
 
 
 @media screen and (max-width: 772px) {

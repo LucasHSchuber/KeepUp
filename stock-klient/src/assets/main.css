@@ -109,6 +109,37 @@ body {
   background-color: rgb(35, 35, 35);
 }
 
+.save-btn {
+  color: white;
+  width: 6em;
+  margin: auto;
+  margin-top: 1.5em;
+  padding: 0.5em 1.5em;
+  background-color: rgb(0, 185, 195);
+  transition: 0.2s;
+  border-radius: 20px;
+  border: none;
+}
+
+.save-btn:hover {
+  background-color: rgb(35, 35, 35);
+}
+
+.edit-btn {
+  padding: 0.5em 1.5em;
+  background-color: rgb(0, 185, 195);
+  transition: 0.2s;
+  color: white;
+  border-radius: 20px;
+  border: none;
+
+}
+
+.edit-btn:hover {
+  background-color: rgb(35, 35, 35);
+}
+
+
 .tableSize {
   display: grid;
   padding: 1em 0;
@@ -125,7 +156,7 @@ body {
 }
 
 .tableSize-btn:hover {
-  background-color:  rgb(0, 185, 195);
+  background-color: rgb(0, 185, 195);
 }
 
 .toggleColumns-btn,
@@ -142,7 +173,7 @@ body {
 
 .toggleColumns-btn:hover,
 .toggleZeroVolumeRows-btn:hover {
-  background-color:  rgb(0, 185, 195);
+  background-color: rgb(0, 185, 195);
 }
 
 
@@ -154,21 +185,24 @@ body {
 
   .wrapper {
     padding: 0 4em;
-  
+
   }
+
   .title {
-    font-size:2em;
+    font-size: 2em;
     text-align: center;
   }
+
   .sub-title {
-    font-size:1.5em;
+    font-size: 1.5em;
     text-align: center;
   }
-  .paragraph{
-    font-size:1.2em;
+
+  .paragraph {
+    font-size: 1.2em;
     text-align: center;
   }
-  
+
 
 }
 
@@ -207,18 +241,19 @@ body {
   }
 
   .edit-btn-i,
-  .del-btn-i, .tableSize-btn {
+  .del-btn-i,
+  .tableSize-btn {
     visibility: hidden;
   }
 
-  .submit-btn {
+  .submit-btn, .save-btn, .edit-btn {
     padding: 1em 2em;
     font-weight: 800;
     border: rgb(0, 185, 195) 1px solid;
     transition: 0s;
   }
 
-  .submit-btn:hover {
+  .submit-bt:hover, .save-btn:hover, .edit-btn:hover {
     padding: 1em 2em;
     border: rgb(0, 185, 195) 1px solid;
     background-color: rgb(0, 185, 195);
@@ -227,8 +262,9 @@ body {
   .submit-btn:active {
     border: rgb(94, 97, 99) 1px solid;
   }
-  .paragraph{
-    font-size:1em;
+
+  .paragraph {
+    font-size: 1em;
   }
 
 }

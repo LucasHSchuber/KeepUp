@@ -4,13 +4,16 @@
         <h1>Start</h1>
     </div> -->
     <div class="imgbox">
-        <img class="start-image " src="../images/groceries2.jpg" alt="bild-film"
-            style="object-fit:fill;object-position: -20% 0;">
-        <!-- <picture>
-            <source media="(min-width: 900px)" srcset="../images/big.jpg">
-            <source media="(min-width: 480px)" srcset="MediumImage.png">
-            <img src="OtherImage.png" alt="IfItDoesntMatchAnyMedia">
-        </picture> -->
+        <!-- <img class="start-image " src="../images/big2.jpg" alt="bild-film"
+            style="object-fit:fill;object-position: -20% 0;"> -->
+        <picture>
+            <source media="(min-width: 1800px)" srcset="../images/big.jpg">
+            <source media="(min-width: 1080px)" srcset="../images/big4.jpg">
+            <source media="(min-width: 772px)" srcset="../images/small3.jpg">
+            <source media="(min-width: 500px)" srcset="../images/small4.jpg">
+            <source media="(max-width: 500px)" srcset="../images/small5.jpg">
+            <img src="../images/small4" alt="Hero image">
+        </picture>
 
         <div class="img-box">
             <h5 class="text">"Keep track, keep control, keep up!"</h5>

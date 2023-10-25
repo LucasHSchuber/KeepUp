@@ -2,7 +2,7 @@
 <template>
     <div v-if="stock" class="modal" @click="closeModal">
         <div class="modal-content pb-5 pt-3">
-            <h5 class="d-flex my-3 justify-content-center">Amount in stock</h5>
+            <h5 class="title d-flex my-3 justify-content-center">Amount in stock</h5>
             <h6 class="d-flex justify-content-center">{{ stock.name }}</h6>
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
             <div class="modal-innercontent d-flex mt-4 justify-content-center">
@@ -22,7 +22,7 @@
             </div>
 
             <button @click="saveAmount(stock.id)" v-bind:class="{ 'disabled': this.counter < 0 }"
-                class="save">Save</button>
+                class="save-btn">Save</button>
         </div>
     </div>
 
@@ -172,7 +172,7 @@ export default {
     background-color: rgb(239, 76, 76);
 }
 
-.save {
+/* .save-btn {
     padding: 0.5em 1.5em;
     background-color: black;
     transition: 0.2s;
@@ -184,10 +184,10 @@ export default {
     margin-top: 2em;
 }
 
-.save:hover {
+.save-btn:hover {
     background-color: rgb(52, 51, 51);
 
-}
+} */
 
 .error-box {
     height: 1em;
