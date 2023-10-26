@@ -39,8 +39,8 @@
                     <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.name }} ({{
                         stock.volume }})</td>
                     <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.category }}</td>
-                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.description }}
-                    </td>
+                    <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{
+                        stock.description.length > 25 ? stock.description.slice(0, 25) + "..." : stock.description }}</td>
                     <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.price }} kr</td>
                     <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">
                         <button @click="editStock(stock.id)" class="edit-btn-i" title="Edit"><i
@@ -227,6 +227,7 @@ export default {
 
     max-width: 75%;
 }
+
 .zero-volume {
     background-color: rgb(255, 234, 234);
 }

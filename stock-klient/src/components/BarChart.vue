@@ -83,10 +83,12 @@ export default {
       axios.get('http://127.0.0.1:8001/api/stocks')
         .then(response => {
           const data = response.data;
+          //loops through data
           const formattedData = data.map(item => {
             const createdAt = new Date(item.created_at);
+            // add dates do variable, converts to string, adds 0 to make two two digits
             const formattedDate = `${createdAt.getFullYear()}-${(createdAt.getMonth() + 1).toString().padStart(2, '0')}-${createdAt.getDate().toString().padStart(2, '0')}`;
-            return formattedDate; // Only include the formatted date
+            return formattedDate; 
           });
           this.updateChartData(formattedData);
 
@@ -100,12 +102,11 @@ export default {
       products.forEach(product => {
         const createdAt = product.created_at;
         if (createdAt) {
-          const datePart = createdAt.split('T')[0]; // Extract date part from created_at
+          const datePart = createdAt.split('T')[0]; 
           countsByDate[datePart] = (countsByDate[datePart] || 0) + 1;
         }
       });
 
-      console.log(countsByDate); // Log countsByDate
       return countsByDate;
 
     },

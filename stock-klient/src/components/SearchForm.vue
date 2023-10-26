@@ -68,7 +68,7 @@
                     stock.volume }})</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle"> {{ stock.category }}</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" v-if="showColumns" class="align-middle">{{
-                    stock.description.slice(0, 25) + "..." }}</td>
+                    stock.description.length > 25 ? stock.description.slice(0, 25) + "..." : stock.description }} </td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">{{ stock.price }} kr</td>
                 <td v-bind:class="{ 'zero-volume': stock.volume === 0 }" class="align-middle">
                     <button @click="editStock(stock.id)" v-if="showColumns" class="edit-btn-i" title="Edit"><i

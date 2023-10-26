@@ -26,7 +26,6 @@ export default {
     methods: {
         async fetchUserData() {
             const token = sessionStorage.getItem('token');
-            console.log("fetchUserData method triggered");
 
             if (!token) {
                 console.error('No user is logged in');
@@ -39,9 +38,8 @@ export default {
                     }
                 })
                     .then((response) => {
-
                         this.activeUser = response.data;
-                        console.log(response.data);
+                        // this.$emit('LoggedIn');
 
                     }).catch((error) => {
                         console.error('Error fetching user data:', error);
@@ -50,12 +48,12 @@ export default {
         }
 
     },
-    watch: {
-        // Watch changes in activeUser variable
-        activeUser(newValue, oldValue) {
-            console.log(`Active user changed from ${oldValue} to ${newValue}`);
-        },
-    },
+    // watch: {
+    //     // Watch changes in activeUser variable
+    //     activeUser(newValue, oldValue) {
+    //         console.log(`Active user changed from ${oldValue} to ${newValue}`);
+    //     },
+    // },
     // mounted() {
     //     this.activeUser();
     //     const token = sessionStorage.getItem("token")

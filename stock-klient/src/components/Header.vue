@@ -82,8 +82,8 @@ import Users from "../components/Users.vue";
 export default {
     data() {
         return {
-
-        }
+            loggedIn: false,
+        };
     },
     components: {
         RouterLink,
@@ -107,7 +107,6 @@ export default {
 
             if (confirm("Are you sure you want to log out?")) {
 
-                // Send a request to invalidate the token on the server (if supported)
                 axios.post('http://127.0.0.1:8001/api/logout', null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -116,19 +115,31 @@ export default {
                 })
                     .then(() => {
 
-                        // If the request is successful, remove the token from sessionStorage
                         sessionStorage.removeItem('token');
                         sessionStorage.clear()
                         this.$router.push({ name: "login" });
                         console.log("You have been loged out!");
+
                     }).catch((error) => {
                         this.errors = error.response.data.errors;
                         console.error('Error occurred during logout:', error);
                     })
             }
         },
+        //  TokenExists() {
+            
+        //     // Check if the token exists in session storage
+        //     console.log("Token exists triggered");
+        //     if (sessionStorage.getItem('token') !== null) {
+        //         this.loggedIn = true
+        //     } else {
+        //         console.log("Token doesnt exists, admin dropdwon hidden");
 
-    }
+        //     }
+
+        // }
+    },
+
 }
 
 
