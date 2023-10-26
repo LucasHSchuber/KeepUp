@@ -6,7 +6,6 @@
 
             <div class="form">
                 <form @submit.prevent="saveChanges(stock.id)" class="col-md-8">
-                    <!-- <h5>Formulär</h5> -->
 
                     <div class=" error-box">
                         <p v-if="errors.length">
@@ -112,7 +111,7 @@ export default {
             console.log("handfileupload method triggered: " + this.image.name);
         },
         closeModal(event) {
-            // Close the modal only if the click event target is the modal background
+            // Close the modal if clicked outside the modal
             if (event.target.className === 'modal') {
                 this.$emit('close');
             }
@@ -169,8 +168,8 @@ export default {
             }
 
             const form = new FormData();
-
-            if (this.image === null || this.image === undefined) { //if image is NOT included in the request
+            //if image is NOT included in the request
+            if (this.image === null || this.image === undefined) {
                 form.append('SKU', sku);
                 form.append('name', name);
                 form.append('category', category);
@@ -195,7 +194,6 @@ export default {
                         this.$emit('close');
 
                     }).catch((error) => {
-                        // om svar från api inte är OK (200)
                         console.error('Error:', error);
                         if (error.response) {
                             console.error('Response Data:', error.response.data);
@@ -208,7 +206,8 @@ export default {
                     })
 
 
-            } else { //if image IS included in the request
+            } else {
+                //if image IS included in the request
                 form.append('SKU', sku);
                 form.append('name', name);
                 form.append('category', category);
@@ -232,7 +231,6 @@ export default {
                         this.$emit('close');
 
                     }).catch((error) => {
-                        // om svar från api inte är OK (200)
                         console.error('Error:', error);
                         if (error.response) {
                             console.error('Response Data:', error.response.data);
@@ -292,6 +290,7 @@ export default {
     height: 2em;
 
 }
+
 /* 
 .edit-btn {
     padding: 0.5em 1.5em;

@@ -63,7 +63,6 @@ export default {
     methods: {
         saveForm() {
 
-            // Assuming you have stored the authentication token in sessionStorage
             const token = sessionStorage.getItem('token');
 
             axios.post('http://127.0.0.1:8001/api/register', this.form, {
