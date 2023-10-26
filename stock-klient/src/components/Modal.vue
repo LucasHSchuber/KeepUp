@@ -1,4 +1,5 @@
 <template>
+    
     <div class="modal" @click="closeModal">
         <div class="modal-content">
             <span title="Close" class="close" @click="$emit('close')">&times;</span>
@@ -6,7 +7,6 @@
         </div>
     </div>
 
-    <!-- http://localhost:5174/src/images/film_img2.jpg -->
 </template>
 
 <script>

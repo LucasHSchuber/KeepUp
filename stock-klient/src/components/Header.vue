@@ -4,7 +4,6 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
                 <div>
-                    <!-- <a lass="navbar-brand" aria-current="page" ><RouterLink to="/">StockControll</RouterLink></a> -->
                     <img src="../images/box.png" class="pb-2" style="margin-right:5px;" alt="logo img">
                     <a class="navbar-brand" href="#">KeepUp</a>
                 </div>
@@ -43,7 +42,6 @@
                                 <li><a class="dropdown-item" href="#">
                                         <RouterLink to="/analytics">Analytics</RouterLink>
                                     </a></li>
-                                <!-- <li><a class="dropdown-item" href="#">About us</a></li> -->
                                 <li><a class="dropdown-item" href="#">
                                         <RouterLink to="/register">Register user</RouterLink>
                                     </a></li>
