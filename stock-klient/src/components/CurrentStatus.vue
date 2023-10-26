@@ -62,7 +62,7 @@ export default {
             try {
                 const response = await axios.get('http://127.0.0.1:8001/api/stocks');
                 const data = response.data;
-                const CatAmount = new Set(data.map(product => product.category)); //SET samlar alla olika värden
+                const CatAmount = new Set(data.map(product => product.category)); //SET collects all value
                 this.numberOfCategories = CatAmount.size;
             } catch (error) {
                 console.error(error);

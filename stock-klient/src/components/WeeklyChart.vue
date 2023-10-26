@@ -36,7 +36,7 @@ export default {
                 datasets: [
                     {
                         label: 'Number of Products',
-                        data: [], // Product counts will be added here
+                        data: [], 
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
@@ -90,7 +90,7 @@ export default {
                     productsByWeek[weekNumber] = totalProducts; // Update the count to represent total products
                 }
 
-                // Extract week numbers and product counts from calculated data and update chart data
+                // Extract week numbers and product counts 
                 this.chartData.labels = Object.keys(productsByWeek);
                 this.chartData.datasets[0].data = Object.values(productsByWeek);
 

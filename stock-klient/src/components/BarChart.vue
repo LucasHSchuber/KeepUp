@@ -128,7 +128,7 @@ export default {
 
 
       if (chartInstance && chartInstance.update) {
-        chartInstance.update(); // Call update method to re-render the chart with new data
+        chartInstance.update();
       }
     },
     updateChart() {

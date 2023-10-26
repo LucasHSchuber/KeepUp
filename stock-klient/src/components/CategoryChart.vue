@@ -7,7 +7,7 @@
                     The X-axis shows the category, and the Y-axis show the amount of products in that specific category.
                 </p>
             </div>
-            <div  v-if="showChart" class="chart-container">
+            <div v-if="showChart" class="chart-container">
                 <Bar ref="categoryChart" :data="chartData" :options="chartOptions" />
             </div>
         </div>
@@ -30,11 +30,11 @@ export default {
         return {
             showChart: false,
             chartData: {
-                labels: [], // Categories will be added here
+                labels: [],
                 datasets: [
                     {
                         label: 'Number of Products',
-                        data: [], // Product counts will be added here
+                        data: [],
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1,
@@ -68,21 +68,19 @@ export default {
     methods: {
         async fetchCategoryData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8001/api/stocks'); // API endpoint for all products
+                const response = await axios.get('http://127.0.0.1:8001/api/stocks');
                 const data = response.data;
 
-                // Calculate product counts for each category
                 const categories = {};
                 data.forEach(product => {
                     const category = product.category;
                     categories[category] = (categories[category] || 0) + 1;
                 });
 
-                // Extract category names and product counts from calculated data and update chart data
                 this.chartData.labels = Object.keys(categories);
                 this.chartData.datasets[0].data = Object.values(categories);
 
-                this.showChart = true; // Show the chart once data is fetched and processed
+                this.showChart = true;
             } catch (error) {
                 console.error(error);
             }
@@ -162,11 +160,11 @@ export default {
 
 
 @media screen and (max-width: 772px) {
-  .chart-container {
-    max-width: 100%;
-    width: 100%;
-    height: fit-content;
-    margin: auto;
-  }
+    .chart-container {
+        max-width: 100%;
+        width: 100%;
+        height: fit-content;
+        margin: auto;
+    }
 }
 </style>
