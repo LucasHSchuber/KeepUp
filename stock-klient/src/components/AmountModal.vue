@@ -1,5 +1,6 @@
 
 <template>
+
     <div v-if="stock" class="modal" @click="closeModal">
         <div class="modal-content pb-5 pt-3">
             <h5 class="title d-flex my-3 justify-content-center">Amount in stock</h5>
@@ -26,7 +27,6 @@
         </div>
     </div>
 
-    <!-- http://localhost:5174/src/images/film_img2.jpg -->
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         closeModal(event) {
-            // Close the modal only if the click event target is the modal background
+            // Close the modal if click outside modal
             if (event.target.className === 'modal') {
                 if (confirm("You need to click the Save button not loose your changes. Do you still want tot proceed?")) {
                     this.$emit('close');
@@ -87,21 +87,17 @@ export default {
                 body: JSON.stringify(updateData),
             })
                 .then((response) => {
-                    // If the request is successful
                     if (response.ok) {
                         this.$emit('fetch-success');
                         return response.json();
                     }
-                    // Handle non-2xx responses here
                     throw new Error('Network response was not ok.');
                 })
                 .then((data) => {
-                    // Handle successful response data here
                     console.log('Data successfully updated in the database:', data);
                     this.$emit('close');
                 })
                 .catch((error) => {
-                    // om svar från api inte är OK (200)
                     console.error('Error:', error);
                     if (error.response) {
                         console.error('Response Data:', error.response.data);
@@ -116,7 +112,7 @@ export default {
 </script>
 
 <style scoped>
-/* Add your modal styles here */
+
 .modal {
     display: flex;
     justify-content: center;
@@ -171,23 +167,6 @@ export default {
 .remove {
     background-color: rgb(239, 76, 76);
 }
-
-/* .save-btn {
-    padding: 0.5em 1.5em;
-    background-color: black;
-    transition: 0.2s;
-    color: white;
-    border-radius: 20px;
-    border: none;
-    width: 6em;
-    margin: auto;
-    margin-top: 2em;
-}
-
-.save-btn:hover {
-    background-color: rgb(52, 51, 51);
-
-} */
 
 .error-box {
     height: 1em;

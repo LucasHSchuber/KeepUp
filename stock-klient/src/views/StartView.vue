@@ -1,11 +1,8 @@
 
 <template>
-    <!-- <div class="start-box container px-5 py-5">
-        <h1>Start</h1>
-    </div> -->
+
     <div class="imgbox">
-        <!-- <img class="start-image " src="../images/big2.jpg" alt="bild-film"
-            style="object-fit:fill;object-position: -20% 0;"> -->
+
         <picture>
             <source media="(min-width: 1800px)" srcset="../images/big.jpg">
             <source media="(min-width: 1080px)" srcset="../images/big4.jpg">
@@ -20,17 +17,6 @@
         </div>
     </div>
 
-    <!-- <div class="">
-
-        <div>
-            <BarChart />
-        </div>
-
-        <div>
-            <CategoryChart />
-        </div>
-
-    </div> -->
 </template>
 
 <script>
