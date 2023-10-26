@@ -20,6 +20,7 @@ const router = createRouter({
       path: '/add',
       name: 'add',
       component: AddView,
+      //before guard to protect routes from non authenticated users 
       beforeEnter: (to, from, next) => {
         if (sessionStorage.getItem('token')) {
           next()

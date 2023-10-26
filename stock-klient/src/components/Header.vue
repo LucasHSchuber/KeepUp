@@ -92,7 +92,7 @@ export default {
     methods: {
         async logoutUser() {
 
-            // Retrieve the Bearer token from sessionStorage
+            // Get the token from sessionStorage
             const token = sessionStorage.getItem('token');
 
             // Check if the token exists
@@ -105,6 +105,7 @@ export default {
                 console.log(token);
             }
 
+            //if clicking on log out - needs confirmation
             if (confirm("Are you sure you want to log out?")) {
 
                 axios.post('http://127.0.0.1:8001/api/logout', null, {

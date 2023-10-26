@@ -57,7 +57,8 @@ export default {
         };
     },
     created() {
-        this.loadAllProducts(); // Load all products when the component is created
+        // Load all products when the component is created
+        this.loadAllProducts(); 
     },
     methods: {
         loadAllProducts() {
@@ -91,7 +92,6 @@ export default {
             try {
                 const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
                 const product = response.data;
-                // Emit an event to parent component to open the modal
                 this.showModal2 = true;
                 this.selectedProduct = product;
                 console.log(this.selectedProduct);

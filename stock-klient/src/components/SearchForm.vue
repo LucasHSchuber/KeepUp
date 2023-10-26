@@ -89,6 +89,7 @@
     <AmountModal v-if="showModal3" @close="showModal3 = false" :stock="selectedProduct" @fetch-success="loadAllProducts" />
 </template>
 
+
 <script>
 import axios from 'axios';
 
@@ -139,6 +140,7 @@ export default {
                     console.error(error);
                 });
         },
+        //search method when search form has any input, store in obejct this.searchresult which is dynamically printed in table on screen
         search() {
             axios.get(`http://127.0.0.1:8001/api/search?q=${this.searchTerm}`)
                 .then(response => {
@@ -149,10 +151,12 @@ export default {
                     console.error(error);
                 });
         },
+        //open image modal 
         openModalWithUrl(url) {
             this.imageUrl = url;
             this.showModal = true;
         },
+        //open amount modal 
         async openAmountModal(id) {
             try {
                 const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
@@ -167,6 +171,7 @@ export default {
                 console.error('Error fetching product data:', error);
             }
         },
+        //Edit stock method
         async editStock(id) {
             try {
                 const response = await axios.get(`http://127.0.0.1:8001/api/stocks/${id}`);
@@ -178,6 +183,7 @@ export default {
                 console.error('Error fetching product data:', error);
             }
         },
+        //Delete stock method
         async deleteStock(id) {
             if (confirm("Are you sure you want to delete this product?")) {
                 const resp = await fetch("http://127.0.0.1:8001/api/stocks/" + id, {
@@ -191,11 +197,12 @@ export default {
                 this.loadAllProducts();
             }
         },
+        //if click on filter button
         filter() {
             axios.get(`http://127.0.0.1:8001/api/search?q=${this.searchTerm}`)
                 .then(response => {
                     this.searchResults = response.data;
-                    this.sortResults(); // Sort the results after receiving data
+                    this.sortResults(); 
                 })
                 .catch(error => {
                     console.error(error);
@@ -204,7 +211,7 @@ export default {
         sortResults() {
             switch (this.sortBy) {
                 case 'name':
-                    this.searchResults.sort((a, b) => a.name.localeCompare(b.name));
+                    this.searchResults.sort((a, b) => a.name.localeCompare(b.name)); //SORT: method used to sort the elements of an array in place and return the sorted array. localCompare:method compares two strings in the current locale and returns a number indicating whether the first string comes before, after, or is the same as the second string in sort order.
                     break;
                 case 'price':
                     this.searchResults.sort((a, b) => a.price - b.price);
@@ -214,38 +221,37 @@ export default {
                     break;
                 case 'updated_at_desc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.created_at);
+                        const dateA = new Date(a.created_at); // When you subtract one Date object from another it converts them to timestamps. 
                         const dateB = new Date(b.created_at);
-                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                        return dateB - dateA;
                     });
                     break;
                 case 'updated_at_asc':
                     this.searchResults.sort((a, b) => {
                         const dateA = new Date(a.created_at);
                         const dateB = new Date(b.created_at);
-                        return dateA - dateB; // Sort in ascending order (oldest to newest)
+                        return dateA - dateB;
                     });
                     break;
                 case 'updated_at_latest':
                     this.searchResults.sort((a, b) => {
                         const dateA = new Date(a.updated_at);
                         const dateB = new Date(b.updated_at);
-                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                        return dateB - dateA;
                     });
                     break;
                 default:
-                    // Default sorting logic (if needed)
                     break;
             }
         },
         increaseFontSize() {
-            this.fontSize += 1; // Increase font size by 2 pixels
+            this.fontSize += 1;
         },
         decreaseFontSize() {
-            this.fontSize = Math.max(10, this.fontSize - 1); // Decrease font size by 2 pixels, but not less than 10
+            this.fontSize = Math.max(10, this.fontSize - 1);
         },
         toggleColumns() {
-            this.showColumns = !this.showColumns; // Toggle the visibility of the Description column
+            this.showColumns = !this.showColumns;
         },
         toggleShowZeroVolumeRows() {
             this.showZeroVolumeRows = !this.showZeroVolumeRows;

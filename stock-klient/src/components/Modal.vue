@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         closeModal(event) {
-            // Close the modal only if the click event target is the modal background
+            // Close modal if click outisde modal
             if (event.target.className === 'modal') {
                 this.$emit('close');
             }

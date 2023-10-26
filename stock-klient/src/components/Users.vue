@@ -20,7 +20,7 @@ export default {
 
     },
     created() {
-        // Call the method to fetch active user data when the component is mounted
+        // Call method when component is mounted
         this.fetchUserData();
     },
     methods: {
