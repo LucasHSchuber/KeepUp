@@ -10,7 +10,7 @@ Frontend-repo: En varulagerhanterings-applikation som hanterar APIer - lägg til
 
 ## Ramverk
 
-- Vue.js
+- Vue.js (SPA)
 - Bootstrap
 
 ## Installering
@@ -21,4 +21,6 @@ Frontend-repo: En varulagerhanterings-applikation som hanterar APIer - lägg til
 ## Användning
 
 - Kör `npm run dev` för att starta programmet i Vue.js.
+
+
 
