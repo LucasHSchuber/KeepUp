@@ -11,11 +11,12 @@
 
             <label class="sort-label mt-1">Sort By: &nbsp; </label>
             <select v-model="sortBy" class="form-control sort-select form-select" placeholder="Sort by..">
-                <option value="name">Name (A-Z)</option>
                 <option value="category">Category (A-Z)</option>
-                <option value="price">Price (Low - High)</option>
                 <option value="updated_at_desc">Date (descending)</option>
                 <option value="updated_at_asc">Date (ascending)</option>
+                <option value="updated_at_latest">Latest updated (descending)</option>
+                <option value="name">Name (A-Z)</option>
+                <option value="price">Price (Low - High)</option>
             </select>
             <button @click="filter" class="submit-btn sort-btn my-2 mx-3 my-sm-0" type="submit"> <i
                     class="fa-solid fa-arrow-down-wide-short"></i></button>
@@ -181,7 +182,7 @@ export default {
         sortResults() {
             switch (this.sortBy) {
                 case 'name':
-                    this.searchResults.sort((a, b) => a.name.localeCompare(b.name));
+                    this.searchResults.sort((a, b) => a.name.localeCompare(b.name)); //SORT: method used to sort the elements of an array in place and return the sorted array. localCompare:method compares two strings in the current locale and returns a number indicating whether the first string comes before, after, or is the same as the second string in sort order.
                     break;
                 case 'price':
                     this.searchResults.sort((a, b) => a.price - b.price);
@@ -191,20 +192,26 @@ export default {
                     break;
                 case 'updated_at_desc':
                     this.searchResults.sort((a, b) => {
-                        const dateA = new Date(a.created_at);
+                        const dateA = new Date(a.created_at); // When you subtract one Date object from another it converts them to timestamps. 
                         const dateB = new Date(b.created_at);
-                        return dateB - dateA; // Sort in descending order (newest to oldest)
+                        return dateB - dateA;
                     });
                     break;
                 case 'updated_at_asc':
                     this.searchResults.sort((a, b) => {
                         const dateA = new Date(a.created_at);
                         const dateB = new Date(b.created_at);
-                        return dateA - dateB; // Sort in ascending order (oldest to newest)
+                        return dateA - dateB;
+                    });
+                    break;
+                case 'updated_at_latest':
+                    this.searchResults.sort((a, b) => {
+                        const dateA = new Date(a.updated_at);
+                        const dateB = new Date(b.updated_at);
+                        return dateB - dateA;
                     });
                     break;
                 default:
-                    // Default sorting logic (if needed)
                     break;
             }
         },
