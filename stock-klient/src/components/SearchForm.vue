@@ -11,7 +11,7 @@
                     <!-- <input @input="search" v-model="searchTerm" class="form-control mr-sm-2" type="search"
                 placeholder="Search stock" aria-label="Search"> -->
 
-                    <label class="sort-label mt-1">Sort By: &nbsp; </label>
+                    <label class="sort-label mt-1">Sort: &nbsp; </label>
                     <select v-model="sortBy" class="form-control sort-select form-select">
                         <option value="category">Category (A-Z)</option>
                         <option value="updated_at_desc">Date (descending)</option>

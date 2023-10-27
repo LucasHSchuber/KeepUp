@@ -126,7 +126,7 @@ export default {
             }
         },
         //  TokenExists() {
-            
+
         //     // Check if the token exists in session storage
         //     console.log("Token exists triggered");
         //     if (sessionStorage.getItem('token') !== null) {
@@ -215,6 +215,9 @@ a:focus {
 
 @media screen and (max-width: 772px) {
 
+    .navbar {
+        width: 100% !important;
+    }
 
     .navbar-nav>li>a {
         color: rgb(46, 46, 46);

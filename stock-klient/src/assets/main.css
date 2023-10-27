@@ -226,8 +226,7 @@ body {
   }
 
   .search-bar {
-    max-width: 75%;
-    width: 35em;
+    max-width: 75% !important;
     height: 4em;
   }
 
