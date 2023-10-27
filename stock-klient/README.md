@@ -1,6 +1,5 @@
 ## Lucas Schuber
-## Klient - Projekt - fullstackutveckling med ramverk
-## Mittuniversitetet
+## Klient - Projekt 
 
 # Projektnamn
 Keepup
