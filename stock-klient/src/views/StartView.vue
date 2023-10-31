@@ -9,7 +9,7 @@
             <source media="(min-width: 772px)" srcset="../images/small3.jpg">
             <source media="(min-width: 500px)" srcset="../images/small4.jpg">
             <source media="(max-width: 500px)" srcset="../images/small5.jpg">
-            <img src="../images/small4" alt="Hero image">
+            <img src="../images/small4.jpg" alt="Hero image">
         </picture>
 
         <div class="img-box">
